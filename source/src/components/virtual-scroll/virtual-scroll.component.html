@@ -1,0 +1,11 @@
+<ion-grid>
+  <ion-virtual-scroll [items]="list | virtualListIndex">
+    <div *virtualItem="let item">
+      <ion-row>
+        <ion-col *ngFor="let img of item;" [size]="numOfColumns">
+          <ion-img [src]="img.src"></ion-img>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-virtual-scroll>
+</ion-grid>

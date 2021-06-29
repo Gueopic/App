@@ -1,20 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header no-border>
+
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>GueoPic APP</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content fullscreen>
+  <app-virtual-scroll [list]="imgs"></app-virtual-scroll>
 </ion-content>
+
+
+<ion-footer no-border>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        Menu
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        Config
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-footer>
