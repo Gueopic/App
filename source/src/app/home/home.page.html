@@ -2,18 +2,25 @@
   <ion-toolbar>
     <ion-title>GueoPic APP</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content fullscreen> Content goes Here </ion-content>
+
+<ion-content fullscreen>
+  <app-virtual-scroll [list]="imgs"></app-virtual-scroll>
+</ion-content>
+
 
 <ion-footer no-border>
+
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="menuPage()"> Menu </ion-button>
+      <ion-button [routerLink]="['/menu']"> Menu </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
       <ion-button> Config </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
 </ion-footer>

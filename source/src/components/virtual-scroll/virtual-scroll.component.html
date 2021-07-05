@@ -1,0 +1,13 @@
+<ion-grid>
+  <ion-virtual-scroll [items]="groupList" [approxItemHeight]="rowSizePx + 'px'">
+    <ion-row *virtualItem="let group">
+      <ion-col *ngFor="let item of group" [size]="colSize">
+        <ion-img
+          [src]="item.src"
+          style="overflow: hidden; width: 100%"
+          [style.height]="rowSizePx + 'px'"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-virtual-scroll>
+</ion-grid>

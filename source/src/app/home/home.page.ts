@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Imgtext } from 'src/interfaces/global.interfaces';
+import { MOCKED_DATA } from 'src/utils/global-variables.utils';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,5 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private router: Router) {}
-
-  menuPage() {
-    this.router.navigate(['/menu']);
-  }
+  imgs: Imgtext[] = MOCKED_DATA;
 }
