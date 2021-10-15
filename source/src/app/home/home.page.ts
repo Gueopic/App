@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
-
+  constructor(
+    private appTranslateService: AppTranslateService,
+  ) {}
+  demoChangeLang(value) {
+    this.appTranslateService.current = value;
+  }
 }
