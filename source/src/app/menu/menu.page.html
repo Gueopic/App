@@ -68,20 +68,35 @@
       </div>
       <div class="gueo-flex--col">
         <h2>{{item.text}}</h2>
-        <ion-button expand="block" color="secondary">
+        <div class="gueo-flex--button">
+          <ion-button
+            expand="block"
+            color="danger"
+            (click)="deleteObject(item.id)"
+          >
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-button>
+
+          <ion-button
+            (click)="openModal(item)"
+            color="tertiary"
+            expand="block"
+            class="gueo-flex--button-flex-1"
+          >
+            <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+            Editar
+          </ion-button>
+        </div>
+        <ion-button
+          color="secondary"
+          expand="block"
+          class="gueo-flex--button-flex-1"
+        >
           <ion-icon slot="start" name="volume-high-outline"></ion-icon>
           Sonido
-        </ion-button>
-        <ion-button
-          expand="block"
-          color="danger"
-          (click)="deleteObject(item.id)"
-        >
-          <ion-icon slot="start" name="trash-outline"></ion-icon>
-          Eliminar
         </ion-button>
       </div>
     </div>
   </section>
 </ion-content>
-

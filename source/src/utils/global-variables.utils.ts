@@ -1,4 +1,4 @@
-import { ImgText } from 'src/interfaces/global.interfaces';
+import { ImgText } from 'src/services/data.service';
 
 export const ROUTE_NAMES: { [key: string]: string } = {
   home: 'home',

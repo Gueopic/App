@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ImgText } from 'src/interfaces/global.interfaces';
+import { ImgText } from 'src/services/data.service';
 import { MOCKED_DATA } from 'src/utils/global-variables.utils';
 
 @Component({
-  selector: 'app-home',
+  selector: 'gueo-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })

@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ImgText, PhraseData } from 'src/interfaces/global.interfaces';
+
+export interface ImgText {
+  src: string;
+  text: string;
+  id?: number;
+}
+
+export interface PhraseData {
+  phrase: string;
+  id: number;
+}
 
 const MOCKED_PHRASES_DATA: PhraseData[] = [
   { phrase: 'JO ESTIC', id: 1 },
@@ -21,6 +31,7 @@ const MOCKED_OBJECTS_DATA: ImgText[] = [
   },
 ];
 
+// TODO: Delete when DB is implemented
 @Injectable({
   providedIn: 'root',
 })

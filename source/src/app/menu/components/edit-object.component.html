@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Objeto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()"> Cerrar </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <ion-img [src]="item.src"></ion-img>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Objeto a editar</ion-label>
+          <ion-input
+            formControlName="text"
+            type="text"
+            placeholder="Escriba aquí..."
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-toolbar>
+</ion-content>
+
+<ion-footer (click)="save()">
+  <ion-toolbar color="tertiary">
+    <ion-title>Guardar</ion-title>
+  </ion-toolbar>
+</ion-footer>

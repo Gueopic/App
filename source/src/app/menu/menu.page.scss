@@ -20,3 +20,10 @@
   flex-direction: column;
   width: 100%;
 }
+
+.gueo-flex--button {
+  display: flex;
+  & .gueo-flex--button-flex-1 {
+    flex: 1;
+  }
+}
