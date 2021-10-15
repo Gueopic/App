@@ -1,5 +1,7 @@
 {
-  "name": "source",
-  "integrations": {},
+  "name": "gueopic",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
