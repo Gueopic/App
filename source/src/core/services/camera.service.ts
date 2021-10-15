@@ -17,17 +17,18 @@ export class CameraService {
             return Camera.getPhoto({
                 resultType: CameraResultType.Uri,
                 source,
-                quality: 100
+                quality: 50,
             });
         }
 
         return null;
     }
 
-    async savePicture(cameraPhoto: Photo) {
+    async savePicture(folder: string, cameraPhoto: Photo) {
+        // folder ex: '/items/pictures/'
         // Write the file to the data directory
         const fileName = new Date().getTime() + '.jpeg';
-        await this.fsService.write(fileName, cameraPhoto.base64String);
+        await this.fsService.write(folder + fileName, cameraPhoto.base64String);
 
         // Use webPath to display the new image instead of base64 since it's
         // already loaded into memory
