@@ -1,11 +1,11 @@
-import { Imgtext } from 'src/interfaces/global.interfaces';
+import { ImgText } from 'src/interfaces/global.interfaces';
 
 export const ROUTE_NAMES: { [key: string]: string } = {
   home: 'home',
   menu: 'menu',
 };
 
-export const MOCKED_DATA: Imgtext[] = [
+export const MOCKED_DATA: ImgText[] = [
   { src: 'https://picsum.photos/200/300', text: 'Brown man' },
   { src: 'https://picsum.photos/200/300', text: 'Brown man' },
   { src: 'https://picsum.photos/200/300', text: 'Brown man' },

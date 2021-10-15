@@ -24,7 +24,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": "gueo",
             "style": "kebab-case"
           }
         ],

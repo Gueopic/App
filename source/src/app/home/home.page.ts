@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Imgtext } from 'src/interfaces/global.interfaces';
+import { ImgText } from 'src/interfaces/global.interfaces';
 import { MOCKED_DATA } from 'src/utils/global-variables.utils';
 
 @Component({
@@ -8,5 +8,5 @@ import { MOCKED_DATA } from 'src/utils/global-variables.utils';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  imgs: Imgtext[] = MOCKED_DATA;
+  imgs: ImgText[] = MOCKED_DATA;
 }

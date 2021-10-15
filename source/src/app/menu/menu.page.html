@@ -1,9 +1,87 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>menu</ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <section class="gueo-content--section ion-text-center">
+    <ion-text>
+      <h5>Crear un nuevo objeto de la barra superior</h5>
+    </ion-text>
+    <ion-button color="primary" expand="block">
+      Crear
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+    </ion-button>
+  </section>
 
+  <section class="gueo-content--section">
+    <ion-grid>
+      <ion-row class="ion-text-center ion-align-items-center">
+        <ion-col>
+          <ion-text>Texto</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>Sonido</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>Eliminar</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        *ngFor="let data of dataService.phraseObject$ | async"
+        class="ion-text-center ion-align-items-center"
+      >
+        <ion-col> {{data.phrase}} </ion-col>
+        <ion-col>
+          <ion-button size="small" color="secondary">
+            <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+            Sonido
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button
+            size="small"
+            color="danger"
+            (click)="deletePhraseObject(data.id)"
+          >
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+  <section class="ion-text-center">
+    <ion-text>
+      <h5>Crear un nuevo objeto</h5>
+    </ion-text>
+    <ion-button color="primary" expand="block">
+      Crear
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+    </ion-button>
+  </section>
+  <section class="gueo-flex" *ngIf="dataService.object$ | async as items">
+    <div class="gueo-flex--row" *ngFor="let item of items">
+      <div>
+        <ion-img [src]="item.src" class="gueo-image"></ion-img>
+      </div>
+      <div class="gueo-flex--col">
+        <h2>{{item.text}}</h2>
+        <ion-button expand="block" color="secondary">
+          <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+          Sonido
+        </ion-button>
+        <ion-button
+          expand="block"
+          color="danger"
+          (click)="deleteObject(item.id)"
+        >
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Eliminar
+        </ion-button>
+      </div>
+    </div>
+  </section>
 </ion-content>
+
