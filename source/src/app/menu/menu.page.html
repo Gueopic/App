@@ -29,7 +29,7 @@
         </ion-col>
       </ion-row>
       <ion-row
-        *ngFor="let data of dataService.phraseObject$ | async"
+        *ngFor="let data of dataService.phraseObject$ | async; trackBy:trackById"
         class="ion-text-center ion-align-items-center"
       >
         <ion-col> {{data.phrase}} </ion-col>
@@ -62,7 +62,7 @@
     </ion-button>
   </section>
   <section class="gueo-flex" *ngIf="dataService.object$ | async as items">
-    <div class="gueo-flex--row" *ngFor="let item of items">
+    <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackById">
       <div>
         <ion-img [src]="item.src" class="gueo-image"></ion-img>
       </div>

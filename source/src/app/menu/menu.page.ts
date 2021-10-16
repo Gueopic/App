@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { StorageElement } from 'src/core/database/core/storage.elements';
 import { DataService, ImgText } from 'src/services/data.service';
 import { EditObjectComponent } from './components/edit-object.component';
 
@@ -7,6 +8,7 @@ import { EditObjectComponent } from './components/edit-object.component';
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuPage implements OnInit {
   constructor(
@@ -22,6 +24,10 @@ export class MenuPage implements OnInit {
 
   deleteObject(id: number) {
     this.dataService.deleteObject(id);
+  }
+
+  trackById(index, item: StorageElement) {
+    return item.id;
   }
 
   async openModal(item: ImgText): Promise<void> {
