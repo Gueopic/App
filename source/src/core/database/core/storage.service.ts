@@ -9,7 +9,6 @@ export class StorageService {
   private _storage: Storage | null = null;
 
   constructor(private storageService: Storage) {
-    this.init();
   }
 
   async init(): Promise<void> {
