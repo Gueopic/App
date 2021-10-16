@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 import { ImgText } from 'src/services/data.service';
 import { MOCKED_DATA } from 'src/utils/global-variables.utils';
@@ -8,13 +8,14 @@ import { MOCKED_DATA } from 'src/utils/global-variables.utils';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   imgs: ImgText[] = MOCKED_DATA;
 
   constructor(
-    private appTranslateService: AppTranslateService,
+    public appTranslateService: AppTranslateService,
   ) {}
-  demoChangeLang(value) {
-    this.appTranslateService.current = value;
+
+  ngOnInit() {
   }
+
 }

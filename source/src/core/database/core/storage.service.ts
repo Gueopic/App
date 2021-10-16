@@ -9,7 +9,6 @@ export class StorageService {
   private _storage: Storage | null = null;
 
   constructor(private storageService: Storage) {
-    this.init();
   }
 
   async init(): Promise<void> {
@@ -27,6 +26,15 @@ export class StorageService {
 
   public async remove(key: string): Promise<void> {
     return this._storage.remove(key);
+  }
+
+  public async getElement(
+    key: string,
+    elementId: string,
+    defaultValue?: any
+  ): Promise<StorageElement> {
+    const elements: StorageElement[] = await this.get(key, []);
+    return elements.find((element) => element.id === elementId) || defaultValue;
   }
 
   public async getElements(
