@@ -1,3 +1,22 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+
+  <ion-content [fullscreen]="true" *ngIf="!hasSelectedLang">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">
+          {{ 'language' | translate }}
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div id="container">
+      <ion-button
+        *ngFor="let lang of appTranslateService.availableLangs()"
+        (click)="changeLang(lang)"
+      >
+        {{ lang }}
+      </ion-button>
+    </div>
+  </ion-content>
 </ion-app>
