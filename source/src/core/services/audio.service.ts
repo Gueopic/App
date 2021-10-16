@@ -32,8 +32,7 @@ export class AudioService {
     }
   }
 
-  async playAudioFile() {
-    const base64Sound = ''; // get from db
+  async playAudioFile(base64Sound: string) {
     const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`);
     audioRef.oncanplaythrough = () => audioRef.play();
     audioRef.load();
