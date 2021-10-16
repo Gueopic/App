@@ -43,5 +43,5 @@ export class EditObjectComponent implements OnInit {
     // TODO: Add image service
   }
 
-  recordSound(){}
+  recordSound() {}
 }
