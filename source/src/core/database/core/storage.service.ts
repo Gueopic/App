@@ -28,6 +28,15 @@ export class StorageService {
     return this._storage.remove(key);
   }
 
+  public async getElement(
+    key: string,
+    elementId: string,
+    defaultValue?: any
+  ): Promise<StorageElement> {
+    const elements: StorageElement[] = await this.get(key, []);
+    return elements.find((element) => element.id === elementId) || defaultValue;
+  }
+
   public async getElements(
     key: string,
     elementIds?: string[]
