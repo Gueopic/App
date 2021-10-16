@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 
 @Component({
@@ -6,12 +6,13 @@ import { AppTranslateService } from 'src/core/modules/translate/translate.servic
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   constructor(
-    private appTranslateService: AppTranslateService,
+    public appTranslateService: AppTranslateService,
   ) {}
-  demoChangeLang(value) {
-    this.appTranslateService.current = value;
+
+  ngOnInit() {
   }
+
 }

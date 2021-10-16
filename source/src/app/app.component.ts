@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StorageService } from 'src/core/database/core/storage.service';
-import { VerbsDatabaseService } from 'src/core/database/verbs-database.service';
-import { VerbModel } from 'src/core/models/verb.model';
+import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +9,14 @@ import { VerbModel } from 'src/core/models/verb.model';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  // TODO: Refactor to a new screen
+  hasSelectedLang: boolean;
+  languageList: string[];
+
   constructor(
     private platform: Platform,
     private storageService: StorageService,
-    private verbsDatabase: VerbsDatabaseService,
+    public appTranslateService: AppTranslateService
   ) {}
 
   ngOnInit() {
@@ -21,10 +24,24 @@ export class AppComponent implements OnInit {
       console.debug('Platform initialized:', res);
       this.bootstrap();
     });
+  }
 
+  changeLang(lang: string) {
+    this.appTranslateService.setCurrent(lang);
+    this.hasSelectedLang = true;
   }
 
   private async bootstrap(): Promise<void> {
     await this.storageService.init();
+    await this.loadCurrentLanguage();
+  }
+
+  private async loadCurrentLanguage(): Promise<void> {
+    this.hasSelectedLang = !!(await this.appTranslateService.getCurrent());
+    this.languageList = this.appTranslateService.availableLangs();
+    if (!this.hasSelectedLang && this.languageList?.length === 1) {
+      this.appTranslateService.setCurrent(this.languageList[0]);
+      this.hasSelectedLang = true;
+    }
   }
 }

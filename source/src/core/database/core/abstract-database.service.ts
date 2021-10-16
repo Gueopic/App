@@ -5,6 +5,10 @@ export abstract class AbstractDatabaseService<T> {
 
   constructor(protected dbService: StorageService) {}
 
+  async get(id: string, defaultElement?: T): Promise<T> {
+    return await this.dbService.getElement(this.tableName, id, defaultElement) as T;
+  }
+
   async getAll(): Promise<T[]> {
     return await this.dbService.get(this.tableName);
   }
