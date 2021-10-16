@@ -2,40 +2,24 @@
   <ion-toolbar>
     <ion-title>GueoPic APP</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
-
-<ion-content fullscreen>
-  <app-virtual-scroll [list]="imgs"></app-virtual-scroll>
-</ion-content>
-
-
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">
-        {{ 'language' | translate }}
-      </ion-title>
+      <ion-title size="large"> {{ 'language' | translate }} </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <ion-button (click)="demoChangeLang('es')">
-      ESP
-    </ion-button>
-    <ion-button (click)="demoChangeLang('en')">
-      ENG
-    </ion-button>
-    <ion-button (click)="demoChangeLang('ca')">
-      CAT
-    </ion-button>
+    <ion-button (click)="demoChangeLang('es')"> ESP </ion-button>
+    <ion-button (click)="demoChangeLang('en')"> ENG </ion-button>
+    <ion-button (click)="demoChangeLang('ca')"> CAT </ion-button>
   </div>
+  <app-virtual-scroll [list]="imgs"></app-virtual-scroll>
 </ion-content>
 
 <ion-footer no-border>
-
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/menu']"> Menu </ion-button>
@@ -45,5 +29,4 @@
       <ion-button> Config </ion-button>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-footer>

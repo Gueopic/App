@@ -10,17 +10,25 @@
 <ion-content>
   <ion-toolbar>
     <form [formGroup]="form" (ngSubmit)="save()">
-      <ion-img [src]="item.src"></ion-img>
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Objeto a editar</ion-label>
-          <ion-input
-            formControlName="text"
-            type="text"
-            placeholder="Escriba aquí..."
-          ></ion-input>
-        </ion-item>
-      </ion-list>
+      <div class="gueo-flex--edit-object">
+        <ion-img [src]="item.src" (click)="editImage()"></ion-img>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Objeto a editar</ion-label>
+            <ion-input
+              (change)="onEditText($event)"
+              formControlName="text"
+              type="text"
+              placeholder="Escriba aquí..."
+              [value]="item.text"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button color="secondary" expand="block" (click)="recordSound()">
+          <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+          Sonido
+        </ion-button>
+      </div>
     </form>
   </ion-toolbar>
 </ion-content>

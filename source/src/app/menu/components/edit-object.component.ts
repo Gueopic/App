@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'gueo-edit-object',
   templateUrl: './edit-object.component.html',
+  styleUrls: ['./edit-object.component.scss'],
   providers: [FormBuilder],
 })
 export class EditObjectComponent implements OnInit {
@@ -17,16 +18,30 @@ export class EditObjectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = this.fb.group({
-      text: [''],
-    });
+    this.initForm();
   }
 
-  close() {
+  close(): void {
     this.modalController.dismiss();
   }
 
-  save() {
+  save(): void {
     console.log(this.form.value);
   }
+
+  initForm(): void {
+    this.form = this.fb.group({
+      text: this.item.text,
+    });
+  }
+
+  onEditText(event: any): void {
+    this.form.patchValue({ text: event.target.value });
+  }
+
+  editImage() {
+    // TODO: Add image service
+  }
+
+  recordSound(){}
 }
