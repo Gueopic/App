@@ -14,6 +14,9 @@ export class AudioService {
 
   async startRecording(): Promise<boolean> {
     try {
+      if (!(await this.requestAudioRecording())) {
+        throw new Error('No permissions granted to record audio');
+      }
       const startRecording = await VoiceRecorder.startRecording();
       return startRecording.value;
     } catch (error) {
