@@ -12,6 +12,6 @@ export class HomePage {
     private appTranslateService: AppTranslateService,
   ) {}
   demoChangeLang(value) {
-    this.appTranslateService.current = value;
+    this.appTranslateService.setCurrent(value);
   }
 }
