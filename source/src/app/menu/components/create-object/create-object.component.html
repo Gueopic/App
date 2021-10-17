@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Objeto</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()"> Cerrar </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="createObjectForm" (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="stacked">Nombre del objeto</ion-label>
+      <ion-input
+        (change)="onChangeInput($event)"
+        placeholder="Escriba aqui..."
+        formControlName="createObject"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button> Guardar </ion-button>
+  </form>
+</ion-content>

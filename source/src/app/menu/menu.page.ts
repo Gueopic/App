@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { StorageElement } from 'src/core/database/core/storage.elements';
 import { DataService, ImgText } from 'src/services/data.service';
-import { EditObjectComponent } from './components/edit-object.component';
+import { CreateObjectComponent } from './components/create-object/create-object.component';
+import { EditObjectComponent } from './components/edit-object/edit-object.component';
 
 @Component({
   selector: 'gueo-menu',
@@ -30,13 +31,21 @@ export class MenuPage implements OnInit {
     return item.id;
   }
 
-  async openModal(item: ImgText): Promise<void> {
+  async openEditModal(item: ImgText): Promise<void> {
     const modal = await this.modalController.create({
       component: EditObjectComponent,
       cssClass: 'gueo-edit-object--custom',
       componentProps: {
         item,
       },
+    });
+    return await modal.present();
+  }
+
+  async openCreateModal(): Promise<void> {
+    const modal = await this.modalController.create({
+      component: CreateObjectComponent,
+      cssClass: 'gueo-edit-object--custom',
     });
     return await modal.present();
   }

@@ -8,4 +8,4 @@ import { EditObjectComponent } from './edit-object.component';
   imports: [CommonModule, ReactiveFormsModule, IonicModule],
   declarations: [EditObjectComponent],
 })
-export class MenuPageModule {}
+export class EditObjectModule {}
