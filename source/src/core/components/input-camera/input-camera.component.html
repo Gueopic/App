@@ -1,0 +1,23 @@
+<ion-item>
+  <ion-label>Default Label</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<img *ngIf="imagePath"
+  [src]="imagePath"
+/>
+<div class="container-field">
+  <div class="row">
+    <!-- <img [src]="urlImage" alt="Capture" width="84" height="84" *ngIf="fileData"> -->
+  </div>
+  <div class="row">
+    <button mat-raised-button
+      class="action"
+      (click)="getImage($event)"
+      color="primary"
+      [type]="'button'"
+    >
+      <ion-icon name="camera"></ion-icon>
+    </button>
+  </div>
+</div>
