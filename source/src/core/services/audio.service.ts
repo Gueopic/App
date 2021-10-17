@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
+import { FileData } from '../models/file-data.model';
 
 // doc: https://www.npmjs.com/package/capacitor-voice-recorder
 
@@ -25,19 +26,32 @@ export class AudioService {
     }
   }
 
-  async stopRecording(): Promise<RecordingData> {
+  async stopRecording(): Promise<FileData<RecordingData>> {
     try {
-      const stopRecording: RecordingData = await VoiceRecorder.stopRecording();
-      return stopRecording;
+      const record: RecordingData = await VoiceRecorder.stopRecording();
+      return this.convertToFileData(record);
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
 
-  playAudioFile(base64Sound: string) {
-    const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`);
-    audioRef.oncanplaythrough = () => audioRef.play();
-    audioRef.load();
+  async playAudio(audio: InstanceType<typeof Audio>) {
+    // const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`);
+    audio.oncanplaythrough = () => audio.play();
+    audio.load();
+  }
+
+  async playAudioFile(fileData: FileData<RecordingData>) {
+    const audioRef = new Audio(await fileData.getBase64());
+    return this.playAudio(audioRef);
+  }
+
+  convertToFileData(record: RecordingData): FileData<RecordingData> {
+    const fileData = new FileData(record);
+    fileData.setBase64(
+      `data:audio/aac;base64,${record.value.recordDataBase64}`
+    );
+    return fileData;
   }
 }
