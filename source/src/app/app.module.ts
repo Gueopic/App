@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -8,6 +8,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
+import { Capacitor } from '@capacitor/core';
+import { CameraService } from 'src/core/services/camera.service';
+import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
+
+console.log('IS NATIVE:',Capacitor.isNativePlatform());
+
+// If is native, will use main services, otherwise mock services will be used
+const providers: Provider[] = [];
+if (Capacitor.isNativePlatform()) {
+  providers.push(CameraService);
+} else {
+  providers.push({
+    provide: CameraService,
+    useClass: CameraServiceMock,
+  })
+}
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +40,7 @@ import { Drivers } from '@ionic/storage';
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage],
     }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ...providers],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
