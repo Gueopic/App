@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
+import { environment } from 'src/environments/environment';
 import { ImgText } from 'src/services/data.service';
 import { MOCKED_DATA } from 'src/utils/global-variables.utils';
 
@@ -10,6 +11,8 @@ import { MOCKED_DATA } from 'src/utils/global-variables.utils';
 })
 export class HomePage implements OnInit {
   imgs: ImgText[] = MOCKED_DATA;
+
+  isProduction = environment.production;
 
   constructor(
     public appTranslateService: AppTranslateService,

@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./menu/menu.module').then((m) => m.MenuPageModule),
   },
+  {
+    path: ROUTE_NAMES.playground,
+    loadChildren: () =>
+      import('./playground/playground.module').then((m) => m.PlaygroundPageModule),
+  },
 ];
 
 @NgModule({
