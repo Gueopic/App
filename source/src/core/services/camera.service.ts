@@ -8,9 +8,7 @@ import {
 } from '@capacitor/camera';
 import { FileData } from '../models/file-data.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CameraService {
   constructor() {}
 
@@ -36,7 +34,7 @@ export class CameraService {
     return fileData;
   }
 
-  private checkPermissions(): Promise<CameraPermissionState> {
+  protected checkPermissions(): Promise<CameraPermissionState> {
     return new Promise(async (resolve, reject) => {
       try {
         const checkPermissions = await Camera.checkPermissions();
