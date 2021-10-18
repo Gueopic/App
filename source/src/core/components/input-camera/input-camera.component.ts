@@ -37,11 +37,11 @@ import { InputFileService } from 'src/core/services/input-file.service';
 export class InputCameraComponent
   implements ControlValueAccessor, OnInit, OnDestroy
 {
-  @Input() form: FormGroup;
   disabled = false;
+  // TODO: change with async in the document? (check performance)
   imagePath: SafeResourceUrl | string;
   fileData: FileData<Photo>;
-  // urlImage: any;
+
   private onChange$: any;
   private onTouched$: any;
   private ngControl: NgControl;
@@ -65,12 +65,9 @@ export class InputCameraComponent
   }
 
   writeValue(file: FileData<Photo>): void {
-    // if (this.fileData !== file) {
-    //   if (typeof file === 'string') {
-    //     file = new FileData(file);
-    //   }
-    //   this.setFile(file);
-    // }
+    if (this.fileData !== file) {
+      this.setFile(file);
+    }
   }
 
   async getImage(event: Event) {
@@ -97,16 +94,17 @@ export class InputCameraComponent
   }
 
   private async setFile(file: FileData<Photo>): Promise<void> {
-    // this.fileData = file;
+    this.fileData = file;
     if (this.onChange$) {
       this.onChange$(this.fileData || null);
     }
-    this.imagePath = await file.getWebPath();
-    // if (this.inputFileService.isImage(this.fileData)) {
-    //   this.imagePath = this.inputFileService.resourcePath(this.fileData);
-    // } else {
-    //   this.imagePath = null;
-    // }
-    this.changeDetector.markForCheck();
+    if (this.fileData) {
+      if (await this.inputFileService.isImage(this.fileData)) {
+        this.imagePath = await file.getWebPath();
+      } else {
+        this.imagePath = null;
+      }
+      this.changeDetector.markForCheck();
+    }
   }
 }
