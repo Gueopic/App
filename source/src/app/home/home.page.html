@@ -4,6 +4,9 @@
       <ion-button [routerLink]="['/menu']"> Menu </ion-button>
     </ion-buttons>
     <ion-title>GueoPic APP</ion-title>
+    <ion-buttons slot="end" *ngIf="!isProduction">
+      <ion-button [routerLink]="['/playground']"> Playground </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

@@ -1,0 +1,15 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/']"> Inicio </ion-button>
+    </ion-buttons>
+    <ion-title>Playground</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/playground']"> Indice </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <router-outlet></router-outlet>
+</ion-content>
