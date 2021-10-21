@@ -1,0 +1,77 @@
+<ion-item>
+  <ion-label>Record audio</ion-label>
+</ion-item>
+
+<div class="container-field">
+  <div class="row">
+    <!-- <img [src]="urlImage" alt="Capture" width="84" height="84" *ngIf="fileData"> -->
+  </div>
+  <div class="row">
+    <!-- Track Info -->
+    <ng-container [ngSwitch]="status | async">
+      <ng-container *ngSwitchCase="statusAudioEnum.recording">
+        {{ (recordTimer | async) / 10 | number: "1.1-1" }}s
+      </ng-container>
+      <ng-container *ngSwitchCase="statusAudioEnum.stopped">
+        {{
+          (fileData$ | async)?.originalFile?.value?.msDuration / 1000
+            | number: "1.1-1"
+        }}s
+      </ng-container>
+    </ng-container>
+
+    <ng-container [ngSwitch]="status | async">
+      <ng-container *ngSwitchCase="statusAudioEnum.empty">
+        <button
+          class="action"
+          color="primary"
+          [type]="'button'"
+          (click)="startRecord($event)"
+        >
+          Start Recording
+        </button>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="statusAudioEnum.stopped">
+        <button
+          class="action"
+          color="primary"
+          [type]="'button'"
+          (click)="reproduceAudio()"
+        >
+          Reproduce
+        </button>
+        <button
+          class="action"
+          color="primary"
+          [type]="'button'"
+          (click)="removeAudio()"
+        >
+          Remove audio
+        </button>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="statusAudioEnum.recording">
+        <button
+          class="action"
+          color="primary"
+          [type]="'button'"
+          (click)="stopRecording($event)"
+        >
+          Stop Recording
+        </button>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="statusAudioEnum.playing">
+        <button
+          class="action"
+          color="primary"
+          [type]="'button'"
+          (click)="reproduceAudio()"
+        >
+          Stop
+        </button>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

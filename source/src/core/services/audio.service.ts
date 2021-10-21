@@ -4,9 +4,7 @@ import { FileData } from '../models/file-data.model';
 
 // doc: https://www.npmjs.com/package/capacitor-voice-recorder
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AudioService {
   async requestAudioRecording(): Promise<boolean> {
     const hasPermission = await VoiceRecorder.requestAudioRecordingPermission();
