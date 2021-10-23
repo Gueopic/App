@@ -1,0 +1,40 @@
+<h2>Database</h2>
+
+<h3>Reset database</h3>
+
+<div>
+  <ion-button (click)="clearDB()"> Clear All </ion-button>
+</div>
+
+<div>
+  <ion-button (click)="insertDefaultData()"> Insert Default Data </ion-button>
+</div>
+
+
+<h3>Specific CRUD</h3>
+
+<h4>Verbs</h4>
+
+<div>
+  <div>
+    <b>Verb List:</b>
+    {{ verbs | slice:-10 | json }}
+  </div>
+  <ion-button (click)="insertVerb()"> Insert Verb </ion-button>
+  <ion-button (click)="updateVerb(verbs.length - 3)"> Update 3rth last Verb </ion-button>
+  <ion-button (click)="updateVerb()"> Update last Verb </ion-button>
+  <ion-button (click)="deleteVerb(verbs.length - 3)"> Delete 3rth last verb </ion-button>
+  <ion-button (click)="deleteVerb()"> Delete last Verb </ion-button>
+</div>
+
+<h4>Items</h4>
+
+<div>
+  <div>
+    <b>Item List:</b>
+    {{ items | slice:-10 | json }}
+  </div>
+  <ion-button (click)="insertItem()"> Insert Item </ion-button>
+  <ion-button (click)="updateItem()"> Update last Item </ion-button>
+  <ion-button (click)="deleteItem()"> Delete last Item </ion-button>
+</div>
