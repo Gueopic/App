@@ -9,6 +9,7 @@ import { InputRecordAudioModule } from 'src/core/components/input-record-audio/i
 import { PlaygroundHomePage } from './playground-home.page';
 import { PlaygroundPageRoutingModule } from './playground-routing.module';
 import { PlaygroundComponentsPage } from './views/components/playground-components.page';
+import { PlaygroundDatabasePage } from './views/database/playground-database.page';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { PlaygroundComponentsPage } from './views/components/playground-componen
     InputCameraModule,
     InputRecordAudioModule,
   ],
-  declarations: [PlaygroundHomePage, PlaygroundComponentsPage],
+  declarations: [PlaygroundHomePage, PlaygroundComponentsPage, PlaygroundDatabasePage],
 })
 export class PlaygroundPageModule {}
