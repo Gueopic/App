@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button [routerLink]="['/menu']"> Menu </ion-button>
+      <ion-button [routerLink]="['/menu']"> {{ 'common.menu' | translate }} </ion-button>
     </ion-buttons>
     <ion-title>GueoPic APP</ion-title>
     <ion-buttons slot="end" *ngIf="!isProduction">

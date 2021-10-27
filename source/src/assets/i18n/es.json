@@ -1,3 +1,23 @@
 {
-    "language": "Español"
+  "language": "Español",
+  "common": {
+    "actions": {
+      "back": "Atrás",
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "menu": "Menú",
+    "text": "Texto",
+    "sound": "Sonido"
+  },
+  "menu": {
+    "title": "Menú",
+    "verbs_management": {
+      "title": "Crear un nuevo objeto de la barra superior"
+    },
+    "items_management": {
+      "title": "Crear unn nuevo objeto"
+    }
+  }
 }

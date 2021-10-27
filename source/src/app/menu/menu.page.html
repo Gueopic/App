@@ -2,20 +2,20 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/home']" routerDirection="back">
-        Atrás
+        {{ 'common.actions.back' | translate }}
       </ion-button>
     </ion-buttons>
-    <ion-title>Menu</ion-title>
+    <ion-title>{{ "menu.title" | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <section class="gueo-content--section ion-text-center">
     <ion-text>
-      <h5>Crear un nuevo objeto de la barra superior</h5>
+      <h5>{{ 'menu.verbs_management.title' | translate }}</h5>
     </ion-text>
     <ion-button color="primary" expand="block">
-      Crear
+      {{ 'common.actions.create' | translate }}
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
   </section>
@@ -24,13 +24,13 @@
     <ion-grid>
       <ion-row class="ion-text-center ion-align-items-center">
         <ion-col>
-          <ion-text>Texto</ion-text>
+          <ion-text>{{ 'common.text' | translate }}</ion-text>
         </ion-col>
         <ion-col>
-          <ion-text>Sonido</ion-text>
+          <ion-text>{{ 'common.sound' | translate }}</ion-text>
         </ion-col>
         <ion-col>
-          <ion-text>Eliminar</ion-text>
+          <ion-text>{{ 'common.actions.delete' | translate }}</ion-text>
         </ion-col>
       </ion-row>
       <ion-row
@@ -41,7 +41,7 @@
         <ion-col>
           <ion-button size="small" color="secondary">
             <ion-icon slot="start" name="volume-high-outline"></ion-icon>
-            Sonido
+            {{ 'common.sound' | translate }}
           </ion-button>
         </ion-col>
         <ion-col>
@@ -51,7 +51,7 @@
             (click)="deletePhraseObject(data.id)"
           >
             <ion-icon slot="start" name="trash-outline"></ion-icon>
-            Eliminar
+            {{ 'common.actions.delete' | translate }}
           </ion-button>
         </ion-col>
       </ion-row>
@@ -59,10 +59,10 @@
   </section>
   <section class="ion-text-center">
     <ion-text>
-      <h5>Crear un nuevo objeto</h5>
+      <h5>{{ 'menu.items_management.title' | translate }}</h5>
     </ion-text>
     <ion-button color="primary" expand="block" (click)="openCreateModal()">
-      Crear
+      {{ 'common.actions.create' | translate }}
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
   </section>
@@ -80,7 +80,7 @@
             (click)="deleteObject(item.id)"
           >
             <ion-icon slot="start" name="trash-outline"></ion-icon>
-            Eliminar
+            {{ 'common.actions.delete' | translate }}
           </ion-button>
 
           <ion-button
@@ -90,7 +90,7 @@
             class="gueo-flex--button-flex-1"
           >
             <ion-icon slot="start" name="volume-high-outline"></ion-icon>
-            Editar
+            {{ 'common.actions.edit' | translate }}
           </ion-button>
         </div>
         <ion-button
@@ -99,7 +99,7 @@
           class="gueo-flex--button-flex-1"
         >
           <ion-icon slot="start" name="volume-high-outline"></ion-icon>
-          Sonido
+          {{ 'common.sound' | translate }}
         </ion-button>
       </div>
     </div>
