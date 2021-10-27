@@ -72,8 +72,8 @@ export class StorageService {
         element.id = (nextId++).toString();
         newArray.push(element);
       }
-      this.setNextIdFor(key, nextId);
-      this.replace(key, newArray);
+      await this.setNextIdFor(key, nextId);
+      await this.replace(key, newArray);
     } catch (ex) {
       console.error('Error adding to storage', ex);
       throw ex;
@@ -104,8 +104,8 @@ export class StorageService {
           newArray.push(newElement);
         }
       }
-      this.setNextIdFor(key, nextId);
-      this.replace(key, newArray);
+      await this.setNextIdFor(key, nextId);
+      await this.replace(key, newArray);
     } catch (ex) {
       console.error('Error adding to storage', ex);
       throw ex;
@@ -126,7 +126,12 @@ export class StorageService {
     return await this.replace(key, newElements);
   }
 
+  public async removeAllElements(key: string): Promise<void> {
+      await this.setNextIdFor(key, 0);
+      return await this.replace(key, []);
+  }
+
   private async setNextIdFor(key: string, id: number): Promise<void> {
-    this.replace(`${key}_next_id`, id);
+    await this.replace(`${key}_next_id`, id);
   }
 }
