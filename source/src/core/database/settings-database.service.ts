@@ -21,7 +21,7 @@ export class SettingsDatabaseService extends AbstractDatabaseService<SettingMode
     return element?.value || defaultValue;
   }
 
-  async setValue(id: string, value: string): Promise<void> {
+  async setValue(id: string, value: string): Promise<SettingModel[]> {
     return await this.dbService.updateElements(this.tableName, [
       {
         id,
@@ -30,11 +30,11 @@ export class SettingsDatabaseService extends AbstractDatabaseService<SettingMode
     ]);
   }
 
-  async insert(elements: SettingModel[]): Promise<void> {
-    this.update(elements);
+  async insert(elements: SettingModel[]): Promise<SettingModel[]> {
+    return await this.update(elements);
   }
 
-  async update(elements: SettingModel[]): Promise<void> {
+  async update(elements: SettingModel[]): Promise<SettingModel[]> {
     for (const element of elements) {
       if (!element.id) {
         throw new Error(

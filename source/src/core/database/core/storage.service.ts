@@ -5,7 +5,7 @@ import { StorageElement } from './storage.elements';
 @Injectable({
   providedIn: 'root',
 })
-export class StorageService {
+export class StorageService<MODEL extends StorageElement = any> {
   private _storage: Storage | null = null;
 
   constructor(private storageService: Storage) {
@@ -32,16 +32,16 @@ export class StorageService {
     key: string,
     elementId: string,
     defaultValue?: any
-  ): Promise<StorageElement> {
-    const elements: StorageElement[] = await this.get(key, []);
+  ): Promise<MODEL> {
+    const elements: MODEL[] = await this.get(key, []);
     return elements.find((element) => element.id === elementId) || defaultValue;
   }
 
   public async getElements(
     key: string,
     elementIds?: string[]
-  ): Promise<StorageElement[]> {
-    const elements: StorageElement[] = await this.get(key);
+  ): Promise<MODEL[]> {
+    const elements: MODEL[] = await this.get(key);
 
     if (elementIds) {
       return elements.filter((element) => elementIds.indexOf(element.id) > -1);
@@ -63,8 +63,8 @@ export class StorageService {
    */
   public async addElements(
     key: string,
-    elements: StorageElement[]
-  ): Promise<void> {
+    elements: MODEL[]
+  ): Promise<MODEL[]> {
     let nextId = await this.getNextIdFor(key);
     try {
       const newArray: any[] = await this.get(key, []);
@@ -74,6 +74,7 @@ export class StorageService {
       }
       await this.setNextIdFor(key, nextId);
       await this.replace(key, newArray);
+      return newArray;
     } catch (ex) {
       console.error('Error adding to storage', ex);
       throw ex;
@@ -89,11 +90,11 @@ export class StorageService {
    */
   public async updateElements(
     key: string,
-    elements: StorageElement[]
-  ): Promise<void> {
+    elements: MODEL[]
+  ): Promise<MODEL[]> {
     let nextId = await this.getNextIdFor(key);
     try {
-      const newArray: StorageElement[] = await this.get(key, []);
+      const newArray: MODEL[] = await this.get(key, []);
       for (const newElement of elements) {
         const currentElement = newArray.find(element => element.id === newElement.id);
         if (currentElement) {
@@ -106,6 +107,7 @@ export class StorageService {
       }
       await this.setNextIdFor(key, nextId);
       await this.replace(key, newArray);
+      return newArray;
     } catch (ex) {
       console.error('Error adding to storage', ex);
       throw ex;
@@ -114,16 +116,17 @@ export class StorageService {
 
   public async removeElements(
     key: string,
-    elementsToDelete: StorageElement[]
-  ): Promise<void> {
-    const currentElements: StorageElement[] = await this.get(key);
+    elementsToDelete: MODEL[]
+  ): Promise<MODEL[]> {
+    const currentElements: MODEL[] = await this.get(key);
     const newElements = currentElements.filter((element) => {
       const index = elementsToDelete.findIndex(
         (remove) => remove.id === element.id
       );
       return index === -1;
     });
-    return await this.replace(key, newElements);
+    await this.replace(key, newElements);
+    return newElements;
   }
 
   public async removeAllElements(key: string): Promise<void> {
