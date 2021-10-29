@@ -34,10 +34,10 @@
         </ion-col>
       </ion-row>
       <ion-row
-        *ngFor="let data of dataService.phraseObject$ | async; trackBy:trackById"
+        *ngFor="let verb of verbsStateService.verbsWithFiles | async; trackBy:trackByVerb"
         class="ion-text-center ion-align-items-center"
       >
-        <ion-col> {{data.phrase}} </ion-col>
+        <ion-col> {{verb.text}} </ion-col>
         <ion-col>
           <ion-button size="small" color="secondary">
             <ion-icon slot="start" name="volume-high-outline"></ion-icon>
@@ -45,11 +45,7 @@
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button
-            size="small"
-            color="danger"
-            (click)="deletePhraseObject(data.id)"
-          >
+          <ion-button size="small" color="danger" (click)="deleteVerb(verb)">
             <ion-icon slot="start" name="trash-outline"></ion-icon>
             {{ 'common.actions.delete' | translate }}
           </ion-button>
@@ -66,19 +62,18 @@
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
   </section>
-  <section class="gueo-flex" *ngIf="dataService.object$ | async as items">
-    <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackById">
+  <section
+    class="gueo-flex"
+    *ngIf="itemsStateService.itemsWithFiles | async as items"
+  >
+    <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackByItem">
       <div>
         <ion-img [src]="item.src" class="gueo-image"></ion-img>
       </div>
       <div class="gueo-flex--col">
         <h2>{{item.text}}</h2>
         <div class="gueo-flex--button">
-          <ion-button
-            expand="block"
-            color="danger"
-            (click)="deleteObject(item.id)"
-          >
+          <ion-button expand="block" color="danger" (click)="deleteItem(item)">
             <ion-icon slot="start" name="trash-outline"></ion-icon>
             {{ 'common.actions.delete' | translate }}
           </ion-button>

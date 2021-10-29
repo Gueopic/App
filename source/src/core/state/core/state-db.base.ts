@@ -58,17 +58,32 @@ export abstract class StateFromDBService<
     return this.elements$.toPromise();
   }
 
-  async insert(elements: MainModel[]): Promise<MainModel[]> {
+  async insert(element: MainModel): Promise<MainModel[]> {
+    this.elements = await this.dbService.insert([element]);
+    return this.elements$.toPromise();
+  }
+
+  async insertMultiple(elements: MainModel[]): Promise<MainModel[]> {
     this.elements = await this.dbService.insert(elements);
     return this.elements$.toPromise();
   }
 
-  async update(elements: MainModel[]): Promise<MainModel[]> {
+  async update(element: MainModel): Promise<MainModel[]> {
+    this.elements = await this.dbService.update([element]);
+    return this.elements$.toPromise();
+  }
+
+  async updateMultiple(elements: MainModel[]): Promise<MainModel[]> {
     this.elements = await this.dbService.update(elements);
     return this.elements$.toPromise();
   }
 
-  async remove(elements: MainModel[]): Promise<MainModel[]> {
+  async remove(element: MainModel): Promise<MainModel[]> {
+    this.elements = await this.dbService.remove([element]);
+    return this.elements$.toPromise();
+  }
+
+  async removeMultiple(elements: MainModel[]): Promise<MainModel[]> {
     this.elements = await this.dbService.remove(elements);
     return this.elements$.toPromise();
   }
