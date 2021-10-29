@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsDatabaseService } from 'src/core/database/items-database.service';
 import { VerbsDatabaseService } from 'src/core/database/verbs-database.service';
-import { ItemModel } from 'src/core/models/item.mode';
+import { ItemModel } from 'src/core/models/item.model';
 import { VerbModel } from 'src/core/models/verb.model';
 
 @Component({
