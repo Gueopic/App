@@ -1,11 +1,10 @@
-import { element } from 'protractor';
-import { BehaviorSubject, from, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AbstractDatabaseService } from 'src/core/database/core/abstract-database.service';
 import { StorageElement } from 'src/core/database/core/storage.elements';
 import { StateBase } from './state.base';
 
 export class StateFromDB<MainModel> {
-  items = new BehaviorSubject<MainModel[]>(null);
+  elements = new BehaviorSubject<MainModel[]>(null);
 }
 
 /**
@@ -14,21 +13,21 @@ export class StateFromDB<MainModel> {
  * Also you an extend and map the data to fit your needs, convert to other models, etc...
  *
  * @example declaration
- * export class ItemsState<ItemsModel, ItemsDatabaseService> {
+ * export class VerbsStateService<VerbsModel, VerbsDatabaseService> {
  *  // Your extended code here
  * }
  *
  * @example implementation
- * constructor(itemsState: ItemsState)
- * ngOnInit() { this.itemsState.loadAll() }
+ * constructor(verbsState: VerbsState)
+ * ngOnInit() { this.verbsState.loadAll() }
  *
  * // Somewhere in TS (or other file)
- * this.itemsState.items$
+ * this.verbsState.verbs$
  *
  * // Somewhere in HTML (or other HTML)
- * <div>itemsState.items$ | async</div>
+ * <div>verbsState.verbs$ | async</div>
  */
-export abstract class StateFromDBSerice<
+export abstract class StateFromDBService<
   MainModel extends StorageElement,
   DbService extends AbstractDatabaseService<any>
 > extends StateBase {
@@ -37,14 +36,14 @@ export abstract class StateFromDBSerice<
   /**
    * Please, ensure to call "loadAll" before access this
    */
-  get items$(): Observable<MainModel[]> {
-    return this.state.items.asObservable();
+  get elements$(): Observable<MainModel[]> {
+    return this.state.elements.asObservable();
   }
-  get items(): MainModel[] {
-    return this.state.items.value;
+  get elements(): MainModel[] {
+    return this.state.elements.value;
   }
-  set items(items: MainModel[]) {
-    this.state.items.next(items);
+  set elements(elements: MainModel[]) {
+    this.state.elements.next(elements);
   }
 
   constructor(protected dbService: DbService) {
@@ -52,25 +51,25 @@ export abstract class StateFromDBSerice<
   }
 
   async loadAll(forceReload: boolean = false): Promise<MainModel[]> {
-    if (!forceReload && this.items) {
+    if (!forceReload && this.elements) {
       return;
     }
-    this.items = await this.dbService.getAll();
-    return this.items$.toPromise();
+    this.elements = await this.dbService.getAll();
+    return this.elements$.toPromise();
   }
 
   async insert(elements: MainModel[]): Promise<MainModel[]> {
-    this.items = await this.dbService.insert(elements);
-    return this.items$.toPromise();
+    this.elements = await this.dbService.insert(elements);
+    return this.elements$.toPromise();
   }
 
   async update(elements: MainModel[]): Promise<MainModel[]> {
-    this.items = await this.dbService.update(elements);
-    return this.items$.toPromise();
+    this.elements = await this.dbService.update(elements);
+    return this.elements$.toPromise();
   }
 
   async remove(elements: MainModel[]): Promise<MainModel[]> {
-    this.items = await this.dbService.remove(elements);
-    return this.items$.toPromise();
+    this.elements = await this.dbService.remove(elements);
+    return this.elements$.toPromise();
   }
 }
