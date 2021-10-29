@@ -30,7 +30,7 @@
           <ion-text>{{ 'common.sound' | translate }}</ion-text>
         </ion-col>
         <ion-col>
-          <ion-text>{{ 'common.actions.delete' | translate }}</ion-text>
+          <ion-text>{{ 'common.actions.actions' | translate }}</ion-text>
         </ion-col>
       </ion-row>
       <ion-row
@@ -57,7 +57,7 @@
     <ion-text>
       <h5>{{ 'menu.items_management.title' | translate }}</h5>
     </ion-text>
-    <ion-button color="primary" expand="block" (click)="openCreateModal()">
+    <ion-button color="primary" expand="block" (click)="openItemModal()">
       {{ 'common.actions.create' | translate }}
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
@@ -79,7 +79,7 @@
           </ion-button>
 
           <ion-button
-            (click)="openEditModal(item)"
+            (click)="openItemModal(item)"
             color="tertiary"
             expand="block"
             class="gueo-flex--button-flex-1"
@@ -100,3 +100,8 @@
     </div>
   </section>
 </ion-content>
+
+<!-- Edit Object Modal -->
+<!-- <ion-modal #editObject [isOpen]="isModalOpen">
+  <ng-template> test </ng-template>
+</ion-modal> -->

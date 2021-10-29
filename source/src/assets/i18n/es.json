@@ -2,14 +2,22 @@
   "language": "Español",
   "common": {
     "actions": {
+      "actions": "Acciones",
       "back": "Atrás",
+      "close": "Cerrar",
       "create": "Crear",
       "edit": "Editar",
-      "delete": "Eliminar"
+      "delete": "Eliminar",
+      "save": "Guardar"
     },
     "menu": "Menú",
     "text": "Texto",
     "sound": "Sonido"
+  },
+  "validation": {
+    "errors": {
+      "required": "Este campo es obligatorio"
+    }
   },
   "menu": {
     "title": "Menú",
@@ -17,7 +25,15 @@
       "title": "Crear un nuevo objeto de la barra superior"
     },
     "items_management": {
-      "title": "Crear unn nuevo objeto"
+      "title": "Crear un nuevo objeto"
+    }
+  },
+  "edit_item": {
+    "create_title": "Crear Objeto",
+    "edit_title": "Editar Objeto",
+    "text": {
+      "label": "Nombre",
+      "placeholder": "EJ: Ordenador"
     }
   }
 }

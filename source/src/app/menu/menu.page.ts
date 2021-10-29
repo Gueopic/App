@@ -1,12 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { StorageElement } from 'src/core/database/core/storage.elements';
 import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
 import { ItemsStateService } from 'src/core/state/items.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
-import { DataService, ImgText } from 'src/services/data.service';
-import { CreateObjectComponent } from './components/create-object/create-object.component';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 
 @Component({
@@ -24,24 +21,27 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     this.itemsStateService.loadAll();
+
+    // DEBUG PURPOSES:
+    this.openItemModal();
   }
 
-  deleteVerb(id: VerbWithFilesModel) {
-    // this.dataService.deletePhraseObject(id);
-  }
-
-  deleteItem(id: ItemWithFilesModel) {
-    // this.dataService.deleteObject(id);
-  }
-
-  trackByItem(index, item: ItemWithFilesModel) {
-    return item.id;
-  }
   trackByVerb(index, item: VerbWithFilesModel) {
     return item.id;
   }
+  trackByItem(index, item: ItemWithFilesModel) {
+    return item.id;
+  }
 
-  async openEditModal(item: ItemWithFilesModel): Promise<void> {
+  deleteVerb(verb: VerbWithFilesModel) {
+    this.verbsStateService.remove(verb);
+  }
+
+  deleteItem(item: ItemWithFilesModel) {
+    this.itemsStateService.remove(item);
+  }
+
+  async openItemModal(item?: ItemWithFilesModel): Promise<void> {
     const modal = await this.modalController.create({
       component: EditObjectComponent,
       cssClass: 'gueo-edit-object--custom',
@@ -49,14 +49,16 @@ export class MenuPage implements OnInit {
         item,
       },
     });
-    return await modal.present();
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data !== undefined) {
+      if (item) {
+        this.itemsStateService.update(data);
+      } else {
+        this.itemsStateService.insert(data);
+      }
+    }
   }
 
-  async openCreateModal(): Promise<void> {
-    const modal = await this.modalController.create({
-      component: CreateObjectComponent,
-      cssClass: 'gueo-edit-object--custom',
-    });
-    return await modal.present();
-  }
 }

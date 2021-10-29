@@ -62,6 +62,9 @@ export class ItemsStateService extends StateFromDBService<
    * @param newItems New items retrieved
    */
   private appendFileDataToItems(newItems: ItemModel[]): ItemWithFilesModel[] {
+    if (!newItems) {
+      return [];
+    }
     const currentItems = this.state.itemsWithFilesIndexed;
     const mappedItems: ItemWithFilesModel[] = [];
 

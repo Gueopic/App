@@ -46,6 +46,9 @@ export class VerbsStateService extends StateFromDBService<
    * @param newVerbs New verbs retrieved
    */
   private appendFileDataToVerbs(newVerbs: VerbModel[]): VerbWithFilesModel[] {
+    if (!newVerbs) {
+      return [];
+    }
     const currentVerbs = this.state.verbsWithFilesIndexed;
     const mappedVerbs: VerbWithFilesModel[] = [];
 

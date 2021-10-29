@@ -13,6 +13,8 @@ import { CameraService } from 'src/core/services/camera.service';
 import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
 import { AudioService } from 'src/core/services/audio.service';
 import { AudioServiceMock } from 'src/core/services/mocks/audio.service.mock';
+import { InputCameraModule } from 'src/core/components/input-camera/input-camera.module';
+import { InputRecordAudioModule } from 'src/core/components/input-record-audio/input-record-audio.module';
 
 console.log('IS NATIVE:', Capacitor.isNativePlatform());
 
@@ -35,7 +37,8 @@ if (Capacitor.isNativePlatform()) {
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
