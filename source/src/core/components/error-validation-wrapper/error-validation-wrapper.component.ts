@@ -26,7 +26,6 @@ export class ErrorValidationWrapperComponent
 
   ngOnInit() {
     this.ngControl = this.inj.get<NgControl>(NgControl as any);
-    console.log(this.ngControl);
   }
 
   writeValue() {}
