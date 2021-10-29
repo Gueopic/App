@@ -1,0 +1,9 @@
+<div [class.hasErrors]="!isDisabled && ngControl.touched && ngControl.invalid">
+  <ng-content></ng-content>
+
+  <div class="errors-list" *ngIf="!isDisabled && ngControl.touched && ngControl.invalid">
+    <p *ngFor="let error of ngControl.errors | keyvalue">
+      {{ 'validation.errors.' + error.key | translate }}
+    </p>
+  </div>
+</div>
