@@ -1,15 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
 
 @Component({
   selector: 'gueo-edit-object',
   templateUrl: './edit-object.component.html',
   styleUrls: ['./edit-object.component.scss'],
   providers: [FormBuilder],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditObjectComponent implements OnInit {
-  @Input() item: any;
+  @Input() item: ItemWithFilesModel;
+
+  @Output() save = new EventEmitter<ItemWithFilesModel>();
 
   form: FormGroup;
   constructor(
@@ -25,23 +29,22 @@ export class EditObjectComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  save(): void {
-    console.log(this.form.value);
-  }
-
   initForm(): void {
     this.form = this.fb.group({
-      text: this.item.text,
+      text: this.fb.control(null, [ Validators.required ]),
+      audio: new FormControl(null, [ Validators.required ]),
+      image: new FormControl(null, [ Validators.required ]),
     });
+
+    if (this.item) {
+      this.form.patchValue(this.item);
+    }
   }
 
-  onEditText(event: any): void {
-    this.form.patchValue({ text: event.target.value });
+  onSave(): void {
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.modalController.dismiss(this.form.value);
+    }
   }
-
-  editImage() {
-    // TODO: Add image service
-  }
-
-  recordSound() {}
 }

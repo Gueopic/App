@@ -1,35 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Editar Objeto</ion-title>
+    <ion-title>{{
+      ("edit_item." + (item?.id ? "edit_title" : "create_title")) | translate
+    }}</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="close()"> Cerrar </ion-button>
+      <ion-button (click)="close()">
+        {{ "common.actions.close" | translate }}
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <form [formGroup]="form" (ngSubmit)="save()">
-    <ion-img [src]="item.src" (click)="editImage()"></ion-img>
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSave()">
     <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Objeto a editar</ion-label>
-        <ion-input
-          (change)="onEditText($event)"
-          formControlName="text"
-          type="text"
-          placeholder="Escriba aquí..."
-          [value]="item.text"
-        ></ion-input>
-      </ion-item>
+      <gueo-error-validation-wrapper [formControlName]="'text'">
+        <ion-item>
+          <ion-label position="stacked">{{
+            "edit_item.text.label" | translate
+          }}</ion-label>
+          <ion-input
+            name="text"
+            [formControlName]="'text'"
+            type="text"
+            [placeholder]="'edit_item.text.placeholder' | translate"
+            [class.invalid]="form.get('text').invalid"
+          ></ion-input>
+        </ion-item>
+      </gueo-error-validation-wrapper>
     </ion-list>
 
-    <ion-button color="secondary" expand="block" (click)="recordSound()">
-      <ion-icon slot="start" name="volume-high-outline"></ion-icon>
-      Editar Sonido
-    </ion-button>
+    <gueo-error-validation-wrapper [formControlName]="'audio'">
+      <gueo-input-record-audio
+        [formControlName]="'audio'"
+      ></gueo-input-record-audio>
+    </gueo-error-validation-wrapper>
+
+    <gueo-error-validation-wrapper [formControlName]="'image'">
+      <gueo-input-camera [formControlName]="'image'"></gueo-input-camera>
+    </gueo-error-validation-wrapper>
   </form>
 </ion-content>
-<ion-footer (click)="save()">
+<ion-footer (click)="onSave()">
   <ion-toolbar color="tertiary">
-    <ion-title>Guardar</ion-title>
+    <ion-title>{{ "common.actions.save" | translate }}</ion-title>
   </ion-toolbar>
 </ion-footer>
