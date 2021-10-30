@@ -44,6 +44,7 @@ export class ItemsStateService extends StateFromDBService<
 
     // Store in the database
     const cleanModel = this.mapToModel(element);
+    cleanModel.audioLength = element.audio.originalFile.value.msDuration;
     await super.insert(cleanModel);
     return this.itemsWithFiles.toPromise();
   }
