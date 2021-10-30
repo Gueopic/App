@@ -53,6 +53,8 @@ export class MenuPage implements OnInit {
       componentProps: {
         item,
       },
+      backdropDismiss:false,
+      swipeToClose: false,
     });
     await modal.present();
 
