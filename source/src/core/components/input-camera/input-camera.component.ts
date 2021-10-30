@@ -3,16 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
+  Injector, OnDestroy,
+  OnInit
 } from '@angular/core';
 import {
-  ControlValueAccessor,
-  FormGroup,
-  NgControl,
-  NG_VALUE_ACCESSOR,
+  ControlValueAccessor, NgControl,
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { CameraSource, Photo } from '@capacitor/camera';

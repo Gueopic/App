@@ -78,7 +78,7 @@ export class PlaygroundDatabasePage implements OnInit {
     await this.itemsDatabase.insert([
       {
         text: `Item num ${nextId + 1}`,
-        imageFilename: `test_${nextId}.jpg`,
+        imageFileName: `test_${nextId}.jpg`,
         audioFileName: `test_${nextId}.ogg`,
         audioLength: 100,
       } as ItemModel,

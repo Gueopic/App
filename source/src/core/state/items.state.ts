@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { Photo } from '@capacitor/camera';
+import { BehaviorSubject, from, Observable } from 'rxjs';
+import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { ItemsDatabaseService } from '../database/items-database.service';
 import { FileData } from '../models/file-data.model';
 import { ItemWithFilesModel } from '../models/item-with-files.model';
 import { ItemModel } from '../models/item.model';
+import { FilesystemService } from '../services/filesystem.service';
 import { StateFromDB, StateFromDBService } from './core/state-db.base';
 
 class State extends StateFromDB<ItemModel> {
   itemsWithFiles = new BehaviorSubject<ItemWithFilesModel[]>(null);
   itemsWithFilesIndexed: { [id: string]: ItemWithFilesModel } = {};
 }
+
+export const ITEMS_FOLDER = 'items';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +28,36 @@ export class ItemsStateService extends StateFromDBService<
   readonly itemsWithFiles: Observable<ItemWithFilesModel[]> =
     this.state.itemsWithFiles.asObservable();
 
-  constructor(private itemsDatabase: ItemsDatabaseService) {
+  constructor(
+    private itemsDatabase: ItemsDatabaseService,
+    private filesystemService: FilesystemService
+  ) {
     super(itemsDatabase);
     this.itemsChangeListener();
   }
 
   async insert(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+    // Save the files
+    const nextId = await this.dbService.getNextId();
+    element.imageFileName = await this.persistImage(nextId, element.image);
+    element.audioFileName = await this.persistAudio(nextId, element.audio);
+
+    // Store in the database
+    const cleanModel = this.mapToModel(element);
+    await super.insert(cleanModel);
+    return this.itemsWithFiles.toPromise();
+  }
+
+  async update(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+    // TODO: Remove old files
+
+
+    // Save the files
+    const nextId = await this.dbService.getNextId();
+    element.imageFileName = await this.persistImage(nextId, element.image);
+    element.audioFileName = await this.persistAudio(nextId, element.audio);
+
+    // Store in the database
     const cleanModel = this.mapToModel(element);
     await super.insert(cleanModel);
     return this.itemsWithFiles.toPromise();
@@ -39,7 +67,7 @@ export class ItemsStateService extends StateFromDBService<
     return {
       text: element.text,
       audioFileName: element.audioFileName,
-      imageFilename: element.imageFilename,
+      imageFileName: element.imageFileName,
       audioLength: element.audioLength,
     };
   }
@@ -48,8 +76,9 @@ export class ItemsStateService extends StateFromDBService<
     this.elements$
       .pipe(
         distinctUntilChanged(),
-        tap((items) => {
-          this.state.itemsWithFiles.next(this.appendFileDataToItems(items));
+        switchMap((items) => from(this.appendFileDataToItems(items))),
+        tap((itemsWithFiles) => {
+          this.state.itemsWithFiles.next(itemsWithFiles);
         })
       )
       .subscribe();
@@ -61,7 +90,7 @@ export class ItemsStateService extends StateFromDBService<
    *
    * @param newItems New items retrieved
    */
-  private appendFileDataToItems(newItems: ItemModel[]): ItemWithFilesModel[] {
+  private async appendFileDataToItems(newItems: ItemModel[]): Promise<ItemWithFilesModel[]> {
     if (!newItems) {
       return [];
     }
@@ -73,9 +102,9 @@ export class ItemsStateService extends StateFromDBService<
       if (
         !currentItem ||
         item.audioFileName !== currentItem.audioFileName ||
-        item.imageFilename !== currentItem.imageFilename
+        item.imageFileName !== currentItem.imageFileName
       ) {
-        currentItems[item.id] = currentItem = this.createItemData(item);
+        currentItems[item.id] = currentItem = await this.createItemData(item);
       }
       mappedItems.push(currentItem);
     }
@@ -83,17 +112,40 @@ export class ItemsStateService extends StateFromDBService<
     return mappedItems;
   }
 
-  private createItemData(item: ItemModel): ItemWithFilesModel {
-    const audio = new FileData<any>();
-    audio.filePath = item.audioFileName;
+  private async createItemData(item: ItemModel): Promise<ItemWithFilesModel> {
+    const audio = await this.filesystemService.read(item.audioFileName);
+    // const audio = new FileData<any>();
+    // audio.filePath = item.audioFileName;
 
-    const image = new FileData<any>();
-    image.filePath = item.imageFileName;
+    // const image = new FileData<any>(item.imageFileName);
+    const image = await this.filesystemService.read(item.imageFileName);
+    // image.filePath = item.imageFileName;
 
     return {
       ...item,
       audio,
       image,
     };
+  }
+
+  private async persistImage(
+    id: number,
+    image: FileData<Photo>
+  ): Promise<string> {
+    // TODO: get extension with the FileData class
+    // TODO: Compress the image (in the component)
+    image.filePath = `${ITEMS_FOLDER}/${id}/${Date.now()}.png`;
+    await this.filesystemService.writeFileData(image);
+    return image.filePath;
+  }
+
+  private async persistAudio(
+    id: number,
+    image: FileData<any>
+  ): Promise<string> {
+    // TODO: get extension with the FileData class
+    image.filePath = `${ITEMS_FOLDER}/${id}/${Date.now()}.ogg`;
+    await this.filesystemService.writeFileData(image);
+    return image.filePath;
   }
 }

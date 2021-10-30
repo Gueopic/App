@@ -5,7 +5,7 @@ import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
 import { ItemsStateService } from 'src/core/state/items.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
-
+import { AudioService } from 'src/core/services/audio.service';
 @Component({
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
@@ -16,14 +16,15 @@ export class MenuPage implements OnInit {
   constructor(
     public itemsStateService: ItemsStateService,
     public verbsStateService: VerbsStateService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private audioService: AudioService,
   ) {}
 
   ngOnInit() {
     this.itemsStateService.loadAll();
 
     // DEBUG PURPOSES:
-    this.openItemModal();
+    // this.openItemModal();
   }
 
   trackByVerb(index, item: VerbWithFilesModel) {
@@ -39,6 +40,10 @@ export class MenuPage implements OnInit {
 
   deleteItem(item: ItemWithFilesModel) {
     this.itemsStateService.remove(item);
+  }
+
+  reproduceSound(item: ItemWithFilesModel): void {
+    this.audioService.playAudioFile(item.audio);
   }
 
   async openItemModal(item?: ItemWithFilesModel): Promise<void> {

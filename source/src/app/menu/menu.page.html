@@ -68,7 +68,8 @@
   >
     <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackByItem">
       <div>
-        <ion-img [src]="item.src" class="gueo-image"></ion-img>
+        <!-- TODO: improve performance -->
+        <ion-img [src]="item.image.computedWebPath" class="gueo-image"></ion-img>
       </div>
       <div class="gueo-flex--col">
         <h2>{{item.text}}</h2>
@@ -92,6 +93,7 @@
           color="secondary"
           expand="block"
           class="gueo-flex--button-flex-1"
+          (click)="reproduceSound(item)"
         >
           <ion-icon slot="start" name="volume-high-outline"></ion-icon>
           {{ 'common.sound' | translate }}

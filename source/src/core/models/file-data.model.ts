@@ -10,6 +10,7 @@ import { readAsBase64 } from '../utils/file.util';
  * "Original FIle" IS ONLY FOR UPDATES, you don't need to use (util for example for forms)
  */
 export class FileData<T> {
+
   private base64: string;
   private _originalFile: T;
   private _relativePath: string;
@@ -24,6 +25,10 @@ export class FileData<T> {
   // get name(): string {
   //   return this.file.name;
   // }
+
+  get computedWebPath(): string {
+    return this._webPath;
+  }
 
   get originalFile(): T {
     return this._originalFile;

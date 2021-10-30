@@ -57,7 +57,7 @@ export class VerbsStateService extends StateFromDBService<
       if (
         !currentVerb ||
         verb.audioFileName !== currentVerb.audioFileName ||
-        verb.imageFilename !== currentVerb.imageFilename
+        verb.imageFileName !== currentVerb.imageFileName
       ) {
         currentVerbs[verb.id] = currentVerb = this.createVerbData(verb);
       }
