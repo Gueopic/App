@@ -52,7 +52,6 @@ export class ItemsStateService extends StateFromDBService<
   async update(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
     // TODO: Remove old files
 
-
     // Save the files
     const nextId = await this.dbService.getNextId();
     element.imageFileName = await this.persistImage(nextId, element.image);
@@ -91,7 +90,9 @@ export class ItemsStateService extends StateFromDBService<
    *
    * @param newItems New items retrieved
    */
-  private async appendFileDataToItems(newItems: ItemModel[]): Promise<ItemWithFilesModel[]> {
+  private async appendFileDataToItems(
+    newItems: ItemModel[]
+  ): Promise<ItemWithFilesModel[]> {
     if (!newItems) {
       return [];
     }
@@ -114,13 +115,18 @@ export class ItemsStateService extends StateFromDBService<
   }
 
   private async createItemData(item: ItemModel): Promise<ItemWithFilesModel> {
-    const audio = await this.filesystemService.read(item.audioFileName);
-    // const audio = new FileData<any>();
-    // audio.filePath = item.audioFileName;
-
-    // const image = new FileData<any>(item.imageFileName);
-    const image = await this.filesystemService.read(item.imageFileName);
-    // image.filePath = item.imageFileName;
+    let audio;
+    let image;
+    try {
+      // const audio = new FileData<any>();
+      audio = await this.filesystemService.read(item.audioFileName);
+      // audio.filePath = item.audioFileName;
+    } catch (ex) {}
+    try {
+      // const image = new FileData<any>(item.imageFileName);
+      image = await this.filesystemService.read(item.imageFileName);
+      // image.filePath = item.imageFileName;
+    } catch (ex) {}
 
     return {
       ...item,
