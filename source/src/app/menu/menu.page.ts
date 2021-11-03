@@ -24,9 +24,6 @@ export class MenuPage implements OnInit {
   ngOnInit() {
     this.itemsStateService.loadAll();
     this.verbsStateService.loadAll();
-
-    // DEBUG PURPOSES:
-    // this.openItemModal();
   }
 
   trackByVerb(index, item: VerbWithFilesModel) {
