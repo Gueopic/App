@@ -14,7 +14,7 @@
     <ion-text>
       <h5>{{ 'menu.verbs_management.title' | translate }}</h5>
     </ion-text>
-    <ion-button color="primary" expand="block">
+    <ion-button color="primary" expand="block" (click)="openVerbModal()">
       {{ 'common.actions.create' | translate }}
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
@@ -39,12 +39,16 @@
       >
         <ion-col> {{verb.text}} </ion-col>
         <ion-col>
-          <ion-button size="small" color="secondary">
+          <ion-button size="small" color="secondary" (click)="reproduceSound(verb)">
             <ion-icon slot="start" name="volume-high-outline"></ion-icon>
             {{ 'common.sound' | translate }}
           </ion-button>
         </ion-col>
         <ion-col>
+          <ion-button size="small" color="tertiary" (click)="openVerbModal(verb)">
+            <ion-icon slot="start" name="create"></ion-icon>
+            {{ 'common.actions.edit' | translate }}
+          </ion-button>
           <ion-button size="small" color="danger" (click)="deleteVerb(verb)">
             <ion-icon slot="start" name="trash-outline"></ion-icon>
             {{ 'common.actions.delete' | translate }}
@@ -85,7 +89,7 @@
             expand="block"
             class="gueo-flex--button-flex-1"
           >
-            <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+            <ion-icon slot="start" name="create"></ion-icon>
             {{ 'common.actions.edit' | translate }}
           </ion-button>
         </div>

@@ -22,10 +22,18 @@
   "menu": {
     "title": "Menú",
     "verbs_management": {
-      "title": "Crear un nuevo objeto de la barra superior"
+      "title": "Crear una acción de la barra superior"
     },
     "items_management": {
       "title": "Crear un nuevo objeto"
+    }
+  },
+  "edit_verb": {
+    "create_title": "Crear Acción",
+    "edit_title": "Editar Acción",
+    "text": {
+      "label": "Verbo",
+      "placeholder": "EJ: Quiero"
     }
   },
   "edit_item": {

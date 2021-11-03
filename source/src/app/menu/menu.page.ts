@@ -6,6 +6,7 @@ import { ItemsStateService } from 'src/core/state/items.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 import { AudioService } from 'src/core/services/audio.service';
+import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 @Component({
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
@@ -22,6 +23,7 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     this.itemsStateService.loadAll();
+    this.verbsStateService.loadAll();
 
     // DEBUG PURPOSES:
     // this.openItemModal();
@@ -42,8 +44,30 @@ export class MenuPage implements OnInit {
     this.itemsStateService.remove(item);
   }
 
-  reproduceSound(item: ItemWithFilesModel): void {
+  reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel): void {
     this.audioService.playAudioFile(item.audio);
+  }
+
+  async openVerbModal(verb?: VerbWithFilesModel): Promise<void> {
+    const modal = await this.modalController.create({
+      component: EditVerbComponent,
+      cssClass: 'gueo-edit-verb--custom',
+      componentProps: {
+        verb,
+      },
+      backdropDismiss:false,
+      swipeToClose: false,
+    });
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data !== undefined) {
+      if (verb) {
+        this.verbsStateService.update(data);
+      } else {
+        this.verbsStateService.insert(data);
+      }
+    }
   }
 
   async openItemModal(item?: ItemWithFilesModel): Promise<void> {
