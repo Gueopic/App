@@ -3,7 +3,8 @@
     <ion-row *virtualItem="let group">
       <ion-col *ngFor="let item of group" [size]="colSize">
         <ion-img
-          [src]="item.src"
+          (click)="elementClicked.next(item)"
+          [src]="item.image.computedWebPath"
           style="overflow: hidden; width: 100%"
           [style.height]="rowSizePx + 'px'"
         ></ion-img>

@@ -1,9 +1,11 @@
 import {
   Component,
+  EventEmitter,
   HostListener,
   Input,
   OnChanges,
   OnInit,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -11,16 +13,18 @@ import {
   templateUrl: './virtual-scroll.component.html',
 })
 export class VirtualScrollComponent implements OnInit, OnChanges {
-  @Input() maxWidth: number = 767;
+  @Input() maxWidth = 767;
   @Input() list: any[];
-  @Input() rowSizePx: number = 300;
+  @Input() rowSizePx = 300;
+  @Output() elementClicked = new EventEmitter<any>();
   itemsPerRow: number;
   colSize: number;
   groupList: any[];
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: Event) {
-    const newItemPerRow = this.maxWidth > 767 ? 3 : 2;
+    const screenWidth = (event?.target as any)?.innerWidth || window.innerWidth;
+    const newItemPerRow = Math.min(Math.max(1, Math.floor(screenWidth / this.maxWidth)), 12);
     if (newItemPerRow !== this.itemsPerRow) {
       this.itemsPerRow = newItemPerRow;
       this.colSize = 12 / this.itemsPerRow;
@@ -44,13 +48,15 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
     let currentGroup = [];
     let col = 0;
 
-    for (const element of this.list) {
-      currentGroup.push(element);
-      col++;
-      if (col >= this.itemsPerRow) {
-        this.groupList.push(currentGroup);
-        col = 0;
-        currentGroup = [];
+    if (this.list?.length > 0) {
+      for (const element of this.list) {
+        currentGroup.push(element);
+        col++;
+        if (col >= this.itemsPerRow) {
+          this.groupList.push(currentGroup);
+          col = 0;
+          currentGroup = [];
+        }
       }
     }
 
