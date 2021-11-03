@@ -1,11 +1,29 @@
 import { Injectable } from '@angular/core';
 import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { FileData } from '../models/file-data.model';
 
 // doc: https://www.npmjs.com/package/capacitor-voice-recorder
 
+export enum ReproduceStatusEnum {
+  playing = 'PLAYING',
+  stopped = 'STOPPED',
+  ended = 'ENDED',
+}
+
 @Injectable()
 export class AudioService {
+  private currentAudio: InstanceType<typeof Audio>;
+  private _status$ = new BehaviorSubject<ReproduceStatusEnum>(
+    ReproduceStatusEnum.stopped
+  );
+
+  private _forceStop$ = new BehaviorSubject<any>(null);
+
+  get status$(): Observable<ReproduceStatusEnum> {
+    return this._status$.asObservable();
+  }
+
   async requestAudioRecording(): Promise<boolean> {
     const hasPermission = await VoiceRecorder.requestAudioRecordingPermission();
     return hasPermission.value;
@@ -34,15 +52,28 @@ export class AudioService {
     }
   }
 
-  async playAudio(audio: InstanceType<typeof Audio>) {
+  async playAudio(audio: InstanceType<typeof Audio>): Promise<void> {
     // const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`);
+    this.stopAudio();
+    this.currentAudio = audio;
     audio.oncanplaythrough = () => audio.play();
+    audio.onplay = () => this._status$.next(ReproduceStatusEnum.playing);
+    audio.onpause = () => this._status$.next(ReproduceStatusEnum.stopped);
+    audio.onended = () => this._status$.next(ReproduceStatusEnum.ended);
     audio.load();
   }
 
   async playAudioFile(fileData: FileData<RecordingData>) {
     const audioRef = new Audio(await fileData.getBase64());
     return this.playAudio(audioRef);
+  }
+
+  stopAudio(): void {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.oncanplaythrough = () => {};
+    }
+    this._forceStop$.next({});
   }
 
   convertToFileData(record: RecordingData): FileData<RecordingData> {
@@ -52,4 +83,10 @@ export class AudioService {
     );
     return fileData;
   }
+
+  // private getStatusObservableUntilStopped(): Observable<ReproduceStatusEnum> {
+  //   return this.status$.pipe(
+  //     takeWhile((status) => status !== ReproduceStatusEnum.playing)
+  //   );
+  // }
 }
