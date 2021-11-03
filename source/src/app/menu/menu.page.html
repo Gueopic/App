@@ -69,7 +69,7 @@
     <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackByItem">
       <div>
         <!-- TODO: improve performance -->
-        <ion-img [src]="item.image.computedWebPath" class="gueo-image"></ion-img>
+        <ion-img [src]="item.image?.computedWebPath" class="gueo-image"></ion-img>
       </div>
       <div class="gueo-flex--col">
         <h2>{{item.text}}</h2>

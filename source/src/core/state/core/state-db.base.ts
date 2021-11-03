@@ -50,12 +50,16 @@ export abstract class StateFromDBService<
     super();
   }
 
-  async loadAll(forceReload: boolean = false): Promise<MainModel[]> {
+  async loadAll(forceReload: boolean = false): Promise<void> {
     if (!forceReload && this.elements) {
       return;
     }
     this.elements = await this.dbService.getAll();
-    return this.elements$.toPromise();
+  }
+
+
+  getById(id: string): MainModel {
+    return this.elements.find(el => el.id === id);
   }
 
   async insert(element: MainModel): Promise<MainModel[]> {

@@ -50,21 +50,48 @@ export class ItemsStateService extends StateFromDBService<
   }
 
   async update(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
-    // TODO: Remove old files
+    const original = this.state.itemsWithFilesIndexed[element.id];
 
-    // Save the files
-    const nextId = await this.dbService.getNextId();
-    element.imageFileName = await this.persistImage(nextId, element.image);
-    element.audioFileName = await this.persistAudio(nextId, element.audio);
+    // Save the files if changed
+    if (element.image?.originalFile) {
+      if (original.imageFileName) {
+        this.filesystemService.delete(original.imageFileName);
+      }
+      element.imageFileName = await this.persistImage(
+        element.id,
+        element.image
+      );
+    }
+    if (element.audio?.originalFile) {
+      if (original.audioFileName) {
+        this.filesystemService.delete(original.audioFileName);
+      }
+      element.audioFileName = await this.persistAudio(
+        element.id,
+        element.audio
+      );
+    }
 
-    // Store in the database
     const cleanModel = this.mapToModel(element);
-    await super.insert(cleanModel);
+    await super.update(cleanModel);
+    return this.itemsWithFiles.toPromise();
+  }
+
+  async remove(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+    if (element.imageFileName) {
+      this.filesystemService.delete(element.imageFileName);
+    }
+    if (element.audioFileName) {
+      this.filesystemService.delete(element.audioFileName);
+    }
+
+    await super.remove(element);
     return this.itemsWithFiles.toPromise();
   }
 
   private mapToModel(element: ItemWithFilesModel): ItemModel {
     return {
+      id: element.id,
       text: element.text,
       audioFileName: element.audioFileName,
       imageFileName: element.imageFileName,
@@ -136,22 +163,22 @@ export class ItemsStateService extends StateFromDBService<
   }
 
   private async persistImage(
-    id: number,
+    id: number | string,
     image: FileData<Photo>
   ): Promise<string> {
     // TODO: get extension with the FileData class
     // TODO: Compress the image (in the component)
-    image.filePath = `${ITEMS_FOLDER}/${id}/${Date.now()}.png`;
+    image.filePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.png`;
     await this.filesystemService.writeFileData(image);
     return image.filePath;
   }
 
   private async persistAudio(
-    id: number,
+    id: number | string,
     image: FileData<any>
   ): Promise<string> {
     // TODO: get extension with the FileData class
-    image.filePath = `${ITEMS_FOLDER}/${id}/${Date.now()}.ogg`;
+    image.filePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;
     await this.filesystemService.writeFileData(image);
     return image.filePath;
   }
