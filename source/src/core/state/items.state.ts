@@ -36,7 +36,7 @@ export class ItemsStateService extends StateFromDBService<
     this.itemsChangeListener();
   }
 
-  async insert(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+  async insert(element: ItemWithFilesModel): Promise<void> {
     // Save the files
     const nextId = await this.dbService.getNextId();
     element.imageFileName = await this.persistImage(nextId, element.image);
@@ -46,19 +46,19 @@ export class ItemsStateService extends StateFromDBService<
     const cleanModel = this.mapToModel(element);
     cleanModel.audioLength = element.audio.originalFile.value.msDuration;
     await super.insert(cleanModel);
-    return this.itemsWithFiles.toPromise();
   }
 
-  async update(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+  async update(element: ItemWithFilesModel): Promise<void> {
     const original = this.state.itemsWithFilesIndexed[element.id];
+    original.text = element.text;
 
     // Save the files if changed
     if (element.image?.originalFile) {
       if (original.imageFileName) {
         this.filesystemService.delete(original.imageFileName);
       }
-      element.imageFileName = await this.persistImage(
-        element.id,
+      original.imageFileName = await this.persistImage(
+        original.id,
         element.image
       );
     }
@@ -66,18 +66,17 @@ export class ItemsStateService extends StateFromDBService<
       if (original.audioFileName) {
         this.filesystemService.delete(original.audioFileName);
       }
-      element.audioFileName = await this.persistAudio(
-        element.id,
+      original.audioFileName = await this.persistAudio(
+        original.id,
         element.audio
       );
     }
 
-    const cleanModel = this.mapToModel(element);
+    const cleanModel = this.mapToModel(original);
     await super.update(cleanModel);
-    return this.itemsWithFiles.toPromise();
   }
 
-  async remove(element: ItemWithFilesModel): Promise<ItemWithFilesModel[]> {
+  async remove(element: ItemWithFilesModel): Promise<void> {
     if (element.imageFileName) {
       this.filesystemService.delete(element.imageFileName);
     }
@@ -86,7 +85,6 @@ export class ItemsStateService extends StateFromDBService<
     }
 
     await super.remove(element);
-    return this.itemsWithFiles.toPromise();
   }
 
   private mapToModel(element: ItemWithFilesModel): ItemModel {
