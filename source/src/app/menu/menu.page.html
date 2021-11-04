@@ -21,6 +21,52 @@
   </section>
 
   <section class="gueo-content--section">
+    <!-- Verbs alternative design -->
+    <!--
+    <gueo-virtual-scroll
+      [list]="verbsStateService.verbsWithFiles | async"
+      [maxWidth]="210"
+      [rowSizePx]="130"
+    >
+      <ng-template #item let-verb="item">
+        <div class="gueo-flex--col">
+          <h2>{{verb.text}}</h2>
+          <div>
+
+            <ion-button
+              size="small"
+              color="danger"
+              (click)="deleteVerb(verb)"
+            >
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              {{ 'common.actions.delete' | translate }}
+            </ion-button>
+
+            <ion-button
+              (click)="openVerbModal(verb)"
+              size="small"
+              color="tertiary"
+              class="gueo-flex--button-flex-1"
+            >
+              <ion-icon slot="start" name="create"></ion-icon>
+              {{ 'common.actions.edit' | translate }}
+            </ion-button>
+          <ion-button
+            size="small"
+            color="secondary"
+            class="gueo-flex--button-flex-1"
+            (click)="reproduceSound(verb)"
+          >
+            <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+            {{ 'common.sound' | translate }}
+          </ion-button>
+          </div>
+        </div>
+      </ng-template>
+    </gueo-virtual-scroll>
+    -->
+
+    <!-- Verbs data -->
     <ion-grid>
       <ion-row class="ion-text-center ion-align-items-center">
         <ion-col>
@@ -39,13 +85,21 @@
       >
         <ion-col> {{verb.text}} </ion-col>
         <ion-col>
-          <ion-button size="small" color="secondary" (click)="reproduceSound(verb)">
+          <ion-button
+            size="small"
+            color="secondary"
+            (click)="reproduceSound(verb)"
+          >
             <ion-icon slot="start" name="volume-high-outline"></ion-icon>
             {{ 'common.sound' | translate }}
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button size="small" color="tertiary" (click)="openVerbModal(verb)">
+          <ion-button
+            size="small"
+            color="tertiary"
+            (click)="openVerbModal(verb)"
+          >
             <ion-icon slot="start" name="create"></ion-icon>
             {{ 'common.actions.edit' | translate }}
           </ion-button>
@@ -66,44 +120,54 @@
       <ion-icon slot="start" name="create-outline"></ion-icon>
     </ion-button>
   </section>
-  <section
-    class="gueo-flex"
-    *ngIf="itemsStateService.itemsWithFiles | async as items"
-  >
-    <div class="gueo-flex--row" *ngFor="let item of items; trackBy:trackByItem">
-      <div>
-        <!-- TODO: improve performance -->
-        <ion-img [src]="item.image?.computedWebPath" class="gueo-image"></ion-img>
-      </div>
-      <div class="gueo-flex--col">
-        <h2>{{item.text}}</h2>
-        <div class="gueo-flex--button">
-          <ion-button expand="block" color="danger" (click)="deleteItem(item)">
-            <ion-icon slot="start" name="trash-outline"></ion-icon>
-            {{ 'common.actions.delete' | translate }}
-          </ion-button>
 
-          <ion-button
-            (click)="openItemModal(item)"
-            color="tertiary"
-            expand="block"
-            class="gueo-flex--button-flex-1"
-          >
-            <ion-icon slot="start" name="create"></ion-icon>
-            {{ 'common.actions.edit' | translate }}
-          </ion-button>
+  <!-- Items data -->
+  <section *ngIf="itemsStateService.itemsWithFiles | async as items">
+    <gueo-virtual-scroll [list]="items" [maxWidth]="300" [rowSizePx]="155">
+      <ng-template #item let-item="item">
+        <div class="gueo-flex--row">
+          <div>
+            <!-- TODO: improve performance -->
+            <ion-img
+              [src]="item.image?.computedWebPath"
+              class="gueo-image"
+            ></ion-img>
+          </div>
+          <div class="gueo-flex--col">
+            <h2>{{item.text}}</h2>
+            <div class="gueo-flex--button">
+              <ion-button
+                expand="block"
+                color="danger"
+                (click)="deleteItem(item)"
+              >
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                {{ 'common.actions.delete' | translate }}
+              </ion-button>
+
+              <ion-button
+                (click)="openItemModal(item)"
+                color="tertiary"
+                expand="block"
+                class="gueo-flex--button-flex-1"
+              >
+                <ion-icon slot="start" name="create"></ion-icon>
+                {{ 'common.actions.edit' | translate }}
+              </ion-button>
+            </div>
+            <ion-button
+              color="secondary"
+              expand="block"
+              class="gueo-flex--button-flex-1"
+              (click)="reproduceSound(item)"
+            >
+              <ion-icon slot="start" name="volume-high-outline"></ion-icon>
+              {{ 'common.sound' | translate }}
+            </ion-button>
+          </div>
         </div>
-        <ion-button
-          color="secondary"
-          expand="block"
-          class="gueo-flex--button-flex-1"
-          (click)="reproduceSound(item)"
-        >
-          <ion-icon slot="start" name="volume-high-outline"></ion-icon>
-          {{ 'common.sound' | translate }}
-        </ion-button>
-      </div>
-    </div>
+      </ng-template>
+    </gueo-virtual-scroll>
   </section>
 </ion-content>
 
