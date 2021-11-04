@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <div>
+  <div class="verbs-list">
     <ion-button
       *ngFor="let verb of (verbsState.verbsWithFiles | async)"
       (click)="reproduceAudio(verb.audio)"
@@ -10,12 +10,19 @@
 </ion-header>
 
 <ion-content>
-  <app-virtual-scroll
+  <gueo-virtual-scroll
     [list]="itemsState.itemsWithFiles | async"
-    (elementClicked)="reproduceAudio($event.audio)"
     [maxWidth]="125"
     [rowSizePx]="125"
-  ></app-virtual-scroll>
+  >
+    <ng-template #item let-item="item">
+      <ion-img
+        (click)="reproduceAudio(item.audio)"
+        [src]="item.image?.computedWebPath"
+        style="overflow: hidden; width: 100%; height: 125px"
+      ></ion-img>
+    </ng-template>
+  </gueo-virtual-scroll>
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button [size]="'small'" [routerLink]="['/menu']">

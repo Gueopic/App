@@ -2,12 +2,7 @@
   <ion-virtual-scroll [items]="groupList" [approxItemHeight]="rowSizePx + 'px'">
     <ion-row *virtualItem="let group">
       <ion-col *ngFor="let item of group" [size]="colSize">
-        <ion-img
-          (click)="elementClicked.next(item)"
-          [src]="item.image.computedWebPath"
-          style="overflow: hidden; width: 100%"
-          [style.height]="rowSizePx + 'px'"
-        ></ion-img>
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { item: item }"></ng-container>
       </ion-col>
     </ion-row>
   </ion-virtual-scroll>

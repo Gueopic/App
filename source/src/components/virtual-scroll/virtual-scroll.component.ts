@@ -1,22 +1,26 @@
 import {
   Component,
+  ContentChild,
   EventEmitter,
   HostListener,
   Input,
   OnChanges,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 
 @Component({
-  selector: 'app-virtual-scroll',
+  selector: 'gueo-virtual-scroll',
   templateUrl: './virtual-scroll.component.html',
 })
 export class VirtualScrollComponent implements OnInit, OnChanges {
   @Input() maxWidth = 767;
   @Input() list: any[];
   @Input() rowSizePx = 300;
-  @Output() elementClicked = new EventEmitter<any>();
+
+  @ContentChild('item', { static: false }) itemTemplate: TemplateRef<any>;
+
   itemsPerRow: number;
   colSize: number;
   groupList: any[];
