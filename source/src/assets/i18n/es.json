@@ -1,3 +1,47 @@
 {
-    "language": "Español"
+  "language": "Español",
+  "common": {
+    "actions": {
+      "actions": "Acciones",
+      "back": "Atrás",
+      "close": "Cerrar",
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar"
+    },
+    "menu": "Menú",
+    "text": "Texto",
+    "sound": "Sonido"
+  },
+  "validation": {
+    "errors": {
+      "required": "Este campo es obligatorio"
+    }
+  },
+  "menu": {
+    "title": "Menú",
+    "verbs_management": {
+      "title": "Crear una acción de la barra superior"
+    },
+    "items_management": {
+      "title": "Crear un nuevo objeto"
+    }
+  },
+  "edit_verb": {
+    "create_title": "Crear Acción",
+    "edit_title": "Editar Acción",
+    "text": {
+      "label": "Verbo",
+      "placeholder": "EJ: Quiero"
+    }
+  },
+  "edit_item": {
+    "create_title": "Crear Objeto",
+    "edit_title": "Editar Objeto",
+    "text": {
+      "label": "Nombre",
+      "placeholder": "EJ: Ordenador"
+    }
+  }
 }

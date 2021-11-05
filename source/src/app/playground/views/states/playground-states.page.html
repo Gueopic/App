@@ -1,0 +1,66 @@
+<h2>States</h2>
+
+<h3>Reset state</h3>
+
+<div>
+  <ion-button (click)="clearDB()"> Clear All </ion-button>
+</div>
+
+<div>
+  <ion-button (click)="insertDefaultData()"> Insert Default Data </ion-button>
+</div>
+
+<h3>Specific CRUD</h3>
+
+<h4>Verbs</h4>
+
+<div *ngIf="verbsState.verbsWithFiles | async as verbs">
+  <ion-button (click)="insertVerb()"> Insert Verb </ion-button>
+  <ion-button (click)="updateVerb(verbs[verbs.length - 3])">
+    Update 3rth last Verb
+  </ion-button>
+  <ion-button (click)="updateVerb(verbs[verbs.length - 1])">
+    Update last Verb
+  </ion-button>
+  <ion-button (click)="deleteVerb(verbs[verbs.length - 3])">
+    Delete 3rth last verb
+  </ion-button>
+  <ion-button (click)="deleteVerb(verbs[verbs.length - 1])">
+    Delete last Verb
+  </ion-button>
+
+  <h5>Last 10 Verb List:</h5>
+  <div *ngFor="let verb of verbs | slice:-10">
+    {{ verb.text }}
+    <audio controls="controls">
+      <source [src]="verb.audio?.computedWebPath | domSanitize:'resourceUrl'" />
+    </audio>
+  </div>
+</div>
+
+<h4>Items</h4>
+
+<div *ngIf="itemsState.itemsWithFiles | async as items">
+  <div>
+    <ion-button (click)="insertItem()"> Insert Item </ion-button>
+    <ion-button (click)="updateItem(items[items.length -1])">
+      Update last Item
+    </ion-button>
+    <ion-button (click)="deleteItem(items[items.length -1])">
+      Delete last Item
+    </ion-button>
+
+    <br />
+
+    <h5>Last 10 Item List:</h5>
+    <div *ngFor="let item of items | slice:-10">
+      {{ item.text }}
+      <img [src]="item.image?.computedWebPath" />
+      <audio controls="controls">
+        <source
+          [src]="item.audio?.computedWebPath | domSanitize:'resourceUrl'"
+        />
+      </audio>
+    </div>
+  </div>
+</div>

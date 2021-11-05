@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsDatabaseService } from 'src/core/database/settings-database.service';
+import { SettingModel } from 'src/core/models/setting.model';
 import { sleep } from 'src/core/utils/promises.utils';
 import { LANGUAGE_SUPPORT } from './translate.module';
 
@@ -17,7 +18,7 @@ export class AppTranslateService {
     return this.translate.langs;
   }
 
-  async setCurrent(lang: string): Promise<void> {
+  async setCurrent(lang: string): Promise<SettingModel[]> {
     console.debug('Language changed to:', lang);
     this.translate.setDefaultLang(lang);
     return await this.settingsDatabase.setValue('lang', lang);

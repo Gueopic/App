@@ -1,0 +1,34 @@
+<h2>Inputs</h2>
+
+<form [formGroup]="form">
+  <h3>Take photo</h3>
+
+  <h4>New</h4>
+  <div>
+    <gueo-input-camera formControlName="takePhotoNew"></gueo-input-camera>
+  </div>
+
+  <h4>Modify</h4>
+  <div>
+    <gueo-input-camera formControlName="takePhotoModify"></gueo-input-camera>
+  </div>
+
+
+  <h3>Audio recorder</h3>
+
+  <h4>New</h4>
+  <div>
+    <gueo-input-record-audio
+      formControlName="recordAudioNew"
+    ></gueo-input-record-audio>
+  </div>
+
+  <h4>Modify</h4>
+  <div>
+    <gueo-input-record-audio
+      formControlName="recordAudioModify"
+    ></gueo-input-record-audio>
+  </div>
+</form>
+
+<ion-button (click)="dumpForm()"> Dump form </ion-button>

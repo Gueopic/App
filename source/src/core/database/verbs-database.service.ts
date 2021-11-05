@@ -9,7 +9,7 @@ import { StorageService } from './core/storage.service';
 export class VerbsDatabaseService extends AbstractDatabaseService<VerbModel> {
   protected tableName = 'verbs';
 
-  constructor(protected dbService: StorageService) {
+  constructor(protected dbService: StorageService<VerbModel>) {
     super(dbService);
   }
 }

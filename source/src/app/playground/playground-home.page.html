@@ -1,0 +1,27 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/']"> Inicio </ion-button>
+    </ion-buttons>
+    <ion-title>Playground</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/playground']"> Indice </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Scrollable Segment -->
+  <ion-segment scrollable>
+    <ion-segment-button value="components" [routerLink]="['/playground/components']">
+      <ion-label>Components</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="states" [routerLink]="['/playground/states']">
+      <ion-label>States</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="database" [routerLink]="['/playground/database']">
+      <ion-label>Database</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <router-outlet></router-outlet>
+</ion-content>

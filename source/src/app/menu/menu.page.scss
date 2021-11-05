@@ -1,0 +1,30 @@
+.gueo-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gueo-flex--row {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.gueo-image {
+  width: 100%;
+  height: 120px;
+}
+
+.gueo-flex--col {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.gueo-flex--button {
+  display: flex;
+  & .gueo-flex--button-flex-1 {
+    flex: 1;
+  }
+}
+

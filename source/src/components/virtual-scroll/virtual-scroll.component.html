@@ -1,0 +1,29 @@
+<!-- TODO: Check if ion-row needs the "group" or will work automatically -->
+<ion-grid>
+  <ion-virtual-scroll [items]="groupList" [approxItemHeight]="rowSizePx + 'px'">
+    <ion-row *virtualItem="let group">
+      <ion-col *ngFor="let item of group" [size]="colSize">
+        <ng-container
+          *ngTemplateOutlet="itemTemplate; context: { item: item }"
+        ></ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-virtual-scroll>
+</ion-grid>
+
+<ng-container *ngIf="isLoading">
+  <ion-row>
+    <ion-col
+      *ngFor="let elements of skeletonFakePositions"
+      [size]="colSize"
+      style="width: 100%"
+      [style.maxWidth]="'25%'"
+      [style.height]="rowSizePx + 'px'"
+    >
+      <ion-skeleton-text
+        style="width: 100%; height: 100%"
+        animated
+      ></ion-skeleton-text>
+    </ion-col>
+  </ion-row>
+</ng-container>

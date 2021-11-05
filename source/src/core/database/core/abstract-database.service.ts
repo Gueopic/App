@@ -1,27 +1,36 @@
+import { StorageElement } from './storage.elements';
 import { StorageService } from './storage.service';
 
-export abstract class AbstractDatabaseService<T> {
+export abstract class AbstractDatabaseService<MODEL = StorageElement> {
   protected abstract tableName;
 
-  constructor(protected dbService: StorageService) {}
+  constructor(protected dbService: StorageService<MODEL>) {}
 
-  async get(id: string, defaultElement?: T): Promise<T> {
-    return await this.dbService.getElement(this.tableName, id, defaultElement) as T;
+  async getNextId(): Promise<number> {
+    return await this.dbService.getNextIdFor(this.tableName);
   }
 
-  async getAll(): Promise<T[]> {
+  async get(id: string, defaultElement?: MODEL): Promise<MODEL> {
+    return await this.dbService.getElement(this.tableName, id, defaultElement) as MODEL;
+  }
+
+  async getAll(): Promise<MODEL[]> {
     return await this.dbService.get(this.tableName);
   }
 
-  async insert(elements: T[]): Promise<void> {
+  async insert(elements: MODEL[]): Promise<MODEL[]> {
     return await this.dbService.addElements(this.tableName, elements);
   }
 
-  async update(elements: T[]): Promise<void> {
+  async update(elements: MODEL[]): Promise<MODEL[]> {
+    return await this.dbService.updateElements(this.tableName, elements);
+  }
+
+  async remove(elements: MODEL[]): Promise<MODEL[]> {
     return await this.dbService.removeElements(this.tableName, elements);
   }
 
-  async remove(elements: T[]): Promise<void> {
-    return await this.dbService.removeElements(this.tableName, elements);
+  async empty(): Promise<void> {
+    return await this.dbService.removeAllElements(this.tableName);
   }
 }

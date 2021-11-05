@@ -1,7 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+  <div class="verbs-list">
+    <ion-button
+      *ngFor="let verb of (verbsState.verbsWithFiles | async)"
+      (click)="reproduceAudio(verb.audio)"
+    >
+      {{ verb.text }}
+    </ion-button>
+  </div>
 </ion-header>
+
+<ion-content
+  [scrollEvents]="true"
+  [scrollY]="true"
+  (ionScroll)="onScroll($event)"
+>
+  <gueo-virtual-scroll
+    [list]="itemsState.itemsWithFiles | async"
+    [isLoading]="itemsState.loaderItemsWithFiles | async"
+    [maxWidth]="125"
+    [rowSizePx]="125"
+  >
+    <ng-template #item let-item="item">
+      <ion-img
+        (click)="reproduceAudio(item.audio)"
+        [src]="item.image?.computedWebPath"
+        style="overflow: hidden; width: 100%; height: 125px"
+      ></ion-img>
+    </ng-template>
+  </gueo-virtual-scroll>
+
+  <ion-fab
+    *ngIf="!footerHidden"
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+  >
+    <ion-fab-button [size]="'small'" [routerLink]="['/menu']">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="!isProduction"
+  >
+    <ion-fab-button [size]="'small'" [routerLink]="['/playground']">
+      <ion-icon name="cube-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
