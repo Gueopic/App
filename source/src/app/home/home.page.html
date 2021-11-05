@@ -9,7 +9,11 @@
   </div>
 </ion-header>
 
-<ion-content>
+<ion-content
+  [scrollEvents]="true"
+  [scrollY]="true"
+  (ionScroll)="onScroll($event)"
+>
   <gueo-virtual-scroll
     [list]="itemsState.itemsWithFiles | async"
     [isLoading]="itemsState.loaderItemsWithFiles | async"
@@ -25,7 +29,12 @@
     </ng-template>
   </gueo-virtual-scroll>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab
+    *ngIf="!footerHidden"
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+  >
     <ion-fab-button [size]="'small'" [routerLink]="['/menu']">
       <ion-icon name="menu-outline"></ion-icon>
     </ion-fab-button>
