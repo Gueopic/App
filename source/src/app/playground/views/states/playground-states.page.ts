@@ -45,7 +45,7 @@ export class PlaygroundStatesPage implements OnInit {
         console.error(err);
       }
     }
-    for (let n = 0; n < 100; n++) {
+    for (let n = 0; n < 101; n++) {
       try {
         await this.insertItem();
       } catch (err) {

@@ -33,7 +33,7 @@
   <div *ngFor="let verb of verbs | slice:-10">
     {{ verb.text }}
     <audio controls="controls">
-      <source [src]="verb.audio.computedWebPath | domSanitize:'resourceUrl'" />
+      <source [src]="verb.audio?.computedWebPath | domSanitize:'resourceUrl'" />
     </audio>
   </div>
 </div>
@@ -55,10 +55,10 @@
     <h5>Last 10 Item List:</h5>
     <div *ngFor="let item of items | slice:-10">
       {{ item.text }}
-      <img [src]="item.image.computedWebPath" />
+      <img [src]="item.image?.computedWebPath" />
       <audio controls="controls">
         <source
-          [src]="item.audio.computedWebPath | domSanitize:'resourceUrl'"
+          [src]="item.audio?.computedWebPath | domSanitize:'resourceUrl'"
         />
       </audio>
     </div>
