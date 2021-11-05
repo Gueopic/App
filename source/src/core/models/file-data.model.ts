@@ -30,6 +30,14 @@ export class FileData<T> {
     return this._webPath;
   }
 
+  get computedMime(): string {
+    return this._mimeType;
+  }
+
+  get computedBase64(): string {
+    return this.base64;
+  }
+
   get originalFile(): T {
     return this._originalFile;
   }
