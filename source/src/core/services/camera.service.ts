@@ -18,8 +18,12 @@ export class CameraService {
     if (permissions === 'granted') {
       const photo: Photo = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
+        allowEditing: true,
         source,
         quality: 50,
+        width: 500,
+        height: 500,
+        correctOrientation: true,
       });
       return this.convertToFileData(photo);
     }
