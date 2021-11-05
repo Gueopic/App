@@ -5,6 +5,7 @@ import { StateBase } from './state.base';
 
 export class StateFromDB<MainModel> {
   elements = new BehaviorSubject<MainModel[]>(null);
+  loaderElements = new BehaviorSubject<boolean>(false);
 }
 
 /**
@@ -46,6 +47,10 @@ export abstract class StateFromDBService<
     this.state.elements.next(elements);
   }
 
+  get loaderElements$(): Observable<boolean> {
+    return this.state.loaderElements.asObservable();
+  }
+
   constructor(protected dbService: DbService) {
     super();
   }
@@ -54,7 +59,9 @@ export abstract class StateFromDBService<
     if (!forceReload && this.elements) {
       return;
     }
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.getAll();
+    this.state.loaderElements.next(false);
   }
 
 
@@ -63,26 +70,38 @@ export abstract class StateFromDBService<
   }
 
   async insert(element: MainModel): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.insert([element]);
+    this.state.loaderElements.next(false);
   }
 
   async insertMultiple(elements: MainModel[]): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.insert(elements);
+    this.state.loaderElements.next(false);
   }
 
   async update(element: MainModel): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.update([element]);
+    this.state.loaderElements.next(false);
   }
 
   async updateMultiple(elements: MainModel[]): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.update(elements);
+    this.state.loaderElements.next(false);
   }
 
   async remove(element: MainModel): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.remove([element]);
+    this.state.loaderElements.next(false);
   }
 
   async removeMultiple(elements: MainModel[]): Promise<void> {
+    this.state.loaderElements.next(true);
     this.elements = await this.dbService.remove(elements);
+    this.state.loaderElements.next(false);
   }
 }

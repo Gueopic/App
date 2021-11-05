@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Photo } from '@capacitor/camera';
-import { BehaviorSubject, from, Observable } from 'rxjs';
-import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, from, Observable } from 'rxjs';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { ItemsDatabaseService } from '../database/items-database.service';
 import { FileData } from '../models/file-data.model';
 import { ItemWithFilesModel } from '../models/item-with-files.model';
@@ -12,6 +12,7 @@ import { StateFromDB, StateFromDBService } from './core/state-db.base';
 class State extends StateFromDB<ItemModel> {
   itemsWithFiles = new BehaviorSubject<ItemWithFilesModel[]>(null);
   itemsWithFilesIndexed: { [id: string]: ItemWithFilesModel } = {};
+  loaderItemsWithFiles = new BehaviorSubject<boolean>(true);
 }
 
 export const ITEMS_FOLDER = 'items';
@@ -27,6 +28,13 @@ export class ItemsStateService extends StateFromDBService<
 
   readonly itemsWithFiles: Observable<ItemWithFilesModel[]> =
     this.state.itemsWithFiles.asObservable();
+
+  readonly loaderItemsWithFiles: Observable<boolean> = combineLatest([
+    this.loaderElements$,
+    this.state.loaderItemsWithFiles,
+  ]).pipe(
+    map((loaders) => loaders.some(l => !!l))
+  );
 
   constructor(
     private itemsDatabase: ItemsDatabaseService,
@@ -101,9 +109,13 @@ export class ItemsStateService extends StateFromDBService<
     this.elements$
       .pipe(
         distinctUntilChanged(),
-        switchMap((items) => from(this.appendFileDataToItems(items))),
+        switchMap((items) => {
+          this.state.loaderItemsWithFiles.next(true);
+          return from(this.appendFileDataToItems(items));
+        }),
         tap((itemsWithFiles) => {
           this.state.itemsWithFiles.next(itemsWithFiles);
+          this.state.loaderItemsWithFiles.next(false);
         })
       )
       .subscribe();

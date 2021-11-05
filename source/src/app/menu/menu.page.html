@@ -122,8 +122,13 @@
   </section>
 
   <!-- Items data -->
-  <section *ngIf="itemsStateService.itemsWithFiles | async as items">
-    <gueo-virtual-scroll [list]="items" [maxWidth]="300" [rowSizePx]="155">
+  <section>
+    <gueo-virtual-scroll
+      [list]="itemsStateService.itemsWithFiles | async"
+      [isLoading]="itemsStateService.loaderItemsWithFiles | async"
+      [maxWidth]="300"
+      [rowSizePx]="155"
+    >
       <ng-template #item let-item="item">
         <div class="gueo-flex--row">
           <div>

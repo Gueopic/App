@@ -18,12 +18,14 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
   @Input() maxWidth = 767;
   @Input() list: any[];
   @Input() rowSizePx = 300;
+  @Input() isLoading = false;
 
   @ContentChild('item', { static: false }) itemTemplate: TemplateRef<any>;
 
   itemsPerRow: number;
   colSize: number;
   groupList: any[];
+  skeletonFakePositions = new Array(10).fill(null);
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: Event) {

@@ -12,6 +12,7 @@
 <ion-content>
   <gueo-virtual-scroll
     [list]="itemsState.itemsWithFiles | async"
+    [isLoading]="itemsState.loaderItemsWithFiles | async"
     [maxWidth]="125"
     [rowSizePx]="125"
   >
