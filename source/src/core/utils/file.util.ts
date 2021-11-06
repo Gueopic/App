@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { Filesystem } from '@capacitor/filesystem';
 
 // https://ionicframework.com/docs/angular/your-first-app/5-adding-mobile
@@ -8,7 +9,7 @@ import { Filesystem } from '@capacitor/filesystem';
  */
 export async function readAsBase64(uri: string): Promise<string> {
   // "hybrid" will detect Cordova or Capacitor
-  if (this.platform.is('hybrid')) {
+  if (!Capacitor.isNativePlatform()) {
     // Read the file into base64 format
     const file = await Filesystem.readFile({
       path: uri,
