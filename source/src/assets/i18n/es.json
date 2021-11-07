@@ -43,5 +43,16 @@
       "label": "Nombre",
       "placeholder": "EJ: Ordenador"
     }
+  },
+  "components": {
+    "input_record_audio": {
+      "title": "Grabar un audio",
+      "record": "Grabar",
+      "stop": "Detener",
+      "play": "Reproducir",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Borrar"
+    }
   }
 }
