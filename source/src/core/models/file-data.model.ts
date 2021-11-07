@@ -27,7 +27,7 @@ export class FileData<T> {
   // }
 
   get computedWebPath(): string {
-    return this._webPath;
+    return this._webPath || this.computedBase64;
   }
 
   get computedMime(): string {
@@ -76,10 +76,13 @@ export class FileData<T> {
 
   async getBase64(): Promise<string> {
     if (!this.computedBase64) {
-      if (!this.filePath) {
-        throw new Error('No base64 or filePath specified to get the base64');
+      const webPath = await this.getWebPath();
+      if (!webPath) {
+        throw new Error('No base64, webPath or filePath specified to get the base64');
+      } else if (!this.computedBase64) {
+        // Check if "webPath" did not stored a base64
+        this.setBase64(await readAsBase64(webPath));
       }
-      this.setBase64(await readAsBase64(this.filePath));
     }
     return this.computedBase64;
   }
@@ -100,6 +103,10 @@ export class FileData<T> {
 
   async getWebPath(): Promise<string> {
     if (!this._webPath) {
+      if (!this.filePath && !this.computedBase64) {
+        throw new Error('No base64, webPath or filePath specified to get the webPath');
+      }
+
       if (Capacitor.isNativePlatform() && this.filePath) {
         // Display the new image by rewriting the 'file://' path to HTTP
         // Details: https://ionicframework.com/docs/building/webview#file-protocol
@@ -107,7 +114,11 @@ export class FileData<T> {
       }
       else {
         // Use webPath to display the new image instead of base64 since
-        this._webPath = await this.getBase64();
+        if (!this.computedBase64) {
+          const base64 = await readAsBase64(this.filePath);
+          this.setBase64(base64);
+        }
+        return this.computedBase64;
       }
     }
 
