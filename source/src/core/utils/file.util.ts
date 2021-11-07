@@ -9,18 +9,29 @@ import { Filesystem } from '@capacitor/filesystem';
  */
 export async function readAsBase64(uri: string): Promise<string> {
   // "hybrid" will detect Cordova or Capacitor
-  if (Capacitor.isNativePlatform()) {
-    // Read the file into base64 format
-    const file = await Filesystem.readFile({
-      path: uri,
-    });
+  // if (Capacitor.isNativePlatform()) {
+  //   // Read the file into base64 format
+  //   const file = await Filesystem.readFile({
+  //     path: uri,
+  //   });
 
-    return file.data;
-  } else {
+  //   return file.data;
+  // } else {
     // Fetch the photo, read as a blob, then convert to base64 format
     const response = await fetch(uri);
     const blob = await response.blob();
 
-    return (await this.convertBlobToBase64(blob)) as string;
-  }
+    return (await convertBlobToBase64(blob)) as string;
+  // }
+}
+
+export function convertBlobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = () => {
+        resolve(reader.result as string);
+    };
+    reader.readAsDataURL(blob);
+  });
 }

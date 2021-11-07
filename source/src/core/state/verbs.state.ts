@@ -48,7 +48,7 @@ export class VerbsStateService extends StateFromDBService<
   }
 
   async update(element: VerbWithFilesModel): Promise<void> {
-    const original = this.state.verbsWithFilesIndexed[element.id];
+    const original = { ...this.state.verbsWithFilesIndexed[element.id] };
     original.text = element.text;
 
     // Save the files if changed

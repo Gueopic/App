@@ -20,11 +20,12 @@ export class FilesystemService {
   ): Promise<void> {
     const baseFolder = destinationPath.split('/');
     baseFolder.pop();
-    await this.ensureFolderExist(baseFolder.join('/'), directory);
+    // await this.ensureFolderExist(baseFolder.join('/'), directory);
     await Filesystem.writeFile({
       path: destinationPath,
       data,
       directory,
+      recursive: true,
     });
   }
 
@@ -53,25 +54,10 @@ export class FilesystemService {
 
   async read(path: string, directory: Directory = Directory.Documents): Promise<FileData<any>> {
     const fileData = new FileData();
-    let data;
-    try {
-      data = await Filesystem.readFile({
-        path,
-        directory,
-      }).catch(() => null);;
-    } catch (ex) {
-      console.error(ex);
-    }
-
-    if (!data) {
-      return null;
-    }
-
     const { uri } = await Filesystem.getUri({ path, directory });
-    fileData.setBase64(data.data);
     fileData.relativePath = path;
     fileData.filePath = uri;
-    fileData.getWebPath(); // Start loading
+    fileData.getWebPath(); // Preload web path/base 64
     return fileData;
   }
 
