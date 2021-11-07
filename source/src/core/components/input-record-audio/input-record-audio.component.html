@@ -1,11 +1,8 @@
 <ion-item>
-  <ion-label>Record audio</ion-label>
+  <ion-label>{{ "components.input_record_audio.title" | translate }}</ion-label>
 </ion-item>
 
 <div class="container-field">
-  <div class="row">
-    <!-- <img [src]="urlImage" alt="Capture" width="84" height="84" *ngIf="fileData"> -->
-  </div>
   <div class="row">
     <!-- Track Info -->
     <ng-container [ngSwitch]="status | async">
@@ -28,7 +25,7 @@
           [type]="'button'"
           (click)="startRecord($event)"
         >
-          Start Recording
+          {{ "components.input_record_audio.record" | translate }}
         </button>
       </ng-container>
 
@@ -39,7 +36,7 @@
           [type]="'button'"
           (click)="reproduceAudio()"
         >
-          Reproduce
+          {{ "components.input_record_audio.play" | translate }}
         </button>
         <button
           class="action"
@@ -47,7 +44,7 @@
           [type]="'button'"
           (click)="removeAudio()"
         >
-          Remove audio
+          {{ "components.input_record_audio.delete" | translate }}
         </button>
       </ng-container>
 
@@ -58,7 +55,7 @@
           [type]="'button'"
           (click)="stopRecording($event)"
         >
-          Stop Recording
+          {{ "components.input_record_audio.stop" | translate }}
         </button>
       </ng-container>
 
@@ -69,7 +66,7 @@
           [type]="'button'"
           (click)="reproduceAudio()"
         >
-          Stop
+          {{ "components.input_record_audio.stop" | translate }}
         </button>
       </ng-container>
     </ng-container>

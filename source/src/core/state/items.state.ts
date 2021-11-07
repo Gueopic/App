@@ -6,7 +6,7 @@ import { ItemsDatabaseService } from '../database/items-database.service';
 import { FileData } from '../models/file-data.model';
 import { ItemWithFilesModel } from '../models/item-with-files.model';
 import { ItemModel } from '../models/item.model';
-import { FilesystemService } from '../services/filesystem.service';
+import { BASE_FOLDER, FilesystemService } from '../services/filesystem.service';
 import { StateFromDB, StateFromDBService } from './core/state-db.base';
 
 class State extends StateFromDB<ItemModel> {
@@ -15,7 +15,7 @@ class State extends StateFromDB<ItemModel> {
   loaderItemsWithFiles = new BehaviorSubject<boolean>(true);
 }
 
-export const ITEMS_FOLDER = 'items';
+export const ITEMS_FOLDER = `${BASE_FOLDER}items`;
 
 @Injectable({
   providedIn: 'root',
@@ -32,9 +32,7 @@ export class ItemsStateService extends StateFromDBService<
   readonly loaderItemsWithFiles: Observable<boolean> = combineLatest([
     this.loaderElements$,
     this.state.loaderItemsWithFiles,
-  ]).pipe(
-    map((loaders) => loaders.some(l => !!l))
-  );
+  ]).pipe(map((loaders) => loaders.some((l) => !!l)));
 
   constructor(
     private itemsDatabase: ItemsDatabaseService,
@@ -47,12 +45,16 @@ export class ItemsStateService extends StateFromDBService<
   async insert(element: ItemWithFilesModel): Promise<void> {
     // Save the files
     const nextId = await this.dbService.getNextId();
-    element.imageFileName = await this.persistImage(nextId, element.image);
-    element.audioFileName = await this.persistAudio(nextId, element.audio);
+    if (element.image) {
+      element.imageFileName = await this.persistImage(nextId, element.image);
+    }
+    if (element.audio) {
+      element.audioFileName = await this.persistAudio(nextId, element.audio);
+    }
 
     // Store in the database
     const cleanModel = this.mapToModel(element);
-    cleanModel.audioLength = element.audio.originalFile.value.msDuration;
+    cleanModel.audioLength = element.audio?.originalFile?.value.msDuration;
     await super.insert(cleanModel);
   }
 
@@ -156,12 +158,17 @@ export class ItemsStateService extends StateFromDBService<
     let image;
     try {
       // const audio = new FileData<any>();
-      audio = await this.filesystemService.read(item.audioFileName);
+      if (item.audioFileName) {
+        audio = await this.filesystemService.read(item.audioFileName);
+      }
       // audio.filePath = item.audioFileName;
     } catch (ex) {}
+
     try {
       // const image = new FileData<any>(item.imageFileName);
-      image = await this.filesystemService.read(item.imageFileName);
+      if (item.imageFileName) {
+        image = await this.filesystemService.read(item.imageFileName);
+      }
       // image.filePath = item.imageFileName;
     } catch (ex) {}
 
@@ -177,19 +184,18 @@ export class ItemsStateService extends StateFromDBService<
     image: FileData<Photo>
   ): Promise<string> {
     // TODO: get extension with the FileData class
-    // TODO: Compress the image (in the component)
-    image.filePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.png`;
-    await this.filesystemService.writeFileData(image);
+    const destinationFilePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.png`;
+    await this.filesystemService.writeFileData(image, destinationFilePath);
     return image.filePath;
   }
 
   private async persistAudio(
     id: number | string,
-    image: FileData<any>
+    audio: FileData<any>
   ): Promise<string> {
     // TODO: get extension with the FileData class
-    image.filePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;
-    await this.filesystemService.writeFileData(image);
-    return image.filePath;
+    const destinationFilePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;
+    await this.filesystemService.writeFileData(audio, destinationFilePath);
+    return audio.filePath;
   }
 }

@@ -7,31 +7,38 @@ import {
 } from '@capacitor/filesystem';
 import { FileData } from '../models/file-data.model';
 
+export const BASE_FOLDER = 'gueopic/';
+
 @Injectable({
   providedIn: 'root',
 })
 export class FilesystemService {
   async write(
-    path: string,
+    destinationPath: string,
     data: string,
     directory = Directory.Documents
   ): Promise<void> {
-    const baseFolder = path.split('/');
+    const baseFolder = destinationPath.split('/');
     baseFolder.pop();
     await this.ensureFolderExist(baseFolder.join('/'), directory);
     await Filesystem.writeFile({
-      path,
+      path: destinationPath,
       data,
       directory,
-      encoding: Encoding.UTF8,
     });
   }
 
+  /**
+   * Write the content of a file to the filesystem
+   * Also sets the file path in the fileData object
+   */
   async writeFileData(
     fileData: FileData<any>,
+    destinationPath: string,
     directory = Directory.Documents
   ): Promise<void> {
-    return this.write(fileData.filePath, await fileData.getBase64(), directory);
+    await this.write(destinationPath, await fileData.getBase64Data(), directory);
+    fileData.filePath = destinationPath;
   }
 
   async ensureFolderExist(path: string, directory): Promise<void> {
@@ -46,10 +53,19 @@ export class FilesystemService {
 
   async read(path: string, directory: Directory = Directory.Documents): Promise<FileData<any>> {
     const fileData = new FileData();
-    const data = await Filesystem.readFile({
-      path,
-      directory,
-    });
+    let data;
+    try {
+      data = await Filesystem.readFile({
+        path,
+        directory,
+      }).catch(() => null);;
+    } catch (ex) {
+      console.error(ex);
+    }
+
+    if (!data) {
+      return null;
+    }
 
     const { uri } = await Filesystem.getUri({ path, directory });
     fileData.setBase64(data.data);

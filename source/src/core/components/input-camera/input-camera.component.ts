@@ -3,19 +3,20 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  Injector, OnDestroy,
-  OnInit
+  Injector,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {
-  ControlValueAccessor, NgControl,
-  NG_VALUE_ACCESSOR
+  ControlValueAccessor,
+  NgControl,
+  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { CameraSource, Photo } from '@capacitor/camera';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FileData } from 'src/core/models/file-data.model';
 import { CameraService } from 'src/core/services/camera.service';
-import { InputFileService } from 'src/core/services/input-file.service';
 
 @Component({
   selector: 'gueo-input-camera',
@@ -44,7 +45,6 @@ export class InputCameraComponent
   private fileChange$: Subscription;
 
   constructor(
-    private inputFileService: InputFileService,
     private inj: Injector,
     private changeDetector: ChangeDetectorRef,
     private cameraService: CameraService
@@ -95,11 +95,7 @@ export class InputCameraComponent
       this.onChange$(this.fileData || null);
     }
     if (this.fileData) {
-      if (await this.inputFileService.isImage(this.fileData)) {
-        this.imagePath = await file.getWebPath();
-      } else {
-        this.imagePath = null;
-      }
+      this.imagePath = await file.getWebPath();
       this.changeDetector.markForCheck();
     }
   }

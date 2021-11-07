@@ -18,7 +18,7 @@ export class CameraService {
     if (permissions === 'granted') {
       const photo: Photo = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
-        allowEditing: true,
+        allowEditing: false,
         source,
         quality: 50,
         width: 500,

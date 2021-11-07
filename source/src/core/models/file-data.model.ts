@@ -11,7 +11,7 @@ import { readAsBase64 } from '../utils/file.util';
  */
 export class FileData<T> {
 
-  private base64: string;
+  private data: string;
   private _originalFile: T;
   private _relativePath: string;
   private _filePath: string;
@@ -35,7 +35,13 @@ export class FileData<T> {
   }
 
   get computedBase64(): string {
-    return this.base64;
+    if (!this._mimeType) {
+      return this.data;
+    }
+    return `${this._mimeType},${this.data}`;
+  }
+  get computedBase64Data(): string {
+    return this.data;
   }
 
   get originalFile(): T {
@@ -59,19 +65,23 @@ export class FileData<T> {
   }
 
   setBase64(base64: string) {
-    const fileResultData = base64.split(',');
-    this._mimeType = fileResultData[0];
-    this.base64 = fileResultData[1];
+    if (base64.indexOf(',') > -1) {
+      const fileResultData = base64.split(',');
+      this._mimeType = fileResultData[0];
+      this.data = fileResultData[1];
+    } else {
+      this.data = base64;
+    }
   }
 
   async getBase64(): Promise<string> {
-    if (!this.base64) {
+    if (!this.computedBase64) {
       if (!this.filePath) {
         throw new Error('No base64 or filePath specified to get the base64');
       }
       this.setBase64(await readAsBase64(this.filePath));
     }
-    return `${this._mimeType},${this.base64}`;
+    return this.computedBase64;
   }
 
   async getMime(): Promise<string> {
@@ -79,6 +89,13 @@ export class FileData<T> {
       await this.getBase64();
     }
     return this._mimeType;
+  }
+
+  async getBase64Data(): Promise<string> {
+    if (!this.data) {
+      await this.getBase64();
+    }
+    return this.data;
   }
 
   async getWebPath(): Promise<string> {

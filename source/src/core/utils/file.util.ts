@@ -9,7 +9,7 @@ import { Filesystem } from '@capacitor/filesystem';
  */
 export async function readAsBase64(uri: string): Promise<string> {
   // "hybrid" will detect Cordova or Capacitor
-  if (!Capacitor.isNativePlatform()) {
+  if (Capacitor.isNativePlatform()) {
     // Read the file into base64 format
     const file = await Filesystem.readFile({
       path: uri,
