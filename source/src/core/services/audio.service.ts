@@ -64,7 +64,7 @@ export class AudioService {
   }
 
   async playAudioFile(fileData: FileData<RecordingData>) {
-    const audioRef = new Audio(await fileData.getBase64());
+    const audioRef = new Audio(await fileData.getBase64Data());
     return this.playAudio(audioRef);
   }
 
