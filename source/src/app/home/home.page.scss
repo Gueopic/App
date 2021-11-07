@@ -1,4 +1,16 @@
-.verbs-list {
-  max-height: 20vh;
-  overflow: auto;
+:host {
+  .verbs-list {
+    max-height: 20vh;
+    overflow: auto;
+  }
+
+  .image-container {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 4px;
+    height: 125px;
+    overflow: hidden;
+    width: 100%;
+  }
 }
