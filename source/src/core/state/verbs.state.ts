@@ -37,11 +37,13 @@ export class VerbsStateService extends StateFromDBService<
   async insert(element: VerbWithFilesModel): Promise<void> {
     // Save the files
     const nextId = await this.dbService.getNextId();
-    element.audioFileName = await this.persistAudio(nextId, element.audio);
+    if (element.audio){
+      element.audioFileName = await this.persistAudio(nextId, element.audio);
+    }
 
     // Store in the database
     const cleanModel = this.mapToModel(element);
-    cleanModel.audioLength = element.audio.originalFile.value.msDuration;
+    cleanModel.audioLength = element.audio?.originalFile?.value.msDuration;
     await super.insert(cleanModel);
   }
 
@@ -122,7 +124,9 @@ export class VerbsStateService extends StateFromDBService<
   private async createVerbData(verb: VerbModel): Promise<VerbWithFilesModel> {
     let audio;
     try {
-      audio = await this.filesystemService.read(verb.audioFileName);
+      if (verb.audioFileName) {
+        audio = await this.filesystemService.read(verb.audioFileName);
+      }
     } catch (ex) {}
 
     return {
@@ -136,8 +140,8 @@ export class VerbsStateService extends StateFromDBService<
     image: FileData<any>
   ): Promise<string> {
     // TODO: get extension with the FileData class
-    image.filePath = `${VERBS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;
-    await this.filesystemService.writeFileData(image);
+    const destinationFilePath = `${VERBS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;
+    await this.filesystemService.writeFileData(image, destinationFilePath);
     return image.filePath;
   }
 }
