@@ -17,18 +17,16 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
-/.idea
-/.ionic
-/.history
-/.sass-cache
-/.sourcemaps
-/.versions
-/.vscode
+.idea
+.ionic
+.history
+.sass-cache
+.sourcemaps
+.versions
+.vscode
 /coverage
 /dist
-/node_modules
+node_modules
 /platforms
 /plugins
-/www
-
-.history
+www

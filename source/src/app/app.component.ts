@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StorageService } from 'src/core/database/core/storage.service';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
   private async bootstrap(): Promise<void> {
     await this.storageService.init();
     await this.loadCurrentLanguage();
+    await SplashScreen.hide();
   }
 
   private async loadCurrentLanguage(): Promise<void> {
