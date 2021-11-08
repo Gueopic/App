@@ -20,7 +20,8 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
   @Input() rowSizePx = 300;
   @Input() isLoading = false;
 
-  @ContentChild('item', { static: false }) itemTemplate: TemplateRef<any>;
+  @ContentChild('itemTemplate', { static: false }) itemTemplate: TemplateRef<any>;
+  @ContentChild('noContentTemplate', { static: false }) noContentTemplate: TemplateRef<any>;
 
   itemsPerRow: number;
   colSize: number;

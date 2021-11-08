@@ -28,7 +28,7 @@
       [maxWidth]="210"
       [rowSizePx]="130"
     >
-      <ng-template #item let-verb="item">
+      <ng-template #itemTemplate let-verb="item">
         <div class="gueo-flex--col">
           <h2>{{verb.text}}</h2>
           <div>
@@ -129,7 +129,7 @@
       [maxWidth]="300"
       [rowSizePx]="155"
     >
-      <ng-template #item let-item="item">
+      <ng-template #itemTemplate let-item="item">
         <div class="gueo-flex--row">
           <div>
             <!-- TODO: improve performance -->

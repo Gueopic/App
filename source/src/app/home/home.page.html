@@ -20,12 +20,23 @@
     [maxWidth]="125"
     [rowSizePx]="125"
   >
-    <ng-template #item let-item="item">
+    <ng-template #itemTemplate let-item="item">
       <div
         class="image-container"
         (click)="reproduceAudio(item.audio)"
         [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
       ></div>
+    </ng-template>
+
+    <ng-template #noContentTemplate>
+      <ion-card>
+        <ion-card-header>
+          <b>{{  'home.no_content.title' | translate }}</b>
+        </ion-card-header>
+        <ion-card-content>
+          {{  'home.no_content.description' | translate }}
+        </ion-card-content>
+      </ion-card>
     </ng-template>
   </gueo-virtual-scroll>
 

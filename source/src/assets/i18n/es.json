@@ -54,5 +54,11 @@
       "cancel": "Cancelar",
       "delete": "Borrar"
     }
+  },
+  "home": {
+    "no_content": {
+      "title": "No tienes ningún objeto creado",
+      "description": "Puedes añadir uno en el icono del menú en la esquina inferior izquierda de la pantalla."
+    }
   }
 }

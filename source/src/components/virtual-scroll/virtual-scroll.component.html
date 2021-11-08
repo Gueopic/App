@@ -11,7 +11,7 @@
   </ion-virtual-scroll>
 </ion-grid>
 
-<ng-container *ngIf="isLoading">
+<ng-container *ngIf="isLoading; else noLoading">
   <ion-row>
     <ion-col
       *ngFor="let elements of skeletonFakePositions"
@@ -27,3 +27,9 @@
     </ion-col>
   </ion-row>
 </ng-container>
+
+<ng-template #noLoading>
+  <ng-container *ngIf="!isLoading && !groupList.length">
+    <ng-container *ngTemplateOutlet="noContentTemplate"></ng-container>
+  </ng-container>
+</ng-template>
