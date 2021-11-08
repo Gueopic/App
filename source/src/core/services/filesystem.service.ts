@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  Directory,
-  Encoding,
-  Filesystem,
-  ReadFileResult,
-} from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import { FileData } from '../models/file-data.model';
 
 export const BASE_FOLDER = 'gueopic/';
@@ -25,6 +21,8 @@ export class FilesystemService {
       path: destinationPath,
       data,
       directory,
+      // The data will stored as "string" in web mode
+      encoding: Capacitor.isNativePlatform() ? undefined : Encoding.UTF8,
       recursive: true,
     });
   }
@@ -38,7 +36,7 @@ export class FilesystemService {
     destinationPath: string,
     directory = Directory.Documents
   ): Promise<void> {
-    await this.write(destinationPath, await fileData.getBase64Data(), directory);
+    await this.write(destinationPath, await fileData.getBase64(), directory);
     fileData.filePath = destinationPath;
   }
 
@@ -52,7 +50,10 @@ export class FilesystemService {
     } catch (ex) {}
   }
 
-  async read(path: string, directory: Directory = Directory.Documents): Promise<FileData<any>> {
+  async read(
+    path: string,
+    directory: Directory = Directory.Documents
+  ): Promise<FileData<any>> {
     const fileData = new FileData();
     const { uri } = await Filesystem.getUri({ path, directory });
     fileData.relativePath = path;

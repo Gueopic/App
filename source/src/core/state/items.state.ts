@@ -43,19 +43,23 @@ export class ItemsStateService extends StateFromDBService<
   }
 
   async insert(element: ItemWithFilesModel): Promise<void> {
-    // Save the files
-    const nextId = await this.dbService.getNextId();
-    if (element.image) {
-      element.imageFileName = await this.persistImage(nextId, element.image);
-    }
-    if (element.audio) {
-      element.audioFileName = await this.persistAudio(nextId, element.audio);
-    }
+    try {
+      // Save the files
+      const nextId = await this.dbService.getNextId();
+      if (element.image) {
+        element.imageFileName = await this.persistImage(nextId, element.image);
+      }
+      if (element.audio) {
+        element.audioFileName = await this.persistAudio(nextId, element.audio);
+      }
 
-    // Store in the database
-    const cleanModel = this.mapToModel(element);
-    cleanModel.audioLength = element.audio?.originalFile?.value.msDuration;
-    await super.insert(cleanModel);
+      // Store in the database
+      const cleanModel = this.mapToModel(element);
+      cleanModel.audioLength = element.audio?.originalFile?.value.msDuration;
+      await super.insert(cleanModel);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async update(element: ItemWithFilesModel): Promise<void> {

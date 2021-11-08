@@ -35,11 +35,11 @@ export class FileData<T> {
   }
 
   get computedBase64(): string {
-    if (!this._mimeType) {
-      return this.data;
+    if (this._mimeType && this.data) {
+      return `${this._mimeType},${this.data}`;
     }
-    return `${this._mimeType},${this.data}`;
   }
+
   get computedBase64Data(): string {
     return this.data;
   }
@@ -65,13 +65,16 @@ export class FileData<T> {
   }
 
   setBase64(base64: string) {
-    if (base64.indexOf(',') > -1) {
+    // if (base64.indexOf(',') > -1) {
+      if (base64.indexOf(',') === -1) {
+        throw new Error('Invalid base64');
+      }
       const fileResultData = base64.split(',');
       this._mimeType = fileResultData[0];
       this.data = fileResultData[1];
-    } else {
-      this.data = base64;
-    }
+    // } else {
+    //   this.data = base64;
+    // }
   }
 
   async getBase64(): Promise<string> {
