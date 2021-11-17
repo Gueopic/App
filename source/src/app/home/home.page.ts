@@ -13,13 +13,13 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePage implements OnInit {
   isProduction = environment.production;
-  footerHidden= false;
+  footerHidden = false;
 
   constructor(
     public appTranslateService: AppTranslateService,
     public verbsState: VerbsStateService,
     public itemsState: ItemsStateService,
-    private audioService: AudioService,
+    private audioService: AudioService
   ) {}
 
   ngOnInit() {
@@ -30,17 +30,26 @@ export class HomePage implements OnInit {
     this.audioService.playAudioFile(audio);
   }
 
+  ionViewWillEnter() {
+    // Ionic hack for virtual scroll
+    window.dispatchEvent(new Event('resize'));
+  }
+
   // https://stackoverflow.com/questions/56347694/how-to-detect-scroll-direction-in-ionic-4
   onScroll(event) {
     // used a couple of "guards" to prevent unnecessary assignments if scrolling in a direction and the var is set already:
-    if (event.detail.deltaY > 0 && this.footerHidden) {return;}
-    if (event.detail.deltaY < 0 && !this.footerHidden) {return;}
+    if (event.detail.deltaY > 0 && this.footerHidden) {
+      return;
+    }
+    if (event.detail.deltaY < 0 && !this.footerHidden) {
+      return;
+    }
     if (event.detail.deltaY > 0) {
       this.footerHidden = true;
     } else {
       this.footerHidden = false;
-    };
-  };
+    }
+  }
 
   private async init(): Promise<void> {
     await this.verbsState.loadAll();
