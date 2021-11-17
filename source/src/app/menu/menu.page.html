@@ -124,8 +124,8 @@
   <!-- Items data -->
   <section>
     <gueo-virtual-scroll
-      [list]="itemsStateService.itemsWithFiles | async"
-      [isLoading]="itemsStateService.loaderItemsWithFiles | async"
+      [list]="itemsStateService.itemsWithFiles$ | async"
+      [isLoading]="itemsStateService.loaderItemsWithFiles$ | async"
       [maxWidth]="300"
       [rowSizePx]="155"
     >
