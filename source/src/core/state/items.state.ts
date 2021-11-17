@@ -26,10 +26,10 @@ export class ItemsStateService extends StateFromDBService<
 > {
   state = new State();
 
-  readonly itemsWithFiles: Observable<ItemWithFilesModel[]> =
+  readonly itemsWithFiles$: Observable<ItemWithFilesModel[]> =
     this.state.itemsWithFiles.asObservable();
 
-  readonly loaderItemsWithFiles: Observable<boolean> = combineLatest([
+  readonly loaderItemsWithFiles$: Observable<boolean> = combineLatest([
     this.loaderElements$,
     this.state.loaderItemsWithFiles,
   ]).pipe(map((loaders) => loaders.some((l) => !!l)));

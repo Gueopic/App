@@ -40,7 +40,7 @@
 
 <h4>Items</h4>
 
-<div *ngIf="itemsState.itemsWithFiles | async as items">
+<div *ngIf="itemsState.itemsWithFiles$ | async as items">
   <div>
     <ion-button (click)="insertItem()"> Insert Item </ion-button>
     <ion-button (click)="updateItem(items[items.length -1])">

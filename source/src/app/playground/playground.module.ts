@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { VirtualScrollModule } from 'src/components/virtual-scroll/virtual-scroll.module';
 import { InputCameraModule } from 'src/core/components/input-camera/input-camera.module';
 import { InputRecordAudioModule } from 'src/core/components/input-record-audio/input-record-audio.module';
-import { DomSanitizePipeModule } from 'src/core/dom-sanitize-pipe/dom-sanitize-pipe.module';
+import { VirtualScrollModule } from 'src/core/components/virtual-scroll/virtual-scroll.module';
+import { DomSanitizePipeModule } from 'src/core/pipes/dom-sanitize-pipe/dom-sanitize-pipe.module';
 import { AudioServiceMock } from 'src/core/services/mocks/audio.service.mock';
 import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
 import { PlaygroundHomePage } from './playground-home.page';
@@ -30,10 +30,12 @@ import { PlaygroundStatesPage } from './views/states/playground-states.page';
 
     DomSanitizePipeModule,
   ],
-  declarations: [PlaygroundHomePage, PlaygroundComponentsPage, PlaygroundStatesPage, PlaygroundDatabasePage],
-  providers: [
-    AudioServiceMock,
-    CameraServiceMock,
-  ]
+  declarations: [
+    PlaygroundHomePage,
+    PlaygroundComponentsPage,
+    PlaygroundStatesPage,
+    PlaygroundDatabasePage,
+  ],
+  providers: [AudioServiceMock, CameraServiceMock],
 })
 export class PlaygroundPageModule {}
