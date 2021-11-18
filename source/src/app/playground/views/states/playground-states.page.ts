@@ -2,15 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ItemsDatabaseService } from 'src/core/database/items-database.service';
 import { VerbsDatabaseService } from 'src/core/database/verbs-database.service';
 import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
-import { ItemModel } from 'src/core/models/item.model';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
-import { VerbModel } from 'src/core/models/verb.model';
-import {
-  AudioServiceMock,
-  recordMock,
-} from 'src/core/services/mocks/audio.service.mock';
+import { AudioServiceMock } from 'src/core/services/mocks/audio.service.mock';
 import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
 import { ItemsStateService } from 'src/core/state/items.state';
+import { SettingsStateService } from 'src/core/state/settings.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 
 @Component({
@@ -19,6 +15,7 @@ import { VerbsStateService } from 'src/core/state/verbs.state';
 })
 export class PlaygroundStatesPage implements OnInit {
   constructor(
+    private settingsState: SettingsStateService,
     public itemsState: ItemsStateService,
     public verbsState: VerbsStateService,
     private audioMocked: AudioServiceMock,
@@ -29,6 +26,18 @@ export class PlaygroundStatesPage implements OnInit {
 
   ngOnInit() {
     this.refreshData();
+    this.settingsState.loadAll(true);
+    // this.settingsState.elements$.subscribe(() => {
+    //   console.log('BEFORE', this.settingsState.language);
+    //   this.settingsState.language = 'test';
+    //   console.log('AFTER', this.settingsState.language);
+    //   this.settingsState.persistChanges();
+    //   this.settingsState.language$.subscribe(
+    //     (language) => {
+    //       console.log('languageasync', language);
+    //     }
+    //   );
+    // });
   }
 
   async clearDB(): Promise<void> {
@@ -57,10 +66,10 @@ export class PlaygroundStatesPage implements OnInit {
   // #region Verbs State test
   async insertVerb(verb?: VerbWithFilesModel): Promise<void> {
     if (!verb) {
-      verb = await {
+      verb = (await {
         text: `Verb`,
         audio: await this.audioMocked.stopRecording(),
-      } as VerbWithFilesModel;
+      }) as VerbWithFilesModel;
     }
     await this.verbsState.insert(verb);
   }
