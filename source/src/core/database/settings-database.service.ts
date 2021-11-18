@@ -7,10 +7,11 @@ import { StorageService } from './core/storage.service';
   providedIn: 'root',
 })
 export class SettingsDatabaseService extends AbstractDatabaseService<SettingModel> {
-  protected tableName = 'verbs';
+  protected tableName = 'settings'
 
   constructor(protected dbService: StorageService) {
     super(dbService);
+    this.dbService.autoIncremental = false;
   }
 
   async getValue(id: string, defaultValue?: string): Promise<string> {
