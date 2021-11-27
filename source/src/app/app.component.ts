@@ -3,6 +3,9 @@ import { Platform } from '@ionic/angular';
 import { StorageService } from 'src/core/database/core/storage.service';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { SettingsStateService } from 'src/core/state/settings.state';
+import { LanguageListI } from 'src/core/modules/translate/translate.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +15,14 @@ import { SplashScreen } from '@capacitor/splash-screen';
 export class AppComponent implements OnInit {
   // TODO: Refactor to a new screen
   hasSelectedLang: boolean;
-  languageList: string[];
+  languageList: LanguageListI[];
 
   constructor(
+    public settingsStateService: SettingsStateService,
     private platform: Platform,
     private storageService: StorageService,
     public appTranslateService: AppTranslateService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -27,23 +32,25 @@ export class AppComponent implements OnInit {
     });
   }
 
-  changeLang(lang: string) {
-    this.appTranslateService.setCurrent(lang);
-    this.hasSelectedLang = true;
-  }
-
   private async bootstrap(): Promise<void> {
     await this.storageService.init();
+    await this.settingsStateService.loadAll();
     await this.loadCurrentLanguage();
     await SplashScreen.hide();
   }
 
   private async loadCurrentLanguage(): Promise<void> {
-    this.hasSelectedLang = !!(await this.appTranslateService.getCurrent());
+    const currentLang = await this.appTranslateService.getCurrent();
+    this.hasSelectedLang = !!currentLang;
     this.languageList = this.appTranslateService.availableLangs();
-    if (!this.hasSelectedLang && this.languageList?.length === 1) {
-      this.appTranslateService.setCurrent(this.languageList[0]);
-      this.hasSelectedLang = true;
+    // Auto select language if only 1 available
+    if (!this.hasSelectedLang) {
+      if (this.languageList?.length === 1) {
+        this.appTranslateService.setCurrent(this.languageList[0].key);
+        this.hasSelectedLang = true;
+      } else {
+        this.router.navigate(['/menu', 'language']);
+      }
     }
   }
 }

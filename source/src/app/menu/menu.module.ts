@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { VirtualScrollModule } from 'src/core/components/virtual-scroll/virtual-scroll.module';
 import { EditObjectModule } from './components/edit-object/edit-object.module';
 import { EditVerbModule } from './components/edit-verb/edit-verb.module';
+import { LanguageSelectorPage } from './language-selector/language-selector.page';
 import { MenuPageRoutingModule } from './menu-routing.module';
 import { MenuPage } from './menu.page';
 
@@ -20,6 +21,6 @@ import { MenuPage } from './menu.page';
     EditObjectModule,
     VirtualScrollModule,
   ],
-  declarations: [MenuPage],
+  declarations: [MenuPage, LanguageSelectorPage],
 })
 export class MenuPageModule {}

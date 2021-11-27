@@ -7,16 +7,21 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 export const translateLoaderFactory = (http: HttpClient) =>
   new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 
-export const LANGUAGE_SUPPORT = [
-  { key: 'es', label: 'ES' },
-  { key: 'en', label: 'EN' },
-  { key: 'ca', label: 'CA' },
+export interface LanguageListI {
+  key: string;
+  label: string;
+}
+
+export const LANGUAGE_SUPPORT: LanguageListI[] = [
+  { key: 'es', label: 'Castellano' },
+  { key: 'en', label: 'English' },
+  { key: 'ca', label: 'Català' },
 ];
 
 @NgModule({
   imports: [
     TranslateModule.forRoot({
-      defaultLanguage: 'es',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoaderFactory,

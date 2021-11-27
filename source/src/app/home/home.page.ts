@@ -54,7 +54,6 @@ export class HomePage implements OnInit {
   }
 
   private async init(): Promise<void> {
-    await this.settingsStateService.loadAll(true);
     await this.verbsState.loadAll();
     await this.itemsState.loadAll();
   }

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { map, take } from 'rxjs/operators';
 import { SettingsDatabaseService } from 'src/core/database/settings-database.service';
 import { SettingModel } from 'src/core/models/setting.model';
+import { SettingsStateService } from 'src/core/state/settings.state';
 import { sleep } from 'src/core/utils/promises.utils';
-import { LANGUAGE_SUPPORT } from './translate.module';
+import { LanguageListI, LANGUAGE_SUPPORT } from './translate.module';
 
 @Injectable({
   providedIn: 'root',
@@ -11,26 +13,24 @@ import { LANGUAGE_SUPPORT } from './translate.module';
 export class AppTranslateService {
   constructor(
     private translate: TranslateService,
-    private settingsDatabase: SettingsDatabaseService,
-  ) {}
-
-  availableLangs(): string[] {
-    return this.translate.langs;
+    public settingsStateService: SettingsStateService,
+  ) {
   }
 
-  async setCurrent(lang: string): Promise<SettingModel[]> {
+  availableLangs(): LanguageListI[] {
+    return LANGUAGE_SUPPORT;
+    // return this.translate.langs;
+  }
+
+  async setCurrent(lang: string): Promise<void> {
     console.debug('Language changed to:', lang);
-    this.translate.setDefaultLang(lang);
-    return await this.settingsDatabase.setValue('lang', lang);
+    this.translate.use(lang);
+    this.settingsStateService.language = lang;
+    return await this.settingsStateService.persistChanges();
   }
 
   async getCurrent(): Promise<string> {
-    const lang = await this.settingsDatabase.getValue(
-      'lang',
-      this.translate.defaultLang,
-    );
-    console.debug('Load language:', lang);
-    return lang;
+    return await this.settingsStateService.language$.pipe(take(1)).toPromise();
   }
 
   async init(): Promise<string> {
