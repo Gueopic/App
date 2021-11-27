@@ -12,6 +12,14 @@
 <ion-content class="ion-padding">
   <section>
     <ion-item>
+      <ion-button
+        *ngFor="let lang of appTranslateService.availableLangs()"
+        (click)="changeLang(lang.key)"
+      >
+        {{ lang.label }}
+      </ion-button>
+    </ion-item>
+    <ion-item>
       <ion-label>{{ "menu.settings.image_size" | translate }}</ion-label>
       <ion-range
         min="75"

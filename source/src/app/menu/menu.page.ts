@@ -7,6 +7,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
+import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 import { AudioService } from 'src/core/services/audio.service';
 import { ItemsStateService } from 'src/core/state/items.state';
 import { SettingsStateService } from 'src/core/state/settings.state';
@@ -26,6 +27,7 @@ export class MenuPage implements OnInit, OnDestroy {
     public settingsStateService: SettingsStateService,
     public modalController: ModalController,
     private audioService: AudioService,
+    public appTranslateService: AppTranslateService,
   ) {}
 
   ngOnInit() {
@@ -55,6 +57,10 @@ export class MenuPage implements OnInit, OnDestroy {
 
   reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel): void {
     this.audioService.playAudioFile(item.audio);
+  }
+
+  changeLang(lang: string) {
+    this.appTranslateService.setCurrent(lang);
   }
 
   async openVerbModal(verb?: VerbWithFilesModel): Promise<void> {
