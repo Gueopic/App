@@ -21,6 +21,10 @@
   },
   "menu": {
     "title": "Menú",
+    "settings": {
+      "title": "Ajustes",
+      "image_size": "Tamaño imagenes"
+    },
     "verbs_management": {
       "title": "Crear una acción de la barra superior"
     },

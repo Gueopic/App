@@ -3,6 +3,7 @@ import { FileData } from 'src/core/models/file-data.model';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 import { AudioService } from 'src/core/services/audio.service';
 import { ItemsStateService } from 'src/core/state/items.state';
+import { SettingsStateService } from 'src/core/state/settings.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
 
   constructor(
     public appTranslateService: AppTranslateService,
+    public settingsStateService: SettingsStateService,
     public verbsState: VerbsStateService,
     public itemsState: ItemsStateService,
     private audioService: AudioService
@@ -52,6 +54,7 @@ export class HomePage implements OnInit {
   }
 
   private async init(): Promise<void> {
+    await this.settingsStateService.loadAll(true);
     await this.verbsState.loadAll();
     await this.itemsState.loadAll();
   }
