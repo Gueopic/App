@@ -6,6 +6,7 @@ import { StorageElement } from './storage.elements';
   providedIn: 'root',
 })
 export class StorageService<MODEL extends StorageElement = any> {
+  autoIncremental = true;
   private _storage: Storage | null = null;
 
   constructor(private storageService: Storage) {
@@ -51,7 +52,9 @@ export class StorageService<MODEL extends StorageElement = any> {
 
 
   public async getNextIdFor(key: string): Promise<number> {
-    return (await this.get(`${key}_next_id`)) || 1;
+    if (this.autoIncremental) {
+      return (await this.get(`${key}_next_id`)) || 1;
+    }
   }
 
   /**
@@ -101,7 +104,10 @@ export class StorageService<MODEL extends StorageElement = any> {
           newElement.id = currentElement.id;
           Object.assign(currentElement, newElement);
         } else {
-          newElement.id = (nextId++).toString();
+          if (this.autoIncremental) {
+            newArray.push(newElement);
+            newElement.id = (nextId++).toString();
+          }
           newArray.push(newElement);
         }
       }
@@ -135,6 +141,8 @@ export class StorageService<MODEL extends StorageElement = any> {
   }
 
   private async setNextIdFor(key: string, id: number): Promise<void> {
-    await this.replace(`${key}_next_id`, id);
+    if (this.autoIncremental) {
+      await this.replace(`${key}_next_id`, id);
+    }
   }
 }
