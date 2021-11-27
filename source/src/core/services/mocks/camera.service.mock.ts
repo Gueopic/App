@@ -11,7 +11,6 @@ export const photoMock = {
 
 @Injectable()
 export class CameraServiceMock extends CameraService {
-
   getMock(): Photo {
     return photoMock;
   }

@@ -12,7 +12,7 @@ export class FilesystemService {
   async write(
     destinationPath: string,
     data: string,
-    directory = Directory.Documents
+    directory = Directory.Documents,
   ): Promise<void> {
     const baseFolder = destinationPath.split('/');
     baseFolder.pop();
@@ -34,7 +34,7 @@ export class FilesystemService {
   async writeFileData(
     fileData: FileData<any>,
     destinationPath: string,
-    directory = Directory.Documents
+    directory = Directory.Documents,
   ): Promise<void> {
     await this.write(destinationPath, await fileData.getBase64(), directory);
     fileData.filePath = destinationPath;
@@ -52,7 +52,7 @@ export class FilesystemService {
 
   async read(
     path: string,
-    directory: Directory = Directory.Documents
+    directory: Directory = Directory.Documents,
   ): Promise<FileData<any>> {
     const fileData = new FileData();
     const { uri } = await Filesystem.getUri({ path, directory });

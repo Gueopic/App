@@ -6,12 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['playground-home.page.scss'],
 })
 export class PlaygroundHomePage implements OnInit {
+  constructor() {}
 
-  constructor(
-
-  ) {}
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

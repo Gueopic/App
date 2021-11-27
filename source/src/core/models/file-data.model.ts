@@ -10,7 +10,6 @@ import { readAsBase64 } from '../utils/file.util';
  * "Original FIle" IS ONLY FOR UPDATES, you don't need to use (util for example for forms)
  */
 export class FileData<T> {
-
   private data: string;
   private _originalFile: T;
   private _relativePath: string;
@@ -44,7 +43,7 @@ export class FileData<T> {
     return this.data;
   }
 
-  get originalFile(): T {
+  get originalFile(): T {
     return this._originalFile;
   }
 
@@ -66,12 +65,12 @@ export class FileData<T> {
 
   setBase64(base64: string) {
     // if (base64.indexOf(',') > -1) {
-      if (base64.indexOf(',') === -1) {
-        throw new Error('Invalid base64');
-      }
-      const fileResultData = base64.split(',');
-      this._mimeType = fileResultData[0];
-      this.data = fileResultData[1];
+    if (base64.indexOf(',') === -1) {
+      throw new Error('Invalid base64');
+    }
+    const fileResultData = base64.split(',');
+    this._mimeType = fileResultData[0];
+    this.data = fileResultData[1];
     // } else {
     //   this.data = base64;
     // }
@@ -81,7 +80,9 @@ export class FileData<T> {
     if (!this.computedBase64) {
       const webPath = await this.getWebPath();
       if (!webPath) {
-        throw new Error('No base64, webPath or filePath specified to get the base64');
+        throw new Error(
+          'No base64, webPath or filePath specified to get the base64',
+        );
       } else if (!this.computedBase64) {
         // Check if "webPath" did not stored a base64
         this.setBase64(await readAsBase64(webPath));
@@ -107,15 +108,16 @@ export class FileData<T> {
   async getWebPath(): Promise<string> {
     if (!this._webPath) {
       if (!this.filePath && !this.computedBase64) {
-        throw new Error('No base64, webPath or filePath specified to get the webPath');
+        throw new Error(
+          'No base64, webPath or filePath specified to get the webPath',
+        );
       }
 
       if (Capacitor.isNativePlatform() && this.filePath) {
         // Display the new image by rewriting the 'file://' path to HTTP
         // Details: https://ionicframework.com/docs/building/webview#file-protocol
         this._webPath = Capacitor.convertFileSrc(this.filePath);
-      }
-      else {
+      } else {
         // Use webPath to display the new image instead of base64 since
         if (!this.computedBase64) {
           const base64 = await readAsBase64(this.filePath);

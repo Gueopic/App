@@ -28,7 +28,7 @@ export class VerbsStateService extends StateFromDBService<
 
   constructor(
     private verbsDatabase: VerbsDatabaseService,
-    private filesystemService: FilesystemService
+    private filesystemService: FilesystemService,
   ) {
     super(verbsDatabase);
     this.verbsChangeListener();
@@ -37,7 +37,7 @@ export class VerbsStateService extends StateFromDBService<
   async insert(element: VerbWithFilesModel): Promise<void> {
     // Save the files
     const nextId = await this.dbService.getNextId();
-    if (element.audio){
+    if (element.audio) {
       element.audioFileName = await this.persistAudio(nextId, element.audio);
     }
 
@@ -58,7 +58,7 @@ export class VerbsStateService extends StateFromDBService<
       }
       original.audioFileName = await this.persistAudio(
         original.id,
-        element.audio
+        element.audio,
       );
     }
 
@@ -90,7 +90,7 @@ export class VerbsStateService extends StateFromDBService<
         switchMap((verbs) => from(this.appendFileDataToVerbs(verbs))),
         tap((verbsWithFiles) => {
           this.state.verbsWithFiles.next(verbsWithFiles);
-        })
+        }),
       )
       .subscribe();
   }
@@ -102,7 +102,7 @@ export class VerbsStateService extends StateFromDBService<
    * @param newVerbs New verbs retrieved
    */
   private async appendFileDataToVerbs(
-    newVerbs: VerbModel[]
+    newVerbs: VerbModel[],
   ): Promise<VerbWithFilesModel[]> {
     if (!newVerbs) {
       return [];
@@ -137,7 +137,7 @@ export class VerbsStateService extends StateFromDBService<
 
   private async persistAudio(
     id: number | string,
-    image: FileData<any>
+    image: FileData<any>,
   ): Promise<string> {
     // TODO: get extension with the FileData class
     const destinationFilePath = `${VERBS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;

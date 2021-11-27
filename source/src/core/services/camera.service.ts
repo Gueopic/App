@@ -4,7 +4,7 @@ import {
   CameraPermissionState,
   CameraResultType,
   CameraSource,
-  Photo
+  Photo,
 } from '@capacitor/camera';
 import { FileData } from '../models/file-data.model';
 

@@ -13,7 +13,6 @@ const defaultAudio = recordMock;
   templateUrl: 'playground-components.page.html',
 })
 export class PlaygroundComponentsPage implements OnInit {
-
   form: FormGroup;
 
   defaultImage: FileData<any> = new FileData<any>();
@@ -23,7 +22,9 @@ export class PlaygroundComponentsPage implements OnInit {
 
   ngOnInit() {
     this.defaultImage.setBase64(defaultImage);
-    this.defaultAudio.setBase64(`data:${defaultAudio.value.mimeType};base64,${defaultAudio.value.recordDataBase64}`);
+    this.defaultAudio.setBase64(
+      `data:${defaultAudio.value.mimeType};base64,${defaultAudio.value.recordDataBase64}`,
+    );
 
     this.form = new FormGroup({
       // Take photos

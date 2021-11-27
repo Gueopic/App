@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{
-      ("edit_verb." + (verb?.id ? "edit_title" : "create_title")) | translate
+      'edit_verb.' + (verb?.id ? 'edit_title' : 'create_title') | translate
     }}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="close()">
-        {{ "common.actions.close" | translate }}
+        {{ 'common.actions.close' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,7 +16,7 @@
       <gueo-error-validation-wrapper [formControlName]="'text'">
         <ion-item>
           <ion-label position="stacked">{{
-            "edit_verb.text.label" | translate
+            'edit_verb.text.label' | translate
           }}</ion-label>
           <ion-input
             name="text"
@@ -38,6 +38,6 @@
 </ion-content>
 <ion-footer (click)="onSave()">
   <ion-toolbar color="tertiary">
-    <ion-title>{{ "common.actions.save" | translate }}</ion-title>
+    <ion-title>{{ 'common.actions.save' | translate }}</ion-title>
   </ion-toolbar>
 </ion-footer>

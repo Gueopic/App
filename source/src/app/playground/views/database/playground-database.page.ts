@@ -14,7 +14,7 @@ export class PlaygroundDatabasePage implements OnInit {
 
   constructor(
     private itemsDatabase: ItemsDatabaseService,
-    private verbsDatabase: VerbsDatabaseService
+    private verbsDatabase: VerbsDatabaseService,
   ) {}
 
   ngOnInit() {

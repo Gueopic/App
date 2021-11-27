@@ -27,12 +27,12 @@ const routes: Routes = [
         path: 'database',
         component: PlaygroundDatabasePage,
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PlaygroundPageRoutingModule {}
