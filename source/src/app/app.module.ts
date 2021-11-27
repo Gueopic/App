@@ -2,21 +2,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { Capacitor } from '@capacitor/core';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { Drivers } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { TranslateLoaderModule } from 'src/core/modules/translate/translate.module';
+import { AudioService } from 'src/core/services/audio.service';
+import { CameraService } from 'src/core/services/camera.service';
+import { AudioServiceMock } from 'src/core/services/mocks/audio.service.mock';
+import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { Drivers } from '@ionic/storage';
-import { Capacitor } from '@capacitor/core';
-import { CameraService } from 'src/core/services/camera.service';
-import { CameraServiceMock } from 'src/core/services/mocks/camera.service.mock';
-import { AudioService } from 'src/core/services/audio.service';
-import { AudioServiceMock } from 'src/core/services/mocks/audio.service.mock';
-import { InputCameraModule } from 'src/core/components/input-camera/input-camera.module';
-import { InputRecordAudioModule } from 'src/core/components/input-record-audio/input-record-audio.module';
-
-console.log('IS NATIVE:', Capacitor.isNativePlatform());
 
 // If is native, will use main services, otherwise mock services will be used
 const providers: Provider[] = [];
