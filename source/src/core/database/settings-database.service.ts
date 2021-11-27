@@ -11,7 +11,6 @@ export class SettingsDatabaseService extends AbstractDatabaseService<SettingMode
 
   constructor(protected dbService: StorageService) {
     super(dbService);
-    this.dbService.autoIncremental = false;
   }
 
   async getValue(id: string, defaultValue?: string): Promise<string> {
