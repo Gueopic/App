@@ -13,7 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { CameraSource, Photo } from '@capacitor/camera';
+import { Photo } from '@capacitor/camera';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FileData } from 'src/core/models/file-data.model';
 import { CameraService } from 'src/core/services/camera.service';
@@ -69,7 +69,7 @@ export class InputCameraComponent
   async getImage(event: Event) {
     event.preventDefault();
     try {
-      const image = await this.cameraService.takePicture(CameraSource.Prompt);
+      const image = await this.cameraService.takePicture();
       this.setFile(image);
     } catch (ex) {
       console.error('INPUT CAMERA:', ex);

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { map, take } from 'rxjs/operators';
-import { SettingsDatabaseService } from 'src/core/database/settings-database.service';
-import { SettingModel } from 'src/core/models/setting.model';
+import { take } from 'rxjs/operators';
 import { SettingsStateService } from 'src/core/state/settings.state';
 import { sleep } from 'src/core/utils/promises.utils';
 import { LanguageListI, LANGUAGE_SUPPORT } from './translate.module';
@@ -14,8 +12,7 @@ export class AppTranslateService {
   constructor(
     private translate: TranslateService,
     public settingsStateService: SettingsStateService,
-  ) {
-  }
+  ) {}
 
   availableLangs(): LanguageListI[] {
     return LANGUAGE_SUPPORT;

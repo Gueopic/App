@@ -4,6 +4,7 @@
     "accions": {
       "actions": "Accions",
       "back": "Tornar",
+      "cancel": "Cancela",
       "close": "Tancar",
       "create": "Crear",
       "edit": "Editar",
@@ -52,6 +53,13 @@
     }
   },
   "components": {
+    "take_photo": {
+      "hub": {
+        "title": "Fotos",
+        "from_photos": "Àlbum",
+        "take_picture": "Càmera"
+      }
+    },
     "input_record_audio": {
       "title": "Gravar un àudio",
       "record": "Gravar",

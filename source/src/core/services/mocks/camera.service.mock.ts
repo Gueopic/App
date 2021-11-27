@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CameraPermissionState, CameraSource, Photo } from '@capacitor/camera';
+import { CameraPermissionState, Photo } from '@capacitor/camera';
 import { FileData } from '../../models/file-data.model';
 import { CameraService } from '../camera.service';
 
@@ -15,7 +15,7 @@ export class CameraServiceMock extends CameraService {
     return photoMock;
   }
 
-  async takePicture(source = CameraSource.Camera): Promise<FileData<Photo>> {
+  async takePicture(): Promise<FileData<Photo>> {
     const fileData = new FileData<Photo>(photoMock);
     fileData.setBase64(photoMock.base64String);
     return fileData;

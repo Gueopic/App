@@ -4,6 +4,7 @@
     "actions": {
       "actions": "Actions",
       "back": "Back",
+      "cancel": "Cancel",
       "close": "Close",
       "create": "Create",
       "edit": "Edit",
@@ -52,6 +53,13 @@
     }
   },
   "components": {
+    "take_photo": {
+      "hub": {
+        "title": "Photos",
+        "from_photos": "Album",
+        "take_picture": "Camera"
+      }
+    },
     "input_record_audio": {
       "title": "Record an audio",
       "record": "Record",
