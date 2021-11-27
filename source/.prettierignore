@@ -1,0 +1,12 @@
+package.json
+package-lock.json
+yarn.lock
+dist
+ci_cd
+build
+www
+android
+ios
+node_modules
+.history
+api-angular2-flexible-template
