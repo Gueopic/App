@@ -1,11 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
+import { AudioService } from 'src/core/services/audio.service';
 import { ItemsStateService } from 'src/core/state/items.state';
+import { SettingsStateService } from 'src/core/state/settings.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
-import { AudioService } from 'src/core/services/audio.service';
 import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 @Component({
   selector: 'gueo-menu',
@@ -13,17 +19,23 @@ import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
   styleUrls: ['./menu.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuPage implements OnInit {
+export class MenuPage implements OnInit, OnDestroy {
   constructor(
     public itemsStateService: ItemsStateService,
     public verbsStateService: VerbsStateService,
+    public settingsStateService: SettingsStateService,
     public modalController: ModalController,
-    private audioService: AudioService,
+    private audioService: AudioService
   ) {}
 
   ngOnInit() {
     this.itemsStateService.loadAll();
     this.verbsStateService.loadAll();
+    this.settingsStateService.loadAll(true);
+  }
+
+  ngOnDestroy() {
+    this.settingsStateService.persistChanges();
   }
 
   trackByVerb(index, item: VerbWithFilesModel) {
@@ -52,7 +64,7 @@ export class MenuPage implements OnInit {
       componentProps: {
         verb,
       },
-      backdropDismiss:false,
+      backdropDismiss: false,
       swipeToClose: false,
     });
     await modal.present();
@@ -74,7 +86,7 @@ export class MenuPage implements OnInit {
       componentProps: {
         item,
       },
-      backdropDismiss:false,
+      backdropDismiss: false,
       swipeToClose: false,
     });
     await modal.present();
@@ -88,5 +100,4 @@ export class MenuPage implements OnInit {
       }
     }
   }
-
 }
