@@ -23,7 +23,10 @@
     "title": "Menú",
     "settings": {
       "title": "Ajustes",
-      "image_size": "Tamaño imagenes"
+      "image_size": "Tamaño imagenes",
+      "features": "Características",
+      "enable_verbs": "Activar Verbos",
+      "enable_items": "Activar Objetos"
     },
     "verbs_management": {
       "title": "Crear una acción de la barra superior"

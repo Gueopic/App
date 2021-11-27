@@ -23,7 +23,10 @@
     "title": "Menu",
     "settings": {
       "title": "Settings",
-      "image_size": "Image size"
+      "image_size": "Image size",
+      "features": "Features",
+      "enable_verbs": "Enable Verbs",
+      "enable_items": "Enable Items"
     },
     "verbs_management": {
       "title": "Create a top bar action"

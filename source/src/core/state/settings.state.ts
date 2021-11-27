@@ -18,6 +18,10 @@ class StateableState {
   // Items
   itemImageHeight: BehaviorSubject<number> = new BehaviorSubject<number>(125);
   itemImageWidth: BehaviorSubject<number> = new BehaviorSubject<number>(125);
+
+  // Enable/disable features
+  enableVerbs = new BehaviorSubject<boolean>(true);
+  enableItems = new BehaviorSubject<boolean>(true);
 }
 
 @Injectable({
@@ -34,6 +38,10 @@ export class SettingsStateService extends StateFromDBService<
   @StateableProperty() public itemImageHeight: number;
   @StateableProperty() public itemImageWidth: number;
 
+  // Enable/disable features
+  @StateableProperty() public enableVerbs: boolean;
+  @StateableProperty() public enableItems: boolean;
+
   //
   // Observables
   //
@@ -47,6 +55,10 @@ export class SettingsStateService extends StateFromDBService<
   readonly itemImageHeight$: Observable<number>;
   @StateableObservableProperty('itemImageWidth')
   readonly itemImageWidth$: Observable<number>;
+
+  // Enable/disable features
+  @StateableObservableProperty('enableVerbs') public enableVerbs$: boolean;
+  @StateableObservableProperty('enableItems') public enableItems$: boolean;
 
   //
   // Methods
