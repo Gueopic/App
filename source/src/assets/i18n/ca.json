@@ -1,3 +1,68 @@
 {
-  "language": "Catalan"
+  "language": "Catalan",
+  "common": {
+    "accions": {
+      "actions": "Accions",
+      "back": "Tornar",
+      "close": "Tancar",
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar"
+    },
+    "menu": "Menú",
+    "text": "Text",
+    "sound": "So"
+  },
+  "validation": {
+    "errors": {
+      "required": "Aquest camp és obligatori"
+    }
+  },
+  "menu": {
+    "title": "Menú",
+    "settings": {
+      "title": "Configuracions",
+      "image_size": "Mida imatges"
+    },
+    "verbs_management": {
+      "title": "Crear una acció de la barra superior"
+    },
+    "items_management": {
+      "title": "Crear un nou objecte"
+    }
+  },
+  "edit_verb": {
+    "create_title": "Crear Acció",
+    "edit_title": "Editar Acció",
+    "text": {
+      "label": "Verb",
+      "placeholder": "EX: Vull"
+    }
+  },
+  "edit_item": {
+    "create_title": "Crear Objecte",
+    "edit_title": "Editar Objecte",
+    "text": {
+      "label": "Nom",
+      "placeholder": "EX: Ordinador"
+    }
+  },
+  "components": {
+    "input_record_audio": {
+      "title": "Gravar un àudio",
+      "record": "Gravar",
+      "stop": "Aturar",
+      "play": "Reproduir",
+      "save": "Guardar",
+      "cancel": "Cancel·lar",
+      "delete": "Esborrar"
+    }
+  },
+  "home": {
+    "no_content": {
+      "title": "No tens cap objecte creat",
+      "description": "Podeu afegir-ne un a la icona del menú a la part inferior esquerra de la pantalla."
+    }
+  }
 }
