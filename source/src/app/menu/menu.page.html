@@ -32,9 +32,30 @@
         <ion-icon slot="end" name="image-outline"></ion-icon>
       </ion-range>
     </ion-item>
+
+    <ion-item-divider>
+      <ion-label> {{ "menu.settings.features" | translate }} </ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>{{ "menu.settings.enable_verbs" | translate }}</ion-label>
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="settingsStateService.enableVerbs"
+      ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ "menu.settings.enable_items" | translate }}</ion-label>
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="settingsStateService.enableItems"
+      ></ion-checkbox>
+    </ion-item>
   </section>
 
-  <section class="gueo-content--section ion-text-center">
+  <section
+    class="gueo-content--section ion-text-center"
+    *ngIf="settingsStateService.enableVerbs"
+  >
     <ion-text>
       <h5>{{ 'menu.verbs_management.title' | translate }}</h5>
     </ion-text>
@@ -44,7 +65,10 @@
     </ion-button>
   </section>
 
-  <section class="gueo-content--section">
+  <section
+    class="gueo-content--section"
+    *ngIf="settingsStateService.enableVerbs"
+  >
     <!-- Verbs alternative design -->
     <!--
     <gueo-virtual-scroll
@@ -135,7 +159,8 @@
       </ion-row>
     </ion-grid>
   </section>
-  <section class="ion-text-center">
+
+  <section class="ion-text-center" *ngIf="settingsStateService.enableItems">
     <ion-text>
       <h5>{{ 'menu.items_management.title' | translate }}</h5>
     </ion-text>
@@ -146,7 +171,7 @@
   </section>
 
   <!-- Items data -->
-  <section>
+  <section *ngIf="settingsStateService.enableItems">
     <gueo-virtual-scroll
       [list]="itemsStateService.itemsWithFiles$ | async"
       [isLoading]="itemsStateService.loaderItemsWithFiles$ | async"

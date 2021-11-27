@@ -1,7 +1,11 @@
 :host {
+  $verbSize: 36px;
+
   .verbs-list {
-    max-height: 20vh;
     overflow: auto;
+    &.max-lines-3 {
+      max-height: $verbSize * 3;
+    }
   }
 
   .image-container {

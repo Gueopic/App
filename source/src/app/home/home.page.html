@@ -1,5 +1,9 @@
 <ion-header no-border>
-  <div class="verbs-list">
+  <div
+    class="verbs-list"
+    *ngIf="settingsStateService.enableVerbs"
+    [class.max-lines-3]="settingsStateService.enableItems"
+  >
     <ion-button
       *ngFor="let verb of (verbsState.verbsWithFiles | async)"
       (click)="reproduceAudio(verb.audio)"
@@ -15,6 +19,7 @@
   (ionScroll)="onScroll($event)"
 >
   <gueo-virtual-scroll
+    *ngIf="settingsStateService.enableItems"
     [list]="itemsState.itemsWithFiles$ | async"
     [isLoading]="itemsState.loaderItemsWithFiles$ | async"
     [maxWidth]="settingsStateService.itemImageWidth$ | async"

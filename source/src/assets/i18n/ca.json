@@ -23,7 +23,10 @@
     "title": "Menú",
     "settings": {
       "title": "Configuracions",
-      "image_size": "Mida imatges"
+      "image_size": "Mida imatges",
+      "features": "Característiques",
+      "enable_verbs": "Activar Verbs",
+      "enable_items": "Activar Objectes"
     },
     "verbs_management": {
       "title": "Crear una acció de la barra superior"
