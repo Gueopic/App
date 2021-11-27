@@ -25,7 +25,7 @@ export class MenuPage implements OnInit, OnDestroy {
     public verbsStateService: VerbsStateService,
     public settingsStateService: SettingsStateService,
     public modalController: ModalController,
-    private audioService: AudioService
+    private audioService: AudioService,
   ) {}
 
   ngOnInit() {

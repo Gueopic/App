@@ -15,7 +15,7 @@ export enum ReproduceStatusEnum {
 export class AudioService {
   private currentAudio: InstanceType<typeof Audio>;
   private _status$ = new BehaviorSubject<ReproduceStatusEnum>(
-    ReproduceStatusEnum.stopped
+    ReproduceStatusEnum.stopped,
   );
 
   private _forceStop$ = new BehaviorSubject<any>(null);
@@ -79,7 +79,7 @@ export class AudioService {
   convertToFileData(record: RecordingData): FileData<RecordingData> {
     const fileData = new FileData(record);
     fileData.setBase64(
-      `data:audio/aac;base64,${record.value.recordDataBase64}`
+      `data:audio/aac;base64,${record.value.recordDataBase64}`,
     );
     return fileData;
   }

@@ -38,7 +38,7 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
     const screenWidth = (event?.target as any)?.innerWidth || window.innerWidth;
     const newItemPerRow = Math.min(
       Math.max(1, Math.floor(screenWidth / this.maxWidth)),
-      12
+      12,
     );
     if (newItemPerRow !== this.itemsPerRow) {
       this.itemsPerRow = newItemPerRow;

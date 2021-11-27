@@ -10,7 +10,7 @@ describe('InputFileComponent', () => {
       TestBed.configureTestingModule({
         declarations: [InputFileComponent],
       }).compileComponents();
-    })
+    }),
   );
 
   beforeEach(() => {

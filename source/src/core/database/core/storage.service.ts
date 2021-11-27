@@ -9,8 +9,7 @@ export class StorageService<MODEL extends StorageElement = any> {
   autoIncremental = true;
   private _storage: Storage | null = null;
 
-  constructor(private storageService: Storage) {
-  }
+  constructor(private storageService: Storage) {}
 
   async init(): Promise<void> {
     console.debug('Loading database');
@@ -18,7 +17,7 @@ export class StorageService<MODEL extends StorageElement = any> {
   }
 
   async get(key: string, defaultValue?: any): Promise<any> {
-    return (await this._storage.get(key) || defaultValue);
+    return (await this._storage.get(key)) || defaultValue;
   }
 
   public async replace(key: string, value: any): Promise<void> {
@@ -32,7 +31,7 @@ export class StorageService<MODEL extends StorageElement = any> {
   public async getElement(
     key: string,
     elementId: string,
-    defaultValue?: any
+    defaultValue?: any,
   ): Promise<MODEL> {
     const elements: MODEL[] = await this.get(key, []);
     return elements.find((element) => element.id === elementId) || defaultValue;
@@ -40,7 +39,7 @@ export class StorageService<MODEL extends StorageElement = any> {
 
   public async getElements(
     key: string,
-    elementIds?: string[]
+    elementIds?: string[],
   ): Promise<MODEL[]> {
     const elements: MODEL[] = await this.get(key);
 
@@ -49,7 +48,6 @@ export class StorageService<MODEL extends StorageElement = any> {
     }
     return elements;
   }
-
 
   public async getNextIdFor(key: string): Promise<number> {
     if (this.autoIncremental) {
@@ -64,10 +62,7 @@ export class StorageService<MODEL extends StorageElement = any> {
    * @param key Array key
    * @param value Value to store (object/array/primitive)
    */
-  public async addElements(
-    key: string,
-    elements: MODEL[]
-  ): Promise<MODEL[]> {
+  public async addElements(key: string, elements: MODEL[]): Promise<MODEL[]> {
     let nextId = await this.getNextIdFor(key);
     try {
       const newArray: any[] = await this.get(key, []);
@@ -93,13 +88,15 @@ export class StorageService<MODEL extends StorageElement = any> {
    */
   public async updateElements(
     key: string,
-    elements: MODEL[]
+    elements: MODEL[],
   ): Promise<MODEL[]> {
     let nextId = await this.getNextIdFor(key);
     try {
       const newArray: MODEL[] = await this.get(key, []);
       for (const newElement of elements) {
-        const currentElement = newArray.find(element => element.id === newElement.id);
+        const currentElement = newArray.find(
+          (element) => element.id === newElement.id,
+        );
         if (currentElement) {
           newElement.id = currentElement.id;
           Object.assign(currentElement, newElement);
@@ -122,12 +119,12 @@ export class StorageService<MODEL extends StorageElement = any> {
 
   public async removeElements(
     key: string,
-    elementsToDelete: MODEL[]
+    elementsToDelete: MODEL[],
   ): Promise<MODEL[]> {
     const currentElements: MODEL[] = await this.get(key);
     const newElements = currentElements.filter((element) => {
       const index = elementsToDelete.findIndex(
-        (remove) => remove.id === element.id
+        (remove) => remove.id === element.id,
       );
       return index === -1;
     });
@@ -136,8 +133,8 @@ export class StorageService<MODEL extends StorageElement = any> {
   }
 
   public async removeAllElements(key: string): Promise<void> {
-      await this.setNextIdFor(key, 0);
-      return await this.replace(key, []);
+    await this.setNextIdFor(key, 0);
+    return await this.replace(key, []);
   }
 
   private async setNextIdFor(key: string, id: number): Promise<void> {

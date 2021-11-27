@@ -16,7 +16,7 @@ export class DomSanitizePipe implements PipeTransform {
 
   public transform(
     value: any,
-    type: string
+    type: string,
   ): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
     switch (type) {
       case 'html':

@@ -19,5 +19,4 @@ export class InputFileService {
       return this._sanitizer.bypassSecurityTrustResourceUrl(base64);
     }
   }
-
 }

@@ -6,10 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [ErrorValidationWrapperComponent],
-  imports: [CommonModule,
-    IonicModule,
-    TranslateModule,
-  ],
+  imports: [CommonModule, IonicModule, TranslateModule],
   exports: [ErrorValidationWrapperComponent],
 })
 export class ErrorValidationWrapperModule {}

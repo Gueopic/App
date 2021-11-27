@@ -4,15 +4,18 @@ import { StorageService } from './storage.service';
 export abstract class AbstractDatabaseService<MODEL = StorageElement> {
   protected abstract tableName;
 
-  constructor(protected dbService: StorageService<MODEL>) {
-  }
+  constructor(protected dbService: StorageService<MODEL>) {}
 
   async getNextId(): Promise<number> {
     return await this.dbService.getNextIdFor(this.tableName);
   }
 
   async get(id: string, defaultElement?: MODEL): Promise<MODEL> {
-    return await this.dbService.getElement(this.tableName, id, defaultElement) as MODEL;
+    return (await this.dbService.getElement(
+      this.tableName,
+      id,
+      defaultElement,
+    )) as MODEL;
   }
 
   async getAll(): Promise<MODEL[]> {

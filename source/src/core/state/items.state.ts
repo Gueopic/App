@@ -36,7 +36,7 @@ export class ItemsStateService extends StateFromDBService<
 
   constructor(
     private itemsDatabase: ItemsDatabaseService,
-    private filesystemService: FilesystemService
+    private filesystemService: FilesystemService,
   ) {
     super(itemsDatabase);
     this.itemsChangeListener();
@@ -73,7 +73,7 @@ export class ItemsStateService extends StateFromDBService<
       }
       original.imageFileName = await this.persistImage(
         original.id,
-        element.image
+        element.image,
       );
     }
     if (element.audio?.originalFile) {
@@ -82,7 +82,7 @@ export class ItemsStateService extends StateFromDBService<
       }
       original.audioFileName = await this.persistAudio(
         original.id,
-        element.audio
+        element.audio,
       );
     }
 
@@ -122,7 +122,7 @@ export class ItemsStateService extends StateFromDBService<
         tap((itemsWithFiles) => {
           this.state.itemsWithFiles.next(itemsWithFiles);
           this.state.loaderItemsWithFiles.next(false);
-        })
+        }),
       )
       .subscribe();
   }
@@ -134,7 +134,7 @@ export class ItemsStateService extends StateFromDBService<
    * @param newItems New items retrieved
    */
   private async appendFileDataToItems(
-    newItems: ItemModel[]
+    newItems: ItemModel[],
   ): Promise<ItemWithFilesModel[]> {
     if (!newItems) {
       return [];
@@ -185,7 +185,7 @@ export class ItemsStateService extends StateFromDBService<
 
   private async persistImage(
     id: number | string,
-    image: FileData<Photo>
+    image: FileData<Photo>,
   ): Promise<string> {
     // TODO: get extension with the FileData class
     const destinationFilePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.png`;
@@ -195,7 +195,7 @@ export class ItemsStateService extends StateFromDBService<
 
   private async persistAudio(
     id: number | string,
-    audio: FileData<any>
+    audio: FileData<any>,
   ): Promise<string> {
     // TODO: get extension with the FileData class
     const destinationFilePath = `${ITEMS_FOLDER}/${id.toString()}/${Date.now()}.ogg`;

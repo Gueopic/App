@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private storageService: StorageService,
-    public appTranslateService: AppTranslateService
+    public appTranslateService: AppTranslateService,
   ) {}
 
   ngOnInit() {

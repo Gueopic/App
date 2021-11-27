@@ -67,7 +67,7 @@ export class InputRecordAudioComponent
     private inputFileService: InputFileService,
     private inj: Injector,
     private changeDetector: ChangeDetectorRef,
-    private audioService: AudioService
+    private audioService: AudioService,
   ) {}
 
   ngOnInit() {
@@ -89,7 +89,7 @@ export class InputRecordAudioComponent
         }
         return StatusAudioEnum.empty;
       }),
-      takeUntil(this.destroy$)
+      takeUntil(this.destroy$),
     );
   }
 
@@ -187,7 +187,7 @@ export class InputRecordAudioComponent
     this.recordTimer = combineLatest([interval(100), this.isRecording$]).pipe(
       takeWhile(([, isRecording$]) => !!isRecording$),
       map(([time]) => time),
-      skipLast(1) // Better acurated record time
+      skipLast(1), // Better acurated record time
     );
   }
 }
