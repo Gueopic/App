@@ -1,3 +1,68 @@
 {
-  "language": "English"
+  "language": "English",
+  "common": {
+    "actions": {
+      "actions": "Actions",
+      "back": "Back",
+      "close": "Close",
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save"
+    },
+    "menu": "Menu",
+    "text": "Text",
+    "sound": "Sound"
+  },
+  "validation": {
+    "errors": {
+      "required": "This field is required"
+    }
+  },
+  "menu": {
+    "title": "Menu",
+    "settings": {
+      "title": "Settings",
+      "image_size": "Image size"
+    },
+    "verbs_management": {
+      "title": "Create a top bar action"
+    },
+    "items_management": {
+      "title": "Create a new object"
+    }
+  },
+  "edit_verb": {
+    "create_title": "Create Action",
+    "edit_title": "Edit Action",
+    "text": {
+      "label": "Verb",
+      "placeholder": "EX: I want to"
+    }
+  },
+  "edit_item": {
+    "create_title": "Create Object",
+    "edit_title": "Edit Object",
+    "text": {
+      "label": "Name",
+      "placeholder": "EX: Computer"
+    }
+  },
+  "components": {
+    "input_record_audio": {
+      "title": "Record an audio",
+      "record": "Record",
+      "stop": "Stop",
+      "play": "Play",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
+  "home": {
+    "no_content": {
+      "title": "You have no object created",
+      "description": "You can add one in the menu icon in the lower left corner of the screen."
+    }
+  }
 }
