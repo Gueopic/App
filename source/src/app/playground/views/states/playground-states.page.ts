@@ -21,7 +21,7 @@ export class PlaygroundStatesPage implements OnInit {
     private audioMocked: AudioServiceMock,
     private cameraMocked: CameraServiceMock,
     private itemsDatabase: ItemsDatabaseService,
-    private verbsDatabase: VerbsDatabaseService
+    private verbsDatabase: VerbsDatabaseService,
   ) {}
 
   ngOnInit() {

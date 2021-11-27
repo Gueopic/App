@@ -30,7 +30,7 @@ export class StateFromDB<MainModel> {
  */
 export abstract class StateFromDBService<
   MainModel extends StorageElement,
-  DbService extends AbstractDatabaseService<any>
+  DbService extends AbstractDatabaseService<any>,
 > extends StateBase {
   protected abstract state: StateFromDB<MainModel>;
 
@@ -64,9 +64,8 @@ export abstract class StateFromDBService<
     this.state.loaderElements.next(false);
   }
 
-
   getById(id: string): MainModel {
-    return this.elements.find(el => el.id === id);
+    return this.elements.find((el) => el.id === id);
   }
 
   async insert(element: MainModel): Promise<void> {

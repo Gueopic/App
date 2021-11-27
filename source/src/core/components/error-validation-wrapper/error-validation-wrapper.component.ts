@@ -1,7 +1,8 @@
 import { Component, forwardRef, Injector, OnInit } from '@angular/core';
 import {
-  ControlValueAccessor, NgControl,
-  NG_VALUE_ACCESSOR
+  ControlValueAccessor,
+  NgControl,
+  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 @Component({

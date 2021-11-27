@@ -6,11 +6,10 @@ import { SettingModel } from '../models/setting.model';
 import { StateFromDB, StateFromDBService } from './core/state-db.base';
 import {
   StateableObservableProperty,
-  StateableProperty
+  StateableProperty,
 } from './core/state.decorators';
 
-class State extends StateFromDB<SettingModel> {
-}
+class State extends StateFromDB<SettingModel> {}
 class StateableState {
   [key: string]: BehaviorSubject<any>;
   // Global settings
@@ -62,7 +61,7 @@ export class SettingsStateService extends StateFromDBService<
   }
 
   persistChanges(): void {
-    console.log('topoersist',this.mapStateElements())
+    console.log('topoersist', this.mapStateElements());
     this.settingsDatabase.update(this.mapStateElements());
   }
 
@@ -72,14 +71,16 @@ export class SettingsStateService extends StateFromDBService<
         distinctUntilChanged(),
         tap((settings) => {
           this.fillStateableState();
-        })
+        }),
       )
       .subscribe();
   }
 
   private fillStateableState(): void {
     const rawData = this.elements;
-    if (!rawData) { return; }
+    if (!rawData) {
+      return;
+    }
     const state = this.stateableState;
     for (const element of rawData) {
       const key = element.id;

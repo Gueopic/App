@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
     public settingsStateService: SettingsStateService,
     public verbsState: VerbsStateService,
     public itemsState: ItemsStateService,
-    private audioService: AudioService
+    private audioService: AudioService,
   ) {}
 
   ngOnInit() {

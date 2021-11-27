@@ -31,14 +31,13 @@ if (Capacitor.isNativePlatform()) {
     {
       provide: AudioService,
       useClass: AudioServiceMock,
-    }
+    },
   );
 }
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [
-  ],
+  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

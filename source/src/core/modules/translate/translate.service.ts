@@ -11,7 +11,7 @@ import { LANGUAGE_SUPPORT } from './translate.module';
 export class AppTranslateService {
   constructor(
     private translate: TranslateService,
-    private settingsDatabase: SettingsDatabaseService
+    private settingsDatabase: SettingsDatabaseService,
   ) {}
 
   availableLangs(): string[] {
@@ -27,7 +27,7 @@ export class AppTranslateService {
   async getCurrent(): Promise<string> {
     const lang = await this.settingsDatabase.getValue(
       'lang',
-      this.translate.defaultLang
+      this.translate.defaultLang,
     );
     console.debug('Load language:', lang);
     return lang;

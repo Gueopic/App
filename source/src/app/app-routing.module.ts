@@ -21,7 +21,9 @@ const routes: Routes = [
   {
     path: ROUTE_NAMES.playground,
     loadChildren: () =>
-      import('./playground/playground.module').then((m) => m.PlaygroundPageModule),
+      import('./playground/playground.module').then(
+        (m) => m.PlaygroundPageModule,
+      ),
   },
 ];
 

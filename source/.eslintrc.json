@@ -36,9 +36,7 @@
             "style": "camelCase"
           }
         ],
-        "prefer-arrow/prefer-arrow-functions": [
-          0
-        ],
+        "prefer-arrow/prefer-arrow-functions": [0],
         "no-console": [0],
         "no-underscore-dangle": [0, { "allow": [] }]
       }

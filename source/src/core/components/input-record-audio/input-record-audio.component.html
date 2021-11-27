@@ -1,5 +1,5 @@
 <ion-item>
-  <ion-label>{{ "components.input_record_audio.title" | translate }}</ion-label>
+  <ion-label>{{ 'components.input_record_audio.title' | translate }}</ion-label>
 </ion-item>
 
 <div class="container-field">
@@ -7,12 +7,12 @@
     <!-- Track Info -->
     <ng-container [ngSwitch]="status | async">
       <ng-container *ngSwitchCase="statusAudioEnum.recording">
-        {{ (recordTimer | async) / 10 | number: "1.1-1" }}s
+        {{ (recordTimer | async) / 10 | number: '1.1-1' }}s
       </ng-container>
       <ng-container *ngSwitchCase="statusAudioEnum.stopped">
         {{
           (fileData$ | async)?.originalFile?.value?.msDuration / 1000
-            | number: "1.1-1"
+            | number: '1.1-1'
         }}s
       </ng-container>
     </ng-container>
@@ -25,7 +25,7 @@
           [type]="'button'"
           (click)="startRecord($event)"
         >
-          {{ "components.input_record_audio.record" | translate }}
+          {{ 'components.input_record_audio.record' | translate }}
         </button>
       </ng-container>
 
@@ -36,7 +36,7 @@
           [type]="'button'"
           (click)="reproduceAudio()"
         >
-          {{ "components.input_record_audio.play" | translate }}
+          {{ 'components.input_record_audio.play' | translate }}
         </button>
         <button
           class="action"
@@ -44,7 +44,7 @@
           [type]="'button'"
           (click)="removeAudio()"
         >
-          {{ "components.input_record_audio.delete" | translate }}
+          {{ 'components.input_record_audio.delete' | translate }}
         </button>
       </ng-container>
 
@@ -55,7 +55,7 @@
           [type]="'button'"
           (click)="stopRecording($event)"
         >
-          {{ "components.input_record_audio.stop" | translate }}
+          {{ 'components.input_record_audio.stop' | translate }}
         </button>
       </ng-container>
 
@@ -66,7 +66,7 @@
           [type]="'button'"
           (click)="reproduceAudio()"
         >
-          {{ "components.input_record_audio.stop" | translate }}
+          {{ 'components.input_record_audio.stop' | translate }}
         </button>
       </ng-container>
     </ng-container>

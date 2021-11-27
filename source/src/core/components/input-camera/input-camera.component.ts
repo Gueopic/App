@@ -47,7 +47,7 @@ export class InputCameraComponent
   constructor(
     private inj: Injector,
     private changeDetector: ChangeDetectorRef,
-    private cameraService: CameraService
+    private cameraService: CameraService,
   ) {}
 
   ngOnInit() {

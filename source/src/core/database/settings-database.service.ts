@@ -7,7 +7,7 @@ import { StorageService } from './core/storage.service';
   providedIn: 'root',
 })
 export class SettingsDatabaseService extends AbstractDatabaseService<SettingModel> {
-  protected tableName = 'settings'
+  protected tableName = 'settings';
 
   constructor(protected dbService: StorageService) {
     super(dbService);
@@ -17,7 +17,7 @@ export class SettingsDatabaseService extends AbstractDatabaseService<SettingMode
   async getValue(id: string, defaultValue?: string): Promise<string> {
     const element = (await this.dbService.getElement(
       this.tableName,
-      id
+      id,
     )) as SettingModel;
     return element?.value || defaultValue;
   }
@@ -39,7 +39,7 @@ export class SettingsDatabaseService extends AbstractDatabaseService<SettingMode
     for (const element of elements) {
       if (!element.id) {
         throw new Error(
-          `No key provided to the setting with value ${element.value}`
+          `No key provided to the setting with value ${element.value}`,
         );
       }
     }

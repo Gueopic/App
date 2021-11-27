@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
 
@@ -18,7 +30,7 @@ export class EditVerbComponent implements OnInit {
   form: FormGroup;
   constructor(
     public modalController: ModalController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit() {
@@ -33,8 +45,8 @@ export class EditVerbComponent implements OnInit {
     this.form = this.fb.group({
       // id is a hidden field just to manage "update" cases
       id: this.fb.control(null),
-      text: this.fb.control(null, [ Validators.required ]),
-      audio: new FormControl(null, [ Validators.required ]),
+      text: this.fb.control(null, [Validators.required]),
+      audio: new FormControl(null, [Validators.required]),
     });
 
     if (this.verb) {

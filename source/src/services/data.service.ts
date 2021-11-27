@@ -40,7 +40,7 @@ export class DataService {
     new BehaviorSubject(MOCKED_PHRASES_DATA);
 
   private objectData$: BehaviorSubject<ImgText[]> = new BehaviorSubject(
-    MOCKED_OBJECTS_DATA
+    MOCKED_OBJECTS_DATA,
   );
 
   get phraseObject$(): Observable<PhraseData[]> {
