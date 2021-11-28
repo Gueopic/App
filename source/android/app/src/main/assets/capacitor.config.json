@@ -7,7 +7,7 @@
 		"SplashScreen": {
 			"launchAutoHide": false,
 			"showSpinner": true,
-			"androidSpinnerStyle": "horizontal",
+			"androidSpinnerStyle": "small",
 			"iosSpinnerStyle": "small"
 		}
 	}
