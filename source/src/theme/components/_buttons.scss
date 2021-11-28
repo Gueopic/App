@@ -1,0 +1,8 @@
+/* Buttons */
+
+.gueo-flex--button {
+  display: flex;
+  & .gueo-flex--button-flex-1 {
+    flex: 1;
+  }
+}
