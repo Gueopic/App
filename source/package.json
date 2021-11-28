@@ -7,9 +7,11 @@
     "ng": "ng",
     "start": "ng serve",
     "start:android": "npx ionic capacitor run android --livereload --external",
+    "start:ios": "npx ionic capacitor run ios --livereload --external",
     "build": "ng build",
     "prepare": "ionic build && ionic capacitor sync",
     "build:android": "ionic capacitor build android --prod",
+    "build:ios": "ionic capacitor build ios --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
