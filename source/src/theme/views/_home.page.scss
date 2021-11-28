@@ -1,0 +1,12 @@
+/* Home page View */
+
+:host {
+  $verbSize: 36px;
+
+  .verbs-list {
+    overflow: auto;
+    &.max-lines-3 {
+      max-height: $verbSize * 3;
+    }
+  }
+}
