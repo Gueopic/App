@@ -17,7 +17,7 @@ import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 @Component({
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
-  styleUrls: ['./menu.page.scss'],
+  //styleUrls: ['./menu.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuPage implements OnInit, OnDestroy {
