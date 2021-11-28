@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>Gueopic</string>
+	<string>Gueopic</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -48,6 +48,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Need microphone access for uploading videos</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Need camera access for uploading images</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Need photo library access for uploading images</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Need photo library access for uploading images</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>
