@@ -1,0 +1,25 @@
+/* Gueopic Shell */
+
+/* Shell */
+
+.gueo-shell {
+  height: 100vh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Header */
+
+.gueo-shell__header {
+  padding: 5px;
+  .verbs-list {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Content */
+
+.gueo-shell__content {
+  height: calc(100% - 60px);
+}

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'gueo-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  //styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   isProduction = environment.production;
