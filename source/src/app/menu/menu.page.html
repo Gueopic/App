@@ -11,7 +11,7 @@
       </ion-toolbar>
     </ion-header>
   </div>
-  <div class="gueo-shell__content--menu">
+  <div class="gueo-shell__content gueo-shell__content--menu">
     <ion-content>
       <section>
         <ion-item>
@@ -56,7 +56,7 @@
       </section>
 
       <section
-        class="gueo-content--section ion-text-center"
+        class="gueo-content__section ion-text-center"
         *ngIf="settingsStateService.enableVerbs"
       >
         <ion-text>
@@ -69,7 +69,7 @@
       </section>
 
       <section
-        class="gueo-content--section"
+        class="gueo-content__section gueo-content__section--bg"
         *ngIf="settingsStateService.enableVerbs"
       >
         <!-- Verbs alternative design -->
@@ -119,7 +119,9 @@
 
         <!-- Verbs data -->
         <ion-grid>
-          <ion-row class="ion-text-center ion-align-items-center">
+          <ion-row
+            class="ion-text-center ion-align-items-center gueo-grid__header"
+          >
             <ion-col>
               <ion-text>{{ 'common.text' | translate }}</ion-text>
             </ion-col>
@@ -132,7 +134,7 @@
           </ion-row>
           <ion-row
             *ngFor="let verb of verbsStateService.verbsWithFiles | async; trackBy:trackByVerb"
-            class="ion-text-center ion-align-items-center"
+            class="ion-text-center ion-align-items-center gueo-grid"
           >
             <ion-col> {{verb.text}} </ion-col>
             <ion-col>
@@ -195,7 +197,7 @@
                 ></ion-img>
               </div>
               <div class="gueo-flex--col">
-                <h2>{{item.text}}</h2>
+                <h2 class="gueo-card__header">{{item.text}}</h2>
                 <div class="gueo-flex--button">
                   <ion-button
                     expand="block"

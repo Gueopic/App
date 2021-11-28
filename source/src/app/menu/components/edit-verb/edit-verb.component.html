@@ -14,7 +14,7 @@
   <form [formGroup]="form" (ngSubmit)="onSave()">
     <ion-list>
       <gueo-error-validation-wrapper [formControlName]="'text'">
-        <ion-item>
+        <ion-item class="gueo-modal__type">
           <ion-label position="stacked">{{
             'edit_verb.text.label' | translate
           }}</ion-label>
@@ -32,6 +32,7 @@
     <gueo-error-validation-wrapper [formControlName]="'audio'">
       <gueo-input-record-audio
         [formControlName]="'audio'"
+        class="gueo-modal__action"
       ></gueo-input-record-audio>
     </gueo-error-validation-wrapper>
   </form>

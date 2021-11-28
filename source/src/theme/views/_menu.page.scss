@@ -9,11 +9,39 @@
   display: flex;
   align-items: center;
   flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.gueo-card__header {
+  margin-top: 0;
 }
 
 .gueo-flex--col {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  //width: 100%;
+  margin-left: 1rem;
+}
+
+.gueo-content__section {
+  margin-top: 1rem;
+  &--bg {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+}
+
+.gueo-grid {
+  &__header {
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+  }
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.25rem;
+  }
 }
