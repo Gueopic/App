@@ -6,3 +6,9 @@
     flex: 1;
   }
 }
+
+ion-fab {
+  position: fixed;
+  bottom: 1rem;
+  padding-bottom: env(safe-area-inset-bottom);
+}
