@@ -1,78 +1,73 @@
-<div class="gueo-shell">
-  <div class="gueo-shell__header">
-    <ion-header no-border>
-      <div
-        class="verbs-list"
-        *ngIf="settingsStateService.enableVerbs"
-        [class.max-lines-3]="settingsStateService.enableItems"
-      >
-        <ion-button
-          *ngFor="let verb of (verbsState.verbsWithFiles | async)"
-          (click)="reproduceAudio(verb.audio)"
-        >
-          {{ verb.text }}
-        </ion-button>
-      </div>
-    </ion-header>
-  </div>
-  <div class="gueo-shell__content">
-    <ion-content
-      [scrollEvents]="true"
-      [scrollY]="true"
-      (ionScroll)="onScroll($event)"
+<ion-header no-border>
+  <div
+    class="verbs-list gueo-shell__header"
+    *ngIf="settingsStateService.enableVerbs"
+    [class.max-lines-3]="settingsStateService.enableItems"
+  >
+    <ion-button
+      *ngFor="let verb of (verbsState.verbsWithFiles | async)"
+      (click)="reproduceAudio(verb.audio)"
     >
-      <gueo-virtual-scroll
-        *ngIf="settingsStateService.enableItems"
-        [list]="itemsState.itemsWithFiles$ | async"
-        [isLoading]="itemsState.loaderItemsWithFiles$ | async"
-        [maxWidth]="settingsStateService.itemImageWidth$ | async"
-        [rowSizePx]="settingsStateService.itemImageWidth$ | async"
-      >
-        <ng-template #itemTemplate let-item="item">
-          <div
-            class="image-container"
-            (click)="reproduceAudio(item.audio)"
-            [style.height]="(settingsStateService.itemImageWidth$ | async) + 'px'"
-            [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
-          ></div>
-        </ng-template>
-
-        <ng-template #noContentTemplate>
-          <ion-card>
-            <ion-card-header>
-              <b>{{ 'home.no_content.title' | translate }}</b>
-            </ion-card-header>
-            <ion-card-content>
-              {{ 'home.no_content.description' | translate }}
-            </ion-card-content>
-          </ion-card>
-        </ng-template>
-      </gueo-virtual-scroll>
-
-      <ion-fab
-        *ngIf="!footerHidden"
-        vertical="bottom"
-        horizontal="start"
-        slot="fixed"
-      >
-        <ion-fab-button
-          [size]="'small'"
-          [routerLink]="['/menu']"
-          routerDirection="forward"
-        >
-          <ion-icon name="menu-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-      <ion-fab
-        vertical="bottom"
-        horizontal="end"
-        slot="fixed"
-        *ngIf="!isProduction"
-      >
-        <ion-fab-button [size]="'small'" [routerLink]="['/playground']">
-          <ion-icon name="cube-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
+      {{ verb.text }}
+    </ion-button>
   </div>
-</div>
+</ion-header>
+
+<ion-content
+  [scrollEvents]="true"
+  [scrollY]="true"
+  (ionScroll)="onScroll($event)"
+>
+  <gueo-virtual-scroll
+    *ngIf="settingsStateService.enableItems"
+    [list]="itemsState.itemsWithFiles$ | async"
+    [isLoading]="itemsState.loaderItemsWithFiles$ | async"
+    [maxWidth]="settingsStateService.itemImageWidth$ | async"
+    [rowSizePx]="settingsStateService.itemImageWidth$ | async"
+  >
+    <ng-template #itemTemplate let-item="item">
+      <div
+        class="image-container"
+        (click)="reproduceAudio(item.audio)"
+        [style.height]="(settingsStateService.itemImageWidth$ | async) + 'px'"
+        [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
+      ></div>
+    </ng-template>
+
+    <ng-template #noContentTemplate>
+      <ion-card>
+        <ion-card-header>
+          <b>{{ 'home.no_content.title' | translate }}</b>
+        </ion-card-header>
+        <ion-card-content>
+          {{ 'home.no_content.description' | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </gueo-virtual-scroll>
+
+  <ion-fab
+    *ngIf="!footerHidden"
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+  >
+    <ion-fab-button
+      [size]="'small'"
+      [routerLink]="['/menu']"
+      routerDirection="forward"
+    >
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="!isProduction"
+  >
+    <ion-fab-button [size]="'small'" [routerLink]="['/playground']">
+      <ion-icon name="cube-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

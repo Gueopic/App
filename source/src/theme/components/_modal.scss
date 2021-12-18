@@ -2,7 +2,6 @@
 
 .gueo-modal__action > ion-item {
   width: 100%;
-  max-width: 300px;
   margin: 1rem auto;
   &::part(native) {
     background: none;
@@ -11,24 +10,22 @@
   }
 }
 
-ion-item {
-  &.gueo-modal__type {
-    &::part(native) {
-      background-color: #262626;
-    }
-  }
-}
+// ion-item {
+//   &.gueo-modal__type {
+//     &::part(native) {
+//       background-color: #262626;
+//     }
+//   }
+// }
 
 .container-field {
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 1rem;
-  border-radius: 10px;
   width: 65%;
-  max-width: 300px;
   .row {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     font-size: 20px;
     /* Camera icon centerd hack */
@@ -42,7 +39,6 @@ ion-item {
       display: flex;
       margin: auto;
       padding: 1rem;
-      border-radius: 10px;
       color: var(--color);
     }
   }
@@ -53,11 +49,9 @@ ion-list {
 }
 gueo-error-validation-wrapper {
   .hasErrors {
-    //width: 100%;
-    max-width: 300px;
-    margin: auto;
-    border-radius: 10px;
-    text-align: center;
-    flex-direction: column;
+    .errors-list {
+      padding: 0 10px;
+      color: rgb(255, 0, 0);
+    }
   }
 }
