@@ -2,23 +2,19 @@
   <ion-label>Take a Photo</ion-label>
 </ion-item>
 
-<ion-thumbnail>
-  <img *ngIf="imagePath" [src]="imagePath" />
+<ion-thumbnail *ngIf="imagePath">
+  <img [src]="imagePath" />
 </ion-thumbnail>
 
 <div class="container-field">
   <div class="row">
-    <!-- <img [src]="urlImage" alt="Capture" width="84" height="84" *ngIf="fileData"> -->
-  </div>
-  <div class="row">
-    <button
-      mat-raised-button
-      class="action"
+    <ion-button
+      color="light"
+      size="large"
       (click)="getImage($event)"
-      color="primary"
       [type]="'button'"
     >
       <ion-icon name="camera"></ion-icon>
-    </button>
+    </ion-button>
   </div>
 </div>
