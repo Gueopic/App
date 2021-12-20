@@ -54,6 +54,7 @@
   },
   "components": {
     "take_photo": {
+      "title": "Take a photo",
       "hub": {
         "title": "Photos",
         "from_photos": "Album",

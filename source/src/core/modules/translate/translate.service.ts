@@ -20,7 +20,6 @@ export class AppTranslateService {
   }
 
   async setCurrent(lang: string): Promise<void> {
-    console.debug('Language changed to:', lang);
     this.translate.use(lang);
     this.settingsStateService.language = lang;
     return await this.settingsStateService.persistChanges();
@@ -35,7 +34,8 @@ export class AppTranslateService {
 
     const storageLang = await this.getCurrent();
     if (storageLang) {
-      await this.setCurrent(storageLang);
+      this.translate.use(storageLang);
+      this.settingsStateService.language = storageLang;
       return storageLang;
     } else {
       const userLang = this.translate

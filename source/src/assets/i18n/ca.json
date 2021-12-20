@@ -54,6 +54,7 @@
   },
   "components": {
     "take_photo": {
+      "title": "Fer una foto",
       "hub": {
         "title": "Fotos",
         "from_photos": "Àlbum",

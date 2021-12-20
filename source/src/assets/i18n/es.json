@@ -4,7 +4,7 @@
     "actions": {
       "actions": "Acciones",
       "back": "Atrás",
-      "cancel": "Cancel·la",
+      "cancel": "Cancelar",
       "close": "Cerrar",
       "create": "Crear",
       "edit": "Editar",
@@ -54,6 +54,7 @@
   },
   "components": {
     "take_photo": {
+      "title": "Hacer una foto",
       "hub": {
         "title": "Fotos",
         "from_photos": "Álbum",

@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   private async bootstrap(): Promise<void> {
     await this.storageService.init();
     await this.settingsStateService.loadAll();
+    await this.appTranslateService.init();
     await this.loadCurrentLanguage();
     await SplashScreen.hide();
   }
