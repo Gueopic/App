@@ -18,6 +18,11 @@
 }
 
 /* Content */
+@media (prefers-color-scheme: light) {
+  :root {
+    --ion-background-color: #e4e4e4;
+  }
+}
 
 .gueo-shell__content {
   height: 100%;
