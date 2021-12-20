@@ -1,7 +1,9 @@
-<ion-header no-border>
+<ion-header
+  no-border
+  *ngIf="settingsStateService.enableVerbs && (verbsState.verbsWithFiles | async)?.length"
+>
   <div
     class="verbs-list gueo-shell__header"
-    *ngIf="settingsStateService.enableVerbs"
     [class.max-lines-3]="settingsStateService.enableItems"
   >
     <ion-button
