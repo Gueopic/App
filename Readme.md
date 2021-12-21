@@ -91,7 +91,6 @@ The application will reproduce both elements, so the communication will be very 
   </tr>
 </table>
 
-
 ## Humans
 
 <!-- markdownlint-disable -->
@@ -139,11 +138,19 @@ The application will reproduce both elements, so the communication will be very 
         <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
       </a>
     </td>
+    <td align="center" valign="top">
+      <a href="https://github.com/Leoniiii" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/54798485?v=4" alt="Leoniiii" width="100" height="100"><br />
+        <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Leonides Muguercia <br>
+      </a>
+      <sub>Developer</sub><br>
+      <a href="https://www.linkedin.com/in/leonimug/">
+        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
+      </a>
+    </td>
   </tr>
 </table>
 <!-- markdownlint-restore -->
-
-
 
 <!--
 <a href="https://github.com/gueopic/app/graphs/contributors">
