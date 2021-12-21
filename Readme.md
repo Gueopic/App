@@ -105,7 +105,7 @@ The application will reproduce both elements, so the communication will be very 
       <sub>Main Developer</sub><br>
       <a href="https://racs.es" target="_blank" title="racs.es">🌍</a>
       <a href="https://www.linkedin.com/in/ruben-arroyo-ceruelo/">
-        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" style="vertical-align: middle" alt="LinkedIn" width="15">
       </a>
     </td>
     <td align="center" valign="top">
@@ -115,7 +115,7 @@ The application will reproduce both elements, so the communication will be very 
       </a>
       <sub>Developer</sub><br>
       <a href="https://www.linkedin.com/in/gorkagarciamensa/">
-        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" style="vertical-align: middle" alt="LinkedIn" width="15">
       </a>
     </td>
     <td align="center" valign="top">
@@ -133,7 +133,7 @@ The application will reproduce both elements, so the communication will be very 
       </a>
       <sub>Developer</sub><br>
       <a href="http://linkedin.com/in/juan-eiraldi-8268221b6">
-        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" style="vertical-align: middle" alt="LinkedIn" width="15">
       </a>
     </td>
   </tr>
