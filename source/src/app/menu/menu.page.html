@@ -117,6 +117,7 @@
         </gueo-virtual-scroll>
         -->
 
+    <ion-searchbar #verbFilter></ion-searchbar>
     <!-- Verbs data -->
     <ion-grid>
       <ion-row class="ion-text-center ion-align-items-center gueo-grid__header">
@@ -131,7 +132,7 @@
         </ion-col>
       </ion-row>
       <ion-row
-        *ngFor="let verb of verbsStateService.verbsWithFiles | async; trackBy:trackByVerb"
+        *ngFor="let verb of verbsStateService.verbsWithFiles | async | verbFilterPipe:verbFilter.value; trackBy:trackByVerb"
         class="ion-text-center ion-align-items-center gueo-grid"
       >
         <ion-col> {{verb.text}} </ion-col>
@@ -175,8 +176,9 @@
 
   <!-- Items data -->
   <section *ngIf="settingsStateService.enableItems">
+    <ion-searchbar #itemFilter></ion-searchbar>
     <gueo-virtual-scroll
-      [list]="itemsStateService.itemsWithFiles$ | async"
+      [list]="itemsStateService.itemsWithFiles$ | async | itemFilterPipe:itemFilter.value"
       [isLoading]="itemsStateService.loaderItemsWithFiles$ | async"
       [maxWidth]="300"
       [rowSizePx]="155"
