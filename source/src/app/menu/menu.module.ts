@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { VirtualScrollModule } from 'src/core/components/virtual-scroll/virtual-scroll.module';
+import { ItemFilterModule } from './../../core/pipes/filters/item-filter/item-filter.module';
+import { VerbFilterModule } from './../../core/pipes/filters/verb-filter/verb-filter.module';
 import { EditObjectModule } from './components/edit-object/edit-object.module';
 import { EditVerbModule } from './components/edit-verb/edit-verb.module';
 import { LanguageSelectorPage } from './language-selector/language-selector.page';
@@ -20,6 +22,8 @@ import { MenuPage } from './menu.page';
     EditVerbModule,
     EditObjectModule,
     VirtualScrollModule,
+    VerbFilterModule,
+    ItemFilterModule,
   ],
   declarations: [MenuPage, LanguageSelectorPage],
 })
