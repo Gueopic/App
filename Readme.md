@@ -105,7 +105,7 @@ The application will reproduce both elements, so the communication will be very 
       <sub>Main Developer</sub><br>
       <a href="https://racs.es" target="_blank" title="racs.es">🌍</a>
       <a href="https://www.linkedin.com/in/ruben-arroyo-ceruelo/">
-        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn">
+        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
       </a>
     </td>
     <td align="center" valign="top">
@@ -115,7 +115,7 @@ The application will reproduce both elements, so the communication will be very 
       </a>
       <sub>Developer</sub><br>
       <a href="https://www.linkedin.com/in/gorkagarciamensa/">
-        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn">
+        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
       </a>
     </td>
     <td align="center" valign="top">
@@ -126,7 +126,7 @@ The application will reproduce both elements, so the communication will be very 
       <sub>Developer</sub><br>
       <a href="https://gabfiocchi.com" target="_blank" title="gabfiocchi.com">🌍</a> 
       <a href="https://www.linkedin.com/in/gabfiocchi">
-        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn">
+        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
       </a>
     </td>
     <td align="center" valign="top">
@@ -136,7 +136,7 @@ The application will reproduce both elements, so the communication will be very 
       </a>
       <sub>Developer</sub><br>
       <a href="http://linkedin.com/in/juan-eiraldi-8268221b6">
-        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn">
+        <img src="readme-assets/icon_linkedin.jpeg" alt="LinkedIn" width="12">
       </a>
     </td>
   </tr>
