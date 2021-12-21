@@ -97,7 +97,7 @@ The application will reproduce both elements, so the communication will be very 
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td style="text-align: center; vertical-align: top;">
+    <td style="text-align: center;" valign="top">
       <a href="https://github.com/ProtocolNebula" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/3286840?v=4" alt="ProtocolNebula" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Rubén Arroyo <br>
@@ -108,14 +108,14 @@ The application will reproduce both elements, so the communication will be very 
         <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
       </a>
     </td>
-    <td style="text-align: center; vertical-align: top;">
+    <td style="text-align: center;" valign="top">
       <a href="https://github.com/Gorkagarciamensa" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/56064972?v=4" alt="Gorkagarciamensa" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gorka García <br>
       </a>
       <sub>Developer</sub><br>
     </td>
-    <td style="text-align: center; vertical-align: top;">
+    <td style="text-align: center;" valign="top">
       <a href="https://github.com/gabfiocchi" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/9122190?v=4" alt="gabfiocchi" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gabriel Fiocchi <br>
@@ -123,7 +123,7 @@ The application will reproduce both elements, so the communication will be very 
       <sub>Developer</sub><br>
       <a href="https://gabfiocchi.com" target="_blank" title="gabfiocchi.com">🌍</a> 
     </td>
-    <td style="text-align: center; vertical-align: top;">
+    <td style="text-align: center;" valign="top">
       <a href="https://github.com/juanoeiraldi" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/72230349?v=4" alt="juanoeiraldi" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Juan Eiraldi <br>
