@@ -67,21 +67,21 @@ The application will reproduce both elements, so the communication will be very 
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+    <td align="center" valign="middle" style="padding: 10px;">
       <a href="http://gueopic.com/" target="_blank">
         <img src="readme-assets/sponsors/gueopic.jpeg" alt="HolaTalent"><br />
         GUEOPIC <br>
       </a>
       <sub>Help to autistic people</sub>
     </td>
-    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+    <td align="center" valign="middle" style="padding: 10px;">
       <a href="https://holatalent.com" target="_blank">
         <img src="readme-assets/sponsors/hola_talent.jpg" alt="HolaTalent"><br />
         Hola Talent <br>
       </a>
       <sub>Find your desired work</sub>
     </td>
-    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+    <td align="center" valign="middle" style="padding: 10px;">
       <a href="https://pasaporteescaperoom.com/" target="_blank">
         <img src="readme-assets/sponsors/pasaporte_escape_room.jpg" alt="PasaporteEscapeRoom"><br />
         Pasaporte Escape Room <br>
@@ -97,7 +97,7 @@ The application will reproduce both elements, so the communication will be very 
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td style="text-align: center;" valign="top">
+    <td align="center" valign="top">
       <a href="https://github.com/ProtocolNebula" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/3286840?v=4" alt="ProtocolNebula" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Rubén Arroyo <br>
@@ -108,14 +108,17 @@ The application will reproduce both elements, so the communication will be very 
         <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
       </a>
     </td>
-    <td style="text-align: center;" valign="top">
+    <td align="center" valign="top">
       <a href="https://github.com/Gorkagarciamensa" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/56064972?v=4" alt="Gorkagarciamensa" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gorka García <br>
       </a>
       <sub>Developer</sub><br>
+      <a href="https://www.linkedin.com/in/gorkagarciamensa/">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+      </a>
     </td>
-    <td style="text-align: center;" valign="top">
+    <td align="center" valign="top">
       <a href="https://github.com/gabfiocchi" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/9122190?v=4" alt="gabfiocchi" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gabriel Fiocchi <br>
@@ -123,12 +126,15 @@ The application will reproduce both elements, so the communication will be very 
       <sub>Developer</sub><br>
       <a href="https://gabfiocchi.com" target="_blank" title="gabfiocchi.com">🌍</a> 
     </td>
-    <td style="text-align: center;" valign="top">
+    <td align="center" valign="top">
       <a href="https://github.com/juanoeiraldi" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/72230349?v=4" alt="juanoeiraldi" width="100" height="100"><br />
         <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Juan Eiraldi <br>
       </a>
       <sub>Developer</sub><br>
+      <a href="http://linkedin.com/in/juan-eiraldi-8268221b6">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+      </a>
     </td>
   </tr>
 </table>
