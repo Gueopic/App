@@ -37,7 +37,7 @@ You can learn more about GUEOPIC at http://gueopic.com/ (in spanish)
 
 ## Download
 
-- **Android:** Coming soon
+- **Android:** [https://play.google.com/store/apps/details?id=com.gueopic.gueopic](https://play.google.com/store/apps/details?id=com.gueopic.gueopic)
 - **iOs:** Coming soon
 
 # How to use
