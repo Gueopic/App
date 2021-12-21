@@ -14,6 +14,9 @@
 - [How to use](#how-to-use)
   - [Set up](#set-up)
   - [Usability (the person who needs to communicate)](#usability-the-person-who-needs-to-communicate)
+- [Contributors](#contributors)
+  - [Companies](#companies)
+  - [Humans](#humans)
 - [Development](#development)
   - [Requirements](#requirements)
   - [General Set-up](#general-set-up)
@@ -21,7 +24,6 @@
   - [Launch the project in Android](#launch-the-project-in-android)
 - [Deployment](#deployment)
   - [Android](#android)
-- [Developed by](#developed-by)
 
 # About the project
 
@@ -57,6 +59,91 @@ The application is very easy to use:
 - Tap an item.
 
 The application will reproduce both elements, so the communication will be very easy.
+
+# Contributors
+
+## Companies
+
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+      <a href="http://gueopic.com/" target="_blank">
+        <img src="readme-assets/sponsors/gueopic.jpeg" alt="HolaTalent"><br />
+        GUEOPIC <br>
+      </a>
+      <sub>Help to autistic people</sub>
+    </td>
+    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+      <a href="https://holatalent.com" target="_blank">
+        <img src="readme-assets/sponsors/hola_talent.jpg" alt="HolaTalent"><br />
+        Hola Talent <br>
+      </a>
+      <sub>Find your desired work</sub>
+    </td>
+    <td style="text-align: center; vertical-align: middle; padding: 10px;">
+      <a href="https://pasaporteescaperoom.com/" target="_blank">
+        <img src="readme-assets/sponsors/pasaporte_escape_room.jpg" alt="PasaporteEscapeRoom"><br />
+        Pasaporte Escape Room <br>
+      </a>
+      <sub>Discover new escape rooms!</sub>
+    </td>
+  </tr>
+</table>
+
+
+## Humans
+
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td style="text-align: center; vertical-align: top;">
+      <a href="https://github.com/ProtocolNebula" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/3286840?v=4" alt="ProtocolNebula" width="100" height="100"><br />
+        <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Rubén Arroyo <br>
+      </a>
+      <sub>Main Developer</sub><br>
+      <a href="https://racs.es" target="_blank" title="racs.es">🌍</a>
+      <a href="https://www.linkedin.com/in/ruben-arroyo-ceruelo/">
+        <img src="https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn" width="15">
+      </a>
+    </td>
+    <td style="text-align: center; vertical-align: top;">
+      <a href="https://github.com/Gorkagarciamensa" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/56064972?v=4" alt="Gorkagarciamensa" width="100" height="100"><br />
+        <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gorka García <br>
+      </a>
+      <sub>Developer</sub><br>
+    </td>
+    <td style="text-align: center; vertical-align: top;">
+      <a href="https://github.com/gabfiocchi" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/9122190?v=4" alt="gabfiocchi" width="100" height="100"><br />
+        <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Gabriel Fiocchi <br>
+      </a>
+      <sub>Developer</sub><br>
+      <a href="https://gabfiocchi.com" target="_blank" title="gabfiocchi.com">🌍</a> 
+    </td>
+    <td style="text-align: center; vertical-align: top;">
+      <a href="https://github.com/juanoeiraldi" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/72230349?v=4" alt="juanoeiraldi" width="100" height="100"><br />
+        <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="15"> Juan Eiraldi <br>
+      </a>
+      <sub>Developer</sub><br>
+    </td>
+  </tr>
+</table>
+<!-- markdownlint-restore -->
+
+
+
+<!--
+<a href="https://github.com/gueopic/app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=gueopic/app" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks). -->
+
+---
 
 # Development
 
@@ -100,7 +187,3 @@ npm run build:android
 ```
 
 2. In Android Studio (should be automatically opened) just generate a final build in **release** mode.
-
-# Developed by
-
-Coming soon
