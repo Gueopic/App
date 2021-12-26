@@ -9,6 +9,7 @@
     <ion-button
       *ngFor="let verb of (verbsState.verbsWithFiles | async)"
       (click)="reproduceAudio(verb.audio)"
+      [style.fontSize]="(settingsStateService.verbButtonSize$ | async) + 'px'"
     >
       {{ verb.text }}
     </ion-button>

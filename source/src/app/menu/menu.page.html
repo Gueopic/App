@@ -20,6 +20,19 @@
       </ion-button>
     </ion-item>
     <ion-item>
+      <ion-label>{{ "menu.settings.verb_button_size" | translate }}</ion-label>
+      <ion-range
+        min="10"
+        max="30"
+        step="1"
+        pin="true"
+        [(ngModel)]="settingsStateService.verbButtonSize"
+      >
+        <ion-text style="font-size: 12px" slot="start">A</ion-text>
+        <ion-text style="font-size: 20px" slot="end">A</ion-text>
+      </ion-range>
+    </ion-item>
+    <ion-item>
       <ion-label>{{ "menu.settings.image_size" | translate }}</ion-label>
       <ion-range
         min="75"

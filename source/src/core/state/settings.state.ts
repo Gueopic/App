@@ -15,6 +15,9 @@ class StateableState {
   // Global settings
   language: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
+  // Verbs
+  verbButtonSize: BehaviorSubject<number> = new BehaviorSubject<number>(14);
+
   // Items
   itemImageHeight: BehaviorSubject<number> = new BehaviorSubject<number>(125);
   itemImageWidth: BehaviorSubject<number> = new BehaviorSubject<number>(125);
@@ -34,6 +37,9 @@ export class SettingsStateService extends StateFromDBService<
   // Global settings
   @StateableProperty() public language: string;
 
+  // Verbs
+  @StateableProperty() public verbButtonSize: number;
+
   // Items
   @StateableProperty() public itemImageHeight: number;
   @StateableProperty() public itemImageWidth: number;
@@ -49,6 +55,10 @@ export class SettingsStateService extends StateFromDBService<
   // Global settings
   @StateableObservableProperty('language')
   readonly language$: Observable<string>;
+
+  // Verbs
+  @StateableObservableProperty('verbButtonSize')
+  readonly verbButtonSize$: Observable<number>;
 
   // Items
   @StateableObservableProperty('itemImageHeight')
