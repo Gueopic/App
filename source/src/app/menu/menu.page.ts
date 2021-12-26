@@ -5,13 +5,14 @@ import {
   OnInit,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
-import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
-import { AppTranslateService } from 'src/core/modules/translate/translate.service';
-import { AudioService } from 'src/core/services/audio.service';
-import { ItemsStateService } from 'src/core/state/items.state';
-import { SettingsStateService } from 'src/core/state/settings.state';
-import { VerbsStateService } from 'src/core/state/verbs.state';
+import { ItemWithFilesModel } from '../../core/models/item-with-files.model';
+import { VerbWithFilesModel } from '../../core/models/verb-with-files.model';
+import { LanguageListI } from '../../core/modules/translate/translate.module';
+import { AppTranslateService } from '../../core/modules/translate/translate.service';
+import { AudioService } from '../../core/services/audio.service';
+import { ItemsStateService } from '../../core/state/items.state';
+import { SettingsStateService } from '../../core/state/settings.state';
+import { VerbsStateService } from '../../core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 @Component({
@@ -21,6 +22,8 @@ import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuPage implements OnInit, OnDestroy {
+  public languageList: LanguageListI[];
+
   constructor(
     public itemsStateService: ItemsStateService,
     public verbsStateService: VerbsStateService,
@@ -34,6 +37,7 @@ export class MenuPage implements OnInit, OnDestroy {
     this.itemsStateService.loadAll();
     this.verbsStateService.loadAll();
     this.settingsStateService.loadAll(true);
+    this.languageList = this.appTranslateService.availableLangs();
   }
 
   ngOnDestroy() {
@@ -43,8 +47,8 @@ export class MenuPage implements OnInit, OnDestroy {
   trackByVerb(index, item: VerbWithFilesModel) {
     return item.id;
   }
-  trackByItem(index, item: ItemWithFilesModel) {
-    return item.id;
+  trackByLang(index, lang: LanguageListI) {
+    return lang.key;
   }
 
   deleteVerb(verb: VerbWithFilesModel) {

@@ -13,7 +13,7 @@
   <section>
     <ion-item class="ion-text-center">
       <ion-button
-        *ngFor="let lang of appTranslateService.availableLangs()"
+        *ngFor="let lang of languageList; trackBy:trackByLang"
         (click)="changeLang(lang.key)"
       >
         {{ lang.label }}
