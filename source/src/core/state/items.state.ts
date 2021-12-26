@@ -144,43 +144,46 @@ export class ItemsStateService extends StateFromDBService<
 
     for (const item of newItems) {
       let currentItem: ItemWithFilesModel = currentItems[item.id];
-      if (
-        !currentItem ||
-        item.audioFileName !== currentItem.audioFileName ||
-        item.imageFileName !== currentItem.imageFileName
-      ) {
-        currentItems[item.id] = currentItem = await this.createItemData(item);
-      }
+      currentItems[item.id] = currentItem = await this.createItemData(
+        item,
+        currentItem,
+      );
       mappedItems.push(currentItem);
     }
 
     return mappedItems;
   }
 
-  private async createItemData(item: ItemModel): Promise<ItemWithFilesModel> {
-    let audio;
-    let image;
-    try {
-      // const audio = new FileData<any>();
-      if (item.audioFileName) {
-        audio = await this.filesystemService.read(item.audioFileName);
-      }
-      // audio.filePath = item.audioFileName;
-    } catch (ex) {}
-
-    try {
-      // const image = new FileData<any>(item.imageFileName);
-      if (item.imageFileName) {
-        image = await this.filesystemService.read(item.imageFileName);
-      }
-      // image.filePath = item.imageFileName;
-    } catch (ex) {}
-
-    return {
+  private async createItemData(
+    item: ItemModel,
+    oldItemInstance: ItemWithFilesModel,
+  ): Promise<ItemWithFilesModel> {
+    const itemWithFiles: ItemWithFilesModel = {
+      ...oldItemInstance,
       ...item,
-      audio,
-      image,
-    };
+      audio: null,
+      image: null,
+    } as ItemWithFilesModel;
+
+    try {
+      // Update the audio if changed
+      if (item.audioFileName !== oldItemInstance?.audioFileName) {
+        itemWithFiles.audio = item.audioFileName
+          ? await this.filesystemService.read(item.audioFileName)
+          : null;
+      }
+    } catch (ex) {}
+
+    try {
+      // Update the image if changed
+      if (item.imageFileName !== oldItemInstance?.imageFileName) {
+        itemWithFiles.image = item.imageFileName
+          ? await this.filesystemService.read(item.imageFileName)
+          : null;
+      }
+    } catch (ex) {}
+
+    return itemWithFiles;
   }
 
   private async persistImage(

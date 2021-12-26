@@ -112,27 +112,36 @@ export class VerbsStateService extends StateFromDBService<
 
     for (const verb of newVerbs) {
       let currentVerb: VerbWithFilesModel = currentVerbs[verb.id];
-      if (!currentVerb || verb.audioFileName !== currentVerb.audioFileName) {
-        currentVerbs[verb.id] = currentVerb = await this.createVerbData(verb);
-      }
+      currentVerbs[verb.id] = currentVerb = await this.createVerbData(
+        verb,
+        currentVerb,
+      );
       mappedVerbs.push(currentVerb);
     }
 
     return mappedVerbs;
   }
 
-  private async createVerbData(verb: VerbModel): Promise<VerbWithFilesModel> {
+  private async createVerbData(
+    verb: VerbModel,
+    oldVerbInstance?: VerbWithFilesModel,
+  ): Promise<VerbWithFilesModel> {
+    const verbWithFiles: VerbWithFilesModel = {
+      ...oldVerbInstance,
+      ...verb,
+      audio: null,
+    };
     let audio;
     try {
-      if (verb.audioFileName) {
-        audio = await this.filesystemService.read(verb.audioFileName);
+      // Update the audio if changed
+      if (verb.audioFileName !== oldVerbInstance?.audioFileName) {
+        audio = verb.audioFileName
+          ? await this.filesystemService.read(verb.audioFileName)
+          : null;
       }
     } catch (ex) {}
 
-    return {
-      ...verb,
-      audio,
-    };
+    return verbWithFiles;
   }
 
   private async persistAudio(
