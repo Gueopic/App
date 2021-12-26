@@ -59,8 +59,8 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
   }
 
   reGroupList() {
+    this.groupList = [];
     this.ngZone.runOutsideAngular(() => {
-      this.groupList = [];
       const newGroupList = [];
       let currentGroup = [];
       let col = 0;
@@ -82,6 +82,10 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
 
       this.ngZone.run(() => {
         this.groupList = newGroupList;
+        setTimeout(() => {
+          // Hack to avoid buggy virtual scroll when items are changed
+          window.dispatchEvent(new Event('resize'));
+        }, 100);
       });
     });
   }
