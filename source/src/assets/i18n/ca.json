@@ -24,6 +24,7 @@
     "title": "Menú",
     "settings": {
       "title": "Configuracions",
+      "verb_button_size": "Mida verbs",
       "image_size": "Mida imatges",
       "features": "Característiques",
       "enable_verbs": "Activar Verbs",

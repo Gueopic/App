@@ -24,6 +24,7 @@
     "title": "Menú",
     "settings": {
       "title": "Ajustes",
+      "verb_button_size": "Tamaño verbos",
       "image_size": "Tamaño imagenes",
       "features": "Características",
       "enable_verbs": "Activar Verbos",

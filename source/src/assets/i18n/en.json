@@ -24,6 +24,7 @@
     "title": "Menu",
     "settings": {
       "title": "Settings",
+      "verb_button_size": "Verbs size",
       "image_size": "Image size",
       "features": "Features",
       "enable_verbs": "Enable Verbs",
