@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ItemWithFilesModel } from '../../core/models/item-with-files.model';
 import { VerbWithFilesModel } from '../../core/models/verb-with-files.model';
@@ -31,9 +32,14 @@ export class MenuPage implements OnInit, OnDestroy {
     public modalController: ModalController,
     private audioService: AudioService,
     public appTranslateService: AppTranslateService,
+    private route: ActivatedRoute,
   ) {}
 
+  get routeData() {
+    return this.route.snapshot.data;
+  }
   ngOnInit() {
+    console.log('tset', this.route.snapshot.data);
     this.itemsStateService.loadAll();
     this.verbsStateService.loadAll();
     this.settingsStateService.loadAll(true);

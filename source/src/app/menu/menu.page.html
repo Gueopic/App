@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="!routeData?.isSidebar" slot="start">
       <ion-button [routerLink]="['/home']" routerDirection="back">
         {{ 'common.actions.back' | translate }}
       </ion-button>
