@@ -13,7 +13,8 @@
     },
     "menu": "Menu",
     "text": "Text",
-    "sound": "Sound"
+    "sound": "Sound",
+    "version": "Version"
   },
   "validation": {
     "errors": {
