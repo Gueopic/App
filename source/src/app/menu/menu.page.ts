@@ -62,7 +62,11 @@ export class MenuPage implements OnInit, OnDestroy {
   }
 
   reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel): void {
-    this.audioService.playAudioFile(item.audio);
+    if (item.audio) {
+      this.audioService.playAudioFile(item.audio);
+    } else {
+      speechSynthesis.speak(new SpeechSynthesisUtterance(item.text));
+    }
   }
 
   changeLang(lang: string) {
