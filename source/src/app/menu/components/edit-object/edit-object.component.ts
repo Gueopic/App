@@ -46,7 +46,7 @@ export class EditObjectComponent implements OnInit {
       // id is a hidden field just to manage "update" cases
       id: this.fb.control(null),
       text: this.fb.control(null, [Validators.required]),
-      audio: new FormControl(null, [Validators.required]),
+      audio: new FormControl(null),
       image: new FormControl(null, [Validators.required]),
     });
 
