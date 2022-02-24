@@ -116,7 +116,11 @@ export class FileData<T> {
       if (Capacitor.isNativePlatform() && this.filePath) {
         // Display the new image by rewriting the 'file://' path to HTTP
         // Details: https://ionicframework.com/docs/building/webview#file-protocol
+        // if (Capacitor.getPlatform() === 'ios') {
+        //   this._webPath = (window as any).WkWebView.convertFileSrc(this.filePath);
+        // } else {
         this._webPath = Capacitor.convertFileSrc(this.filePath);
+        // }
       } else {
         // Use webPath to display the new image instead of base64 since
         if (!this.computedBase64) {

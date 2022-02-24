@@ -3,7 +3,7 @@
 </ion-item>
 
 <ion-thumbnail *ngIf="imagePath">
-  <img [src]="imagePath" />
+  <img *ngIf="imagePath" [src]="imagePath | domSanitize: 'resourceUrl'" />
 </ion-thumbnail>
 
 <div class="container-field">

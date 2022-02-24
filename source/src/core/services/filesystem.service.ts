@@ -58,9 +58,18 @@ export class FilesystemService {
     const { uri } = await Filesystem.getUri({ path, directory });
     fileData.relativePath = path;
     fileData.filePath = uri;
+    // fileData.setBase64(await this.getFileContent(fileData, directory));
     fileData.getWebPath(); // Preload web path/base 64
     return fileData;
   }
+
+  // async getFileContent(fileData: FileData<any>, directory = Directory.Documents): Promise<string> {
+  //   const fileContent = await Filesystem.readFile({
+  //     path: fileData.filePath,
+  //     directory,
+  //   });
+  //   return fileContent.data;
+  // }
 
   async delete(path: string, directory = Directory.Documents): Promise<void> {
     return Filesystem.deleteFile({ path, directory });
