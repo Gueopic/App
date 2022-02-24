@@ -1,5 +1,6 @@
 import { Capacitor } from '@capacitor/core';
 import { Filesystem } from '@capacitor/filesystem';
+import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
 // https://ionicframework.com/docs/angular/your-first-app/5-adding-mobile
 /**
@@ -26,9 +27,14 @@ export async function readAsBase64(uri: string): Promise<string> {
     // return contents.data;
 
     // TEST 2
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    return (await convertBlobToBase64(blob)) as string;
+    // const response = await fetch(uri);
+    // const blob = await response.blob();
+    // return (await convertBlobToBase64(blob)) as string;ç
+
+    // TEST 3
+    const http = new HTTP();
+    const response = await http.get(uri, {}, {});
+    return response.data;
   }
 }
 
