@@ -127,9 +127,9 @@ export class VerbsStateService extends StateFromDBService<
     oldVerbInstance?: VerbWithFilesModel,
   ): Promise<VerbWithFilesModel> {
     const verbWithFiles: VerbWithFilesModel = {
+      audio: null,
       ...oldVerbInstance,
       ...verb,
-      audio: null,
     };
     let audio;
     try {
