@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --disable-host-check --host 0.0.0.0",
     "start:android": "npx ionic capacitor run android --livereload --external",
     "build": "ng build",
     "prepare": "ionic build && ionic capacitor sync",
