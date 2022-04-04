@@ -5,7 +5,7 @@ import { VerbsDatabaseService } from '../database/verbs-database.service';
 import { FileData } from '../models/file-data.model';
 import { VerbWithFilesModel } from '../models/verb-with-files.model';
 import { VerbModel } from '../models/verb.model';
-import { FilesystemService } from '../services/filesystem.service';
+import { BASE_FOLDER, FilesystemService } from '../services/filesystem.service';
 import { StateFromDB, StateFromDBService } from './core/state-db.base';
 
 class State extends StateFromDB<VerbModel> {
@@ -13,7 +13,7 @@ class State extends StateFromDB<VerbModel> {
   verbsWithFilesIndexed: { [id: string]: VerbWithFilesModel } = {};
 }
 
-export const VERBS_FOLDER = 'verbs';
+export const VERBS_FOLDER = `${BASE_FOLDER}verbs`;
 
 @Injectable({
   providedIn: 'root',
@@ -87,9 +87,13 @@ export class VerbsStateService extends StateFromDBService<
     this.elements$
       .pipe(
         distinctUntilChanged(),
-        switchMap((verbs) => from(this.appendFileDataToVerbs(verbs))),
+        switchMap((verbs) => {
+          this.state.loaderElements.next(true);
+          return from(this.appendFileDataToVerbs(verbs));
+        }),
         tap((verbsWithFiles) => {
           this.state.verbsWithFiles.next(verbsWithFiles);
+          this.state.loaderElements.next(false);
         }),
       )
       .subscribe();
@@ -131,11 +135,11 @@ export class VerbsStateService extends StateFromDBService<
       ...oldVerbInstance,
       ...verb,
     };
-    let audio;
+
     try {
       // Update the audio if changed
       if (verb.audioFileName !== oldVerbInstance?.audioFileName) {
-        audio = verb.audioFileName
+        verbWithFiles.audio = verb.audioFileName
           ? await this.filesystemService.read(verb.audioFileName)
           : null;
       }
