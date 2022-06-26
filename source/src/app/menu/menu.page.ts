@@ -31,8 +31,8 @@ export class MenuPage implements OnInit, OnDestroy {
     public verbsStateService: VerbsStateService,
     public settingsStateService: SettingsStateService,
     public modalController: ModalController,
-    private audioService: AudioService,
     public appTranslateService: AppTranslateService,
+    public audioService: AudioService,
   ) {}
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class MenuPage implements OnInit, OnDestroy {
   }
 
   reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel): void {
-    this.audioService.playAudioFile(item.audio);
+    this.audioService.reproduceSound(item);
   }
 
   changeLang(lang: string) {
