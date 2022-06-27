@@ -8,7 +8,7 @@
   >
     <ion-button
       *ngFor="let verb of (verbsState.verbsWithFiles | async)"
-      (click)="reproduceAudio(verb.audio)"
+      (click)="reproduceAudio(verb)"
       [style.fontSize]="(settingsStateService.verbButtonSize$ | async) + 'px'"
     >
       {{ verb.text }}
@@ -31,7 +31,7 @@
     <ng-template #itemTemplate let-item="item">
       <div
         class="image-container"
-        (click)="reproduceAudio(item.audio)"
+        (click)="reproduceAudio(item)"
         [style.height]="(settingsStateService.itemImageWidth$ | async) + 'px'"
         [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
       ></div>
