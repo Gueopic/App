@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -23,11 +24,14 @@ import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditVerbComponent implements OnInit {
+  @ViewChild('verbInput') verbInput;
   @Input() verb: VerbWithFilesModel;
 
   @Output() save = new EventEmitter<VerbWithFilesModel>();
 
   form: FormGroup;
+
+  defaultVerbs = ['Beber', 'Comer', 'Encender', 'Traer', 'Subir', 'Ir'];
   constructor(
     public modalController: ModalController,
     private fb: FormBuilder,
@@ -59,5 +63,10 @@ export class EditVerbComponent implements OnInit {
     if (this.form.valid) {
       this.modalController.dismiss(this.form.value);
     }
+  }
+
+  onSelectVerb(verb) {
+    this.form.controls['text'].setValue(verb + ' ');
+    this.verbInput.setFocus();
   }
 }

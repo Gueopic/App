@@ -19,6 +19,7 @@
             'edit_verb.text.label' | translate
           }}</ion-label>
           <ion-input
+            #verbInput
             name="text"
             [formControlName]="'text'"
             type="text"
@@ -27,7 +28,16 @@
           ></ion-input>
         </ion-item>
       </gueo-error-validation-wrapper>
+      <ion-item>
+        <ion-chip *ngFor="let verb of defaultVerbs">
+          <ion-label (click)="onSelectVerb(verb)" color="primary">{{
+            verb
+          }}</ion-label>
+        </ion-chip>
+      </ion-item>
     </ion-list>
+
+    <h1>Main Content</h1>
 
     <gueo-error-validation-wrapper [formControlName]="'audio'">
       <gueo-input-record-audio
