@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ElementWithAudio } from '../models/element-with-audio.interface';
 import { FileData } from '../models/file-data.model';
 import { ItemWithFilesModel } from '../models/item-with-files.model';
 import { VerbWithFilesModel } from '../models/verb-with-files.model';
@@ -70,7 +71,7 @@ export class AudioService {
     return this.playAudio(audioRef);
   }
 
-  reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel) {
+  reproduceSound(item: ElementWithAudio) {
     this.stopAudio();
     if (item.audio) {
       this.playAudioFile(item.audio);
