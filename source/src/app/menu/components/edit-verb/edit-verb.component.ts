@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -23,11 +24,21 @@ import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditVerbComponent implements OnInit {
+  @ViewChild('verbInput') verbInput;
   @Input() verb: VerbWithFilesModel;
 
   @Output() save = new EventEmitter<VerbWithFilesModel>();
 
   form: FormGroup;
+
+  defaultVerbs = [
+    { text: 'Beber', disabled: false },
+    { text: 'Comer', disabled: false },
+    { text: 'Encender', disabled: false },
+    { text: 'Traer', disabled: false },
+    { text: 'Subir', disabled: false },
+    { text: 'Ir', disabled: false },
+  ];
   constructor(
     public modalController: ModalController,
     private fb: FormBuilder,
@@ -46,7 +57,7 @@ export class EditVerbComponent implements OnInit {
       // id is a hidden field just to manage "update" cases
       id: this.fb.control(null),
       text: this.fb.control(null, [Validators.required]),
-      audio: new FormControl(null, [Validators.required]),
+      audio: new FormControl(null),
     });
 
     if (this.verb) {
@@ -59,5 +70,12 @@ export class EditVerbComponent implements OnInit {
     if (this.form.valid) {
       this.modalController.dismiss(this.form.value);
     }
+  }
+
+  onSelectVerb(verb, index) {
+    this.form.controls['text'].setValue(verb.text + ' ');
+    this.verbInput.setFocus();
+    this.defaultVerbs.map((e) => (e.disabled = false));
+    this.defaultVerbs[index].disabled = true;
   }
 }
