@@ -73,7 +73,7 @@ export class EditVerbComponent implements OnInit {
   }
 
   onSelectVerb(verb, index) {
-    this.form.controls['text'].setValue(verb.text + ' ');
+    this.form.patchValue({ text: verb.text + ' ' });
     this.verbInput.setFocus();
     this.defaultVerbs.map((e) => (e.disabled = false));
     this.defaultVerbs[index].disabled = true;
