@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileData } from 'src/core/models/file-data.model';
+import { ElementWithAudio } from 'src/core/models/element-with-audio.interface';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 import { AudioService } from 'src/core/services/audio.service';
 import { ItemsStateService } from 'src/core/state/items.state';
@@ -28,8 +28,8 @@ export class HomePage implements OnInit {
     this.init();
   }
 
-  reproduceAudio(audio: FileData<any>): void {
-    this.audioService.playAudioFile(audio);
+  reproduceAudio(element: ElementWithAudio): void {
+    this.audioService.reproduceSound(element);
   }
 
   ionViewWillEnter() {

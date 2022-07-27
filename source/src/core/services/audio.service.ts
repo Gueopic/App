@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ElementWithAudio } from '../models/element-with-audio.interface';
 import { FileData } from '../models/file-data.model';
+import { ItemWithFilesModel } from '../models/item-with-files.model';
+import { VerbWithFilesModel } from '../models/verb-with-files.model';
 
 // doc: https://www.npmjs.com/package/capacitor-voice-recorder
 
@@ -66,6 +69,15 @@ export class AudioService {
   async playAudioFile(fileData: FileData<RecordingData>) {
     const audioRef = new Audio(await fileData.getBase64());
     return this.playAudio(audioRef);
+  }
+
+  reproduceSound(item: ElementWithAudio) {
+    this.stopAudio();
+    if (item.audio) {
+      this.playAudioFile(item.audio);
+    } else {
+      speechSynthesis.speak(new SpeechSynthesisUtterance(item.text));
+    }
   }
 
   stopAudio(): void {

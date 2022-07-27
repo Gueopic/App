@@ -16,6 +16,7 @@ import { VerbsStateService } from '../../core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 import { version } from '../../../package.json';
+import { ElementWithAudio } from 'src/core/models/element-with-audio.interface';
 @Component({
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
@@ -31,8 +32,8 @@ export class MenuPage implements OnInit, OnDestroy {
     public verbsStateService: VerbsStateService,
     public settingsStateService: SettingsStateService,
     public modalController: ModalController,
-    private audioService: AudioService,
     public appTranslateService: AppTranslateService,
+    public audioService: AudioService,
   ) {}
 
   ngOnInit() {
@@ -61,8 +62,8 @@ export class MenuPage implements OnInit, OnDestroy {
     this.itemsStateService.remove(item);
   }
 
-  reproduceSound(item: ItemWithFilesModel | VerbWithFilesModel): void {
-    this.audioService.playAudioFile(item.audio);
+  reproduceSound(item: ElementWithAudio): void {
+    this.audioService.reproduceSound(item);
   }
 
   changeLang(lang: string) {
