@@ -16,12 +16,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "~12.2.16",
-    "@angular/core": "~12.2.16",
-    "@angular/forms": "~12.2.16",
-    "@angular/platform-browser": "~12.2.16",
-    "@angular/platform-browser-dynamic": "~12.2.16",
-    "@angular/router": "~12.2.16",
+    "@angular/common": "~13.3.11",
+    "@angular/core": "~13.3.11",
+    "@angular/forms": "~13.3.11",
+    "@angular/platform-browser": "~13.3.11",
+    "@angular/platform-browser-dynamic": "~13.3.11",
+    "@angular/router": "~13.3.11",
     "@capacitor/android": "3.2.5",
     "@capacitor/app": "1.0.5",
     "@capacitor/camera": "^1.1.2",
@@ -46,15 +46,15 @@
     "zone.js": "~0.11.8"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.18",
+    "@angular-devkit/build-angular": "~13.3.9",
     "@angular-eslint/builder": "2.0.2",
     "@angular-eslint/eslint-plugin": "2.0.2",
     "@angular-eslint/eslint-plugin-template": "2.0.2",
     "@angular-eslint/template-parser": "2.0.2",
-    "@angular/cli": "~12.2.18",
-    "@angular/compiler": "~12.2.16",
-    "@angular/compiler-cli": "~12.2.16",
-    "@angular/language-service": "~12.2.16",
+    "@angular/cli": "~13.3.9",
+    "@angular/compiler": "~13.3.11",
+    "@angular/compiler-cli": "~13.3.11",
+    "@angular/language-service": "~13.3.11",
     "@capacitor/cli": "3.2.5",
     "@ionic/angular-toolkit": "^3.1.1",
     "@ionic/cli": "^6.18.0",
@@ -80,7 +80,7 @@
     "pretty-quick": "^3.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.3.5"
+    "typescript": "~4.6.4"
   },
   "description": "An Ionic project",
   "husky": {
