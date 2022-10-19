@@ -62,6 +62,18 @@ The application will reproduce both elements, so the communication will be very 
 
 # Contributors
 
+## Sponsors
+
+<table>
+  <tr>
+    <td align="center" valign="middle" style="padding: 10px;">
+      <a href="http://vercel.com?utm_source=gueopic&utm_campaign=oss" target="_blank">
+        <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="HolaTalent"><br />
+      </a>
+    </td>
+  </tr>
+</table>
+
 ## Companies
 
 <!-- markdownlint-disable -->
@@ -74,13 +86,13 @@ The application will reproduce both elements, so the communication will be very 
       </a>
       <sub>Help to autistic people</sub>
     </td>
-    <td align="center" valign="middle" style="padding: 10px;">
+    <!-- <td align="center" valign="middle" style="padding: 10px;">
       <a href="https://holatalent.com" target="_blank">
         <img src="readme-assets/sponsors/hola_talent.jpg" alt="HolaTalent"><br />
         Hola Talent <br>
       </a>
       <sub>Find your desired work</sub>
-    </td>
+    </td> -->
     <td align="center" valign="middle" style="padding: 10px;">
       <a href="https://pasaporteescaperoom.com/" target="_blank">
         <img src="readme-assets/sponsors/pasaporte_escape_room.jpg" alt="PasaporteEscapeRoom"><br />
