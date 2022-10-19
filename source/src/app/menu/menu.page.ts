@@ -16,6 +16,7 @@ import { SettingsStateService } from '../../core/state/settings.state';
 import { VerbsStateService } from '../../core/state/verbs.state';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
+import { version } from '../../../package.json';
 @Component({
   selector: 'gueo-menu',
   templateUrl: './menu.page.html',
@@ -24,6 +25,7 @@ import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 })
 export class MenuPage implements OnInit, OnDestroy {
   public languageList: LanguageListI[];
+  public version: string = version;
 
   constructor(
     public itemsStateService: ItemsStateService,

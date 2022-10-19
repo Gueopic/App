@@ -159,10 +159,10 @@ export class ItemsStateService extends StateFromDBService<
     oldItemInstance: ItemWithFilesModel,
   ): Promise<ItemWithFilesModel> {
     const itemWithFiles: ItemWithFilesModel = {
-      ...oldItemInstance,
-      ...item,
       audio: null,
       image: null,
+      ...oldItemInstance,
+      ...item,
     } as ItemWithFilesModel;
 
     try {
