@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { VirtualScrollModule } from 'src/core/components/virtual-scroll/virtual-scroll.module';
+import { SponsorsFooterModule } from '../shared/components/sponsors-footer/sponsors-footer.module';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 
@@ -15,6 +16,7 @@ import { HomePage } from './home.page';
     TranslateModule,
     HomePageRoutingModule,
     VirtualScrollModule,
+    SponsorsFooterModule,
   ],
   declarations: [HomePage],
 })
