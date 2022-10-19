@@ -8,7 +8,9 @@
     "start": "ng serve --disable-host-check --host 0.0.0.0",
     "start:android": "npx ionic capacitor run android --livereload --external",
     "build": "ng build",
-    "prepare": "ionic build && ionic capacitor sync",
+    "build:stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer www/stats.json",
+    "prepare:capacitor": "ionic build && ionic capacitor sync",
     "build:android": "ionic capacitor build android --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -81,7 +83,8 @@
     "pretty-quick": "^3.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.6.4"
+    "typescript": "~4.6.4",
+    "webpack-bundle-analyzer": "^4.6.1"
   },
   "description": "An Ionic project",
   "husky": {
