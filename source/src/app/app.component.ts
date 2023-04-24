@@ -25,6 +25,10 @@ export class AppComponent implements OnInit {
     private router: Router,
   ) {}
 
+  get isMobile() {
+    return window.innerWidth < 768;
+  }
+
   ngOnInit() {
     this.platform.ready().then((res) => {
       console.debug('Platform initialized:', res);

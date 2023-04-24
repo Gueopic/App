@@ -25,6 +25,16 @@ const routes: Routes = [
         (m) => m.PlaygroundPageModule,
       ),
   },
+  // Sidebar outlet
+  {
+    path: '',
+    loadChildren: () =>
+      import('./menu/menu.module').then((m) => m.MenuPageModule),
+    outlet: 'sidebar',
+    data: {
+      isSidebar: true,
+    },
+  },
 ];
 
 @NgModule({
