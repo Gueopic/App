@@ -9,6 +9,9 @@
 			"showSpinner": true,
 			"androidSpinnerStyle": "small",
 			"iosSpinnerStyle": "small"
+		},
+		"server": {
+			"androidScheme": "http"
 		}
 	}
 }
