@@ -33,7 +33,6 @@ if (Capacitor.isNativePlatform()) {
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
