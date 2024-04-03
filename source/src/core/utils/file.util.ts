@@ -16,7 +16,7 @@ export async function readAsBase64(uri: string): Promise<string> {
       path: uri,
     });
 
-    return file.data;
+    return file.data as string;
   } else {
     // Fetch the photo, read as a blob, then convert to base64 format
     const response = await fetch(uri);
