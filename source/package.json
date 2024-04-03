@@ -36,6 +36,7 @@
         "@capacitor/status-bar": "^4.0.0",
         "@ionic-native/core": "^5.36.0",
         "@ionic/angular": "^6.3.2",
+        "@ionic/storage-angular": "^4.0.0",
         "@ngx-translate/core": "^15.0.0",
         "@ngx-translate/http-loader": "^8.0.0",
         "capacitor-voice-recorder": "^4.0.0",
