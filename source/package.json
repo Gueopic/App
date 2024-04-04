@@ -1,8 +1,31 @@
 {
-    "name": "Gueopic",
+    "name": "gueopic-app",
+    "description": "Accessibility application that let you communicate with your friends and family using custom images and voice buttons.",
+    "license": "GPL-3.0",
+    "homepage": "https://gueopic.com/",
     "version": "1.1.6",
-    "author": "Ionic Framework",
-    "homepage": "https://ionicframework.com/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Gueopic/App.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Gueopic/App/issues"
+    },
+    "author": {
+        "name": "Passport Escape S.L.",
+        "email": "developer@pasaporteescaperoom.com",
+        "url": "https://pasaporteescaperoom.com"
+    },
+    "contributors": [{
+        "name": "Ruben Arroyo Ceruelo",
+        "email": "ruben@racs.es",
+        "url": "https://github.com/protocolnebula/"
+    }],
+    "funding": {
+        "type": "patreon",
+        "url": "https://patreon.com/ProtocolNebula"
+    },
+    "private": true,
     "scripts": {
         "ng": "ng",
         "start": "ng serve --disable-host-check --host 0.0.0.0",
@@ -16,7 +39,19 @@
         "lint": "ng lint",
         "e2e": "ng e2e"
     },
-    "private": true,
+    "keywords": [
+        "communication",
+        "accessibility",
+        "autism",
+        "aphonia",
+        "images",
+        "voice",
+        "buttons",
+        "hybrid"
+    ],
+    "files": [
+        "source/www/"
+    ],
     "dependencies": {
         "@angular/common": "~17.3.2",
         "@angular/core": "~17.3.2",
@@ -85,7 +120,6 @@
         "typescript": "~5.4.3",
         "webpack-bundle-analyzer": "^4.6.1"
     },
-    "description": "An Ionic project",
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged",
