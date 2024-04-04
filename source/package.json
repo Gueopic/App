@@ -36,7 +36,7 @@
         "build:stats": "ng build --stats-json",
         "copy:icons": "node ./tools/copy-used-icons.js",
         "analyze": "webpack-bundle-analyzer www/stats.json",
-        "capacitor:copy:after": "npm run copy:icons",
+        "capacitor:copy:before": "npm run copy:icons",
         "prepare:capacitor": "ionic build && npm run copy:icons && ionic capacitor sync",
         "build:android": "ionic capacitor build android --prod",
         "test": "ng test",
