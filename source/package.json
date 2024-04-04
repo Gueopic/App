@@ -3,7 +3,7 @@
     "description": "Accessibility application that let you communicate with your friends and family using custom images and voice buttons.",
     "license": "GPL-3.0",
     "homepage": "https://gueopic.com/",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "repository": {
         "type": "git",
         "url": "https://github.com/Gueopic/App.git"
@@ -16,11 +16,13 @@
         "email": "developer@pasaporteescaperoom.com",
         "url": "https://pasaporteescaperoom.com"
     },
-    "contributors": [{
-        "name": "Ruben Arroyo Ceruelo",
-        "email": "ruben@racs.es",
-        "url": "https://github.com/protocolnebula/"
-    }],
+    "contributors": [
+        {
+            "name": "Ruben Arroyo Ceruelo",
+            "email": "ruben@racs.es",
+            "url": "https://github.com/protocolnebula/"
+        }
+    ],
     "funding": {
         "type": "patreon",
         "url": "https://patreon.com/ProtocolNebula"
