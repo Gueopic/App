@@ -8,7 +8,7 @@ const sourceIconsDir = path.join(
   'node_modules',
   'ionicons',
   'dist',
-  'ionicons',
+  // 'ionicons',
   'svg',
 );
 const destinationIconsDir = path.join(__dirname, '..', 'www', 'svg');
@@ -73,7 +73,9 @@ function copyIconsToAssetsSync(iconNames) {
       const sourceFile = path.join(sourceIconsDir, file);
       const destinationFile = path.join(destinationIconsDir, file);
       fs.copyFileSync(sourceFile, destinationFile);
-      console.log(`Copied ${file} to ${destinationIconsDir}`);
+      console.log(
+        `Copied ${file} from ${sourceFile} to ${destinationIconsDir}`,
+      );
     });
 
     console.log('Icons copied successfully!');
