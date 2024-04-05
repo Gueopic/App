@@ -16,13 +16,11 @@
         "email": "developer@pasaporteescaperoom.com",
         "url": "https://pasaporteescaperoom.com"
     },
-    "contributors": [
-        {
-            "name": "Ruben Arroyo Ceruelo",
-            "email": "ruben@racs.es",
-            "url": "https://github.com/protocolnebula/"
-        }
-    ],
+    "contributors": [{
+        "name": "Ruben Arroyo Ceruelo",
+        "email": "ruben@racs.es",
+        "url": "https://github.com/protocolnebula/"
+    }],
     "funding": {
         "type": "patreon",
         "url": "https://patreon.com/ProtocolNebula"
@@ -34,10 +32,10 @@
         "start:android": "npx ionic capacitor run android --livereload --external",
         "build": "ng build",
         "build:stats": "ng build --stats-json",
-        "copy:icons": "node ./tools/copy-used-icons.js",
+        "clear:unused:icons": "node ./tools/clear-unused-icons.js",
         "analyze": "webpack-bundle-analyzer www/stats.json",
-        "capacitor:copy:before": "npm run copy:icons",
-        "prepare:capacitor": "ionic build && npm run copy:icons && ionic capacitor sync",
+        "capacitor:copy:before": "npm run clear:unused:icons",
+        "prepare:capacitor": "ionic build && ionic capacitor sync",
         "build:android": "ionic capacitor build android --prod",
         "test": "ng test",
         "lint": "ng lint",

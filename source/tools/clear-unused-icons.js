@@ -2,15 +2,15 @@ const fs = require('fs');
 const path = require('path');
 
 const sourceProjectDir = path.join(__dirname, '..', 'src');
-const sourceIconsDir = path.join(
-  __dirname,
-  '..',
-  'node_modules',
-  'ionicons',
-  'dist',
-  // 'ionicons',
-  'svg',
-);
+// const sourceIconsDir = path.join(
+//     __dirname,
+//     '..',
+//     'node_modules',
+//     'ionicons',
+//     'dist',
+//     // 'ionicons',
+//     'svg',
+// );
 const destinationIconsDir = path.join(__dirname, '..', 'www', 'svg');
 
 function findAndExtractNames(directory) {
@@ -53,6 +53,10 @@ function findHTMLFiles(directory) {
   return files;
 }
 
+/**
+ * This
+ */
+/*
 function copyIconsToAssetsSync(iconNames) {
   try {
     // Create destination directory if it doesn't exist
@@ -83,8 +87,33 @@ function copyIconsToAssetsSync(iconNames) {
     console.error('Error copying icons:', err);
   }
 }
+*/
 
-const names = findAndExtractNames(sourceProjectDir);
-console.log('Icon names found:', names);
+function removeNonListedIconsFromAssetsSync(iconsList) {
+  try {
+    // Read files in the destination directory
+    const files = fs.readdirSync(destinationIconsDir);
 
-copyIconsToAssetsSync(names);
+    // Filter files to remove based on iconsList
+    const filesToRemove = files.filter(
+      (file) => !iconsList.includes(path.parse(file).name),
+    );
+
+    // Remove files from the destination directory
+    filesToRemove.forEach((file) => {
+      const filePath = path.join(destinationIconsDir, file);
+      fs.unlinkSync(filePath);
+      console.log(`Removed ${file} from ${destinationIconsDir}`);
+    });
+
+    console.log('Non-listed icons removed successfully!');
+  } catch (err) {
+    console.error('Error removing non-listed icons:', err);
+  }
+}
+
+const usedIconList = findAndExtractNames(sourceProjectDir);
+console.log('Icon names found:', usedIconList);
+
+// copyIconsToAssetsSync(usedIconList);
+removeNonListedIconsFromAssetsSync(usedIconList);
