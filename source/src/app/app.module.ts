@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -31,23 +31,17 @@ if (Capacitor.isNativePlatform()) {
   );
 }
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    TranslateLoaderModule,
-    IonicStorageModule.forRoot({
-      name: '__mydb',
-      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage],
-    }),
-  ],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ...providers,
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        TranslateLoaderModule,
+        IonicStorageModule.forRoot({
+            name: '__mydb',
+            driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage],
+        })], providers: [
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        ...providers,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
