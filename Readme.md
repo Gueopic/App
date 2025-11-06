@@ -15,6 +15,7 @@
   - [Set up](#set-up)
   - [Usability (the person who needs to communicate)](#usability-the-person-who-needs-to-communicate)
 - [Contributors](#contributors)
+  - [Sponsors](#sponsors)
   - [Companies](#companies)
   - [Humans](#humans)
 - [Development](#development)
@@ -64,15 +65,16 @@ The application will reproduce both elements, so the communication will be very 
 
 ## Sponsors
 
-<table>
+N/A
+<!-- <table>
   <tr>
     <td align="center" valign="middle" style="padding: 10px;">
-      <a href="http://vercel.com?utm_source=gueopic&utm_campaign=oss" target="_blank">
-        <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="HolaTalent"><br />
+      <a href="" target="_blank">
+        <img src="" alt="Your Company"><br />
       </a>
     </td>
   </tr>
-</table>
+</table> -->
 
 ## Companies
 
@@ -191,7 +193,7 @@ Made with [contrib.rocks](https://contrib.rocks). -->
 
 ## Launch the app in the Browser
 
-```bash
+```sh
 npm start
 ```
 
@@ -210,8 +212,9 @@ npm start
 
 1. Run the build
 
-```bash
+```sh
 npm run build:android
 ```
 
 2. In Android Studio (should be automatically opened) just generate a final build in **release** mode.
+
