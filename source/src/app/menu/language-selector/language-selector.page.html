@@ -8,11 +8,12 @@
   </ion-header>
 
   <div id="container">
-    <ion-button
-      *ngFor="let lang of appTranslateService.availableLangs()"
-      (click)="changeLang(lang.key)"
-    >
-      {{ lang.label }}
-    </ion-button>
+    @for (lang of appTranslateService.availableLangs(); track lang) {
+      <ion-button
+        (click)="changeLang(lang.key)"
+        >
+        {{ lang.label }}
+      </ion-button>
+    }
   </div>
 </ion-content>

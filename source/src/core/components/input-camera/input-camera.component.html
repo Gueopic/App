@@ -2,9 +2,11 @@
   <ion-label>{{ 'components.take_photo.title' | translate }}</ion-label>
 </ion-item>
 
-<ion-thumbnail *ngIf="imagePath">
-  <img [src]="imagePath" />
-</ion-thumbnail>
+@if (imagePath) {
+  <ion-thumbnail>
+    <img [src]="imagePath" />
+  </ion-thumbnail>
+}
 
 <div class="container-field">
   <div class="row">
@@ -13,7 +15,7 @@
       size="large"
       (click)="getImage($event)"
       [type]="'button'"
-    >
+      >
       <ion-icon name="camera"></ion-icon>
     </ion-button>
   </div>

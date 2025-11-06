@@ -4,34 +4,35 @@
 
 <div class="container-field">
   <!-- Track Info -->
-  <div [ngSwitch]="status | async" class="ion-text-center">
-    <ng-container *ngSwitchCase="statusAudioEnum.recording">
-      <ion-icon name="stopwatch"></ion-icon>
-      {{ (recordTimer | async) / 10 | number: '1.1-1' }}s
-    </ng-container>
-    <ng-container *ngSwitchCase="statusAudioEnum.stopped">
-      <ion-icon name="stopwatch"></ion-icon>
-      {{
+  <div class="ion-text-center">
+    @switch (status | async) {
+      @case (statusAudioEnum.recording) {
+        <ion-icon name="stopwatch"></ion-icon>
+        {{ (recordTimer | async) / 10 | number: '1.1-1' }}s
+      }
+      @case (statusAudioEnum.stopped) {
+        <ion-icon name="stopwatch"></ion-icon>
+        {{
         (fileData$ | async)?.originalFile?.value?.msDuration / 1000
-          | number: '1.1-1'
-      }}s
-    </ng-container>
+        | number: '1.1-1'
+        }}s
+      }
+    }
   </div>
 
   <div class="row">
-    <ng-container [ngSwitch]="status | async">
-      <ng-container *ngSwitchCase="statusAudioEnum.empty">
+    @switch (status | async) {
+      @case (statusAudioEnum.empty) {
         <ion-button
           color="light"
           [type]="'button'"
           (click)="startRecord($event)"
-        >
+          >
           <ion-icon name="mic"></ion-icon>
           {{ 'components.input_record_audio.record' | translate }}
         </ion-button>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="statusAudioEnum.stopped">
+      }
+      @case (statusAudioEnum.stopped) {
         <ion-button color="light" [type]="'button'" (click)="reproduceAudio()">
           <ion-icon name="play-circle"></ion-icon>
           {{ 'components.input_record_audio.play' | translate }}
@@ -40,24 +41,22 @@
           <ion-icon name="trash"></ion-icon>
           {{ 'components.input_record_audio.delete' | translate }}
         </ion-button>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="statusAudioEnum.recording">
+      }
+      @case (statusAudioEnum.recording) {
         <ion-button
           color="light"
           [type]="'button'"
           (click)="stopRecording($event)"
-        >
+          >
           <ion-icon name="square"></ion-icon>
           {{ 'components.input_record_audio.stop' | translate }}
         </ion-button>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="statusAudioEnum.playing">
+      }
+      @case (statusAudioEnum.playing) {
         <ion-button color="light" [type]="'button'" (click)="reproduceAudio()">
           {{ 'components.input_record_audio.stop' | translate }}
         </ion-button>
-      </ng-container>
-    </ng-container>
+      }
+    }
   </div>
 </div>

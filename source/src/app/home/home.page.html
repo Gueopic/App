@@ -1,78 +1,82 @@
-<ion-header
-  no-border
-  *ngIf="settingsStateService.enableVerbs && (verbsState.verbsWithFiles | async)?.length"
->
-  <div
-    class="verbs-list gueo-shell__header"
-    [class.max-lines-3]="settingsStateService.enableItems"
-  >
-    <ion-button
-      *ngFor="let verb of (verbsState.verbsWithFiles | async)"
-      (click)="reproduceAudio(verb.audio)"
-      [style.fontSize]="(settingsStateService.verbButtonSize$ | async) + 'px'"
+@if (settingsStateService.enableVerbs && (verbsState.verbsWithFiles | async)?.length) {
+  <ion-header
+    no-border
     >
-      {{ verb.text }}
-    </ion-button>
-  </div>
-</ion-header>
+    <div
+      class="verbs-list gueo-shell__header"
+      [class.max-lines-3]="settingsStateService.enableItems"
+      >
+      @for (verb of (verbsState.verbsWithFiles | async); track verb) {
+        <ion-button
+          (click)="reproduceAudio(verb.audio)"
+          [style.fontSize]="(settingsStateService.verbButtonSize$ | async) + 'px'"
+          >
+          {{ verb.text }}
+        </ion-button>
+      }
+    </div>
+  </ion-header>
+}
 
 <ion-content
   [scrollEvents]="true"
   [scrollY]="true"
   (ionScroll)="onScroll($event)"
->
-  <gueo-virtual-scroll
-    *ngIf="settingsStateService.enableItems"
-    [list]="itemsState.itemsWithFiles$ | async"
-    [isLoading]="itemsState.loaderItemsWithFiles$ | async"
-    [maxWidth]="settingsStateService.itemImageWidth$ | async"
-    [rowSizePx]="settingsStateService.itemImageWidth$ | async"
   >
-    <ng-template #itemTemplate let-item="item">
-      <div
-        class="image-container"
-        (click)="reproduceAudio(item.audio)"
-        [style.height]="(settingsStateService.itemImageWidth$ | async) + 'px'"
-        [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
-      ></div>
-    </ng-template>
+  @if (settingsStateService.enableItems) {
+    <gueo-virtual-scroll
+      [list]="itemsState.itemsWithFiles$ | async"
+      [isLoading]="itemsState.loaderItemsWithFiles$ | async"
+      [maxWidth]="settingsStateService.itemImageWidth$ | async"
+      [rowSizePx]="settingsStateService.itemImageWidth$ | async"
+      >
+      <ng-template #itemTemplate let-item="item">
+        <div
+          class="image-container"
+          (click)="reproduceAudio(item.audio)"
+          [style.height]="(settingsStateService.itemImageWidth$ | async) + 'px'"
+          [style.backgroundImage]="'url(' + item.image?.computedWebPath + ')'"
+        ></div>
+      </ng-template>
+      <ng-template #noContentTemplate>
+        <ion-card>
+          <ion-card-header>
+            <b>{{ 'home.no_content.title' | translate }}</b>
+          </ion-card-header>
+          <ion-card-content>
+            {{ 'home.no_content.description' | translate }}
+          </ion-card-content>
+        </ion-card>
+      </ng-template>
+    </gueo-virtual-scroll>
+  }
 
-    <ng-template #noContentTemplate>
-      <ion-card>
-        <ion-card-header>
-          <b>{{ 'home.no_content.title' | translate }}</b>
-        </ion-card-header>
-        <ion-card-content>
-          {{ 'home.no_content.description' | translate }}
-        </ion-card-content>
-      </ion-card>
-    </ng-template>
-  </gueo-virtual-scroll>
-
-  <ion-fab
-    *ngIf="!footerHidden"
-    vertical="bottom"
-    horizontal="start"
-    slot="fixed"
-  >
-    <ion-fab-button
-      [size]="'small'"
-      [routerLink]="['/menu']"
-      routerDirection="forward"
-    >
-      <ion-icon name="menu-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <ion-fab
-    vertical="bottom"
-    horizontal="end"
-    slot="fixed"
-    *ngIf="!isProduction"
-  >
-    <ion-fab-button [size]="'small'" [routerLink]="['/playground']">
-      <ion-icon name="cube-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  @if (!footerHidden) {
+    <ion-fab
+      vertical="bottom"
+      horizontal="start"
+      slot="fixed"
+      >
+      <ion-fab-button
+        [size]="'small'"
+        [routerLink]="['/menu']"
+        routerDirection="forward"
+        >
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
+  @if (!isProduction) {
+    <ion-fab
+      vertical="bottom"
+      horizontal="end"
+      slot="fixed"
+      >
+      <ion-fab-button [size]="'small'" [routerLink]="['/playground']">
+        <ion-icon name="cube-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
 
   <app-sponsors-footer></app-sponsors-footer>
 </ion-content>
