@@ -12,9 +12,9 @@
     "url": "https://github.com/Gueopic/App/issues"
   },
   "author": {
-    "name": "Passport Escape S.L.",
-    "email": "developer@pasaporteescaperoom.com",
-    "url": "https://pasaporteescaperoom.com"
+    "name": "Ruben Arroyo Ceruelo",
+    "email": "ruben@racs.es",
+    "url": "https://racs.es"
   },
   "contributors": [
     {
@@ -57,6 +57,7 @@
     "source/www/"
   ],
   "dependencies": {
+    "@angular/cdk": "^20.2.11",
     "@angular/common": "~20.3.10",
     "@angular/core": "~20.3.10",
     "@angular/forms": "~20.3.10",

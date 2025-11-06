@@ -1,37 +1,38 @@
 <!-- TODO: Check if ion-row needs the "group" or will work automatically -->
 <ion-grid>
-  <ion-virtual-scroll [items]="groupList" [approxItemHeight]="rowSizePx + 'px'">
-    <ion-row *virtualItem="let group">
+  <cdk-virtual-scroll-viewport
+    [itemSize]="rowSizePx"
+    minBufferPx="200"
+    maxBufferPx="500"
+  >
+    <ion-row *cdkVirtualFor="let group of groupList">
       @for (item of group; track item) {
-        <ion-col [size]="colSize">
-          <ng-container
-            *ngTemplateOutlet="itemTemplate; context: { item: item }"
-          ></ng-container>
-        </ion-col>
+      <ion-col [size]="colSize">
+        <ng-container
+          *ngTemplateOutlet="itemTemplate; context: { item: item }"
+        ></ng-container>
+      </ion-col>
       }
     </ion-row>
-  </ion-virtual-scroll>
+  </cdk-virtual-scroll-viewport>
 </ion-grid>
 
 @if (isLoading) {
-  <ion-row>
-    @for (elements of skeletonFakePositions; track elements) {
-      <ion-col
-        [size]="colSize"
-        style="width: 100%"
-        [style.maxWidth]="'25%'"
-        [style.height]="rowSizePx + 'px'"
-        >
-        <ion-skeleton-text
-          style="width: 100%; height: 100%"
-          animated
-        ></ion-skeleton-text>
-      </ion-col>
-    }
-  </ion-row>
-} @else {
-  @if (!isLoading && !groupList.length) {
-    <ng-container *ngTemplateOutlet="noContentTemplate"></ng-container>
+<ion-row>
+  @for (elements of skeletonFakePositions; track elements) {
+  <ion-col
+    [size]="colSize"
+    style="width: 100%"
+    [style.maxWidth]="'25%'"
+    [style.height]="rowSizePx + 'px'"
+  >
+    <ion-skeleton-text
+      style="width: 100%; height: 100%"
+      animated
+    ></ion-skeleton-text>
+  </ion-col>
   }
-}
-
+</ion-row>
+} @else { @if (!isLoading && !groupList.length) {
+<ng-container *ngTemplateOutlet="noContentTemplate"></ng-container>
+} }
