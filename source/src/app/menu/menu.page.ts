@@ -77,7 +77,6 @@ export class MenuPage implements OnInit, OnDestroy {
         verb,
       },
       backdropDismiss: false,
-      swipeToClose: false,
     });
     await modal.present();
 
@@ -99,7 +98,6 @@ export class MenuPage implements OnInit, OnDestroy {
         item,
       },
       backdropDismiss: false,
-      swipeToClose: false,
     });
     await modal.present();
 
