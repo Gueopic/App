@@ -1,25 +1,23 @@
-<!-- TODO: Check if ion-row needs the "group" or will work automatically -->
-<ion-grid>
-  <cdk-virtual-scroll-viewport
-    [itemSize]="rowSizePx"
-    minBufferPx="200"
-    maxBufferPx="500"
-  >
-    <ion-row *cdkVirtualFor="let group of groupList">
-      @for (item of group; track item) {
-      <ion-col [size]="colSize">
-        <ng-container
-          *ngTemplateOutlet="itemTemplate; context: { item: item }"
-        ></ng-container>
-      </ion-col>
-      }
-    </ion-row>
-  </cdk-virtual-scroll-viewport>
-</ion-grid>
+<cdk-virtual-scroll-viewport
+  style="height: 100%"
+  [itemSize]="rowSizePx"
+  [minBufferPx]="rowSizePx"
+  [maxBufferPx]="rowSizePx * 2"
+>
+  <ion-row *cdkVirtualFor="let group of groupList">
+    @for (item of group; track item.id) {
+    <ion-col [size]="colSize">
+      <ng-container
+        *ngTemplateOutlet="itemTemplate; context: { item: item }"
+      ></ng-container>
+    </ion-col>
+    }
+  </ion-row>
+</cdk-virtual-scroll-viewport>
 
 @if (isLoading) {
 <ion-row>
-  @for (elements of skeletonFakePositions; track elements) {
+  @for (elements of skeletonFakePositions; track $index) {
   <ion-col
     [size]="colSize"
     style="width: 100%"
@@ -33,6 +31,6 @@
   </ion-col>
   }
 </ion-row>
-} @else { @if (!isLoading && !groupList.length) {
-<ng-container *ngTemplateOutlet="noContentTemplate"></ng-container>
-} }
+} @else if (!isLoading && !groupList.length) {
+  <ng-container *ngTemplateOutlet="noContentTemplate"></ng-container>
+}
