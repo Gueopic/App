@@ -4,7 +4,6 @@ const config: CapacitorConfig = {
   appId: 'com.gueopic.gueopic',
   appName: 'Gueopic',
   webDir: 'www',
-  bundledWebRuntime: false,
   plugins: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     SplashScreen: {
