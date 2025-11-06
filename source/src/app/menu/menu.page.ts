@@ -17,10 +17,11 @@ import { EditObjectComponent } from './components/edit-object/edit-object.compon
 import { EditVerbComponent } from './components/edit-verb/edit-verb.component';
 import packageJson from '../../../package.json';
 @Component({
-  selector: 'gueo-menu',
-  templateUrl: './menu.page.html',
-  //styleUrls: ['./menu.page.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'gueo-menu',
+    templateUrl: './menu.page.html',
+    //styleUrls: ['./menu.page.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MenuPage implements OnInit, OnDestroy {
   public languageList: LanguageListI[];

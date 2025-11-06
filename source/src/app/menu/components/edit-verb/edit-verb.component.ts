@@ -16,11 +16,12 @@ import { ModalController } from '@ionic/angular';
 import { VerbWithFilesModel } from 'src/core/models/verb-with-files.model';
 
 @Component({
-  selector: 'gueo-edit-verb',
-  templateUrl: './edit-verb.component.html',
-  styleUrls: ['./edit-verb.component.scss'],
-  providers: [FormBuilder],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'gueo-edit-verb',
+    templateUrl: './edit-verb.component.html',
+    styleUrls: ['./edit-verb.component.scss'],
+    providers: [FormBuilder],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditVerbComponent implements OnInit {
   @Input() verb: VerbWithFilesModel;

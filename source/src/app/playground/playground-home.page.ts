@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'gueo-playground-home',
-  templateUrl: 'playground-home.page.html',
-  styleUrls: ['playground-home.page.scss'],
+    selector: 'gueo-playground-home',
+    templateUrl: 'playground-home.page.html',
+    styleUrls: ['playground-home.page.scss'],
+    standalone: false
 })
 export class PlaygroundHomePage implements OnInit {
   constructor() {}

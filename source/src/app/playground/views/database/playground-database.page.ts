@@ -5,8 +5,9 @@ import { ItemModel } from 'src/core/models/item.model';
 import { VerbModel } from 'src/core/models/verb.model';
 
 @Component({
-  selector: 'gueo-playground-database',
-  templateUrl: 'playground-database.page.html',
+    selector: 'gueo-playground-database',
+    templateUrl: 'playground-database.page.html',
+    standalone: false
 })
 export class PlaygroundDatabasePage implements OnInit {
   verbs: VerbModel[] = [];

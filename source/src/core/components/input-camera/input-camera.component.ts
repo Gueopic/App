@@ -19,17 +19,18 @@ import { FileData } from 'src/core/models/file-data.model';
 import { CameraService } from 'src/core/services/camera.service';
 
 @Component({
-  selector: 'gueo-input-camera',
-  templateUrl: './input-camera.component.html',
-  styleUrls: ['./input-camera.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => InputCameraComponent),
-    },
-  ],
+    selector: 'gueo-input-camera',
+    templateUrl: './input-camera.component.html',
+    styleUrls: ['./input-camera.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => InputCameraComponent),
+        },
+    ],
+    standalone: false
 })
 export class InputCameraComponent
   implements ControlValueAccessor, OnInit, OnDestroy

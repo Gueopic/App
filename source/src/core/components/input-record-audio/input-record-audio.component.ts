@@ -33,17 +33,18 @@ enum StatusAudioEnum {
   stopped = 'stopped',
 }
 @Component({
-  selector: 'gueo-input-record-audio',
-  templateUrl: './input-record-audio.component.html',
-  styleUrls: ['./input-record-audio.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => InputRecordAudioComponent),
-    },
-  ],
+    selector: 'gueo-input-record-audio',
+    templateUrl: './input-record-audio.component.html',
+    styleUrls: ['./input-record-audio.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => InputRecordAudioComponent),
+        },
+    ],
+    standalone: false
 })
 export class InputRecordAudioComponent
   implements ControlValueAccessor, OnInit, OnDestroy

@@ -16,11 +16,12 @@ import { ModalController } from '@ionic/angular';
 import { ItemWithFilesModel } from 'src/core/models/item-with-files.model';
 
 @Component({
-  selector: 'gueo-edit-object',
-  templateUrl: './edit-object.component.html',
-  styleUrls: ['./edit-object.component.scss'],
-  providers: [FormBuilder],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'gueo-edit-object',
+    templateUrl: './edit-object.component.html',
+    styleUrls: ['./edit-object.component.scss'],
+    providers: [FormBuilder],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditObjectComponent implements OnInit {
   @Input() item: ItemWithFilesModel;

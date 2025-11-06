@@ -11,9 +11,10 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'gueo-virtual-scroll',
-  templateUrl: './virtual-scroll.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'gueo-virtual-scroll',
+    templateUrl: './virtual-scroll.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class VirtualScrollComponent implements OnInit, OnChanges {
   @Input() maxWidth = 767;

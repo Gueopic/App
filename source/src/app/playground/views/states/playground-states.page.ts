@@ -10,8 +10,9 @@ import { SettingsStateService } from 'src/core/state/settings.state';
 import { VerbsStateService } from 'src/core/state/verbs.state';
 
 @Component({
-  selector: 'gueo-playground-states',
-  templateUrl: 'playground-states.page.html',
+    selector: 'gueo-playground-states',
+    templateUrl: 'playground-states.page.html',
+    standalone: false
 })
 export class PlaygroundStatesPage implements OnInit {
   constructor(

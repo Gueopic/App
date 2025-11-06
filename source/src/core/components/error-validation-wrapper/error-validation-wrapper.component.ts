@@ -6,16 +6,17 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'gueo-error-validation-wrapper',
-  templateUrl: './error-validation-wrapper.component.html',
-  styleUrls: ['./error-validation-wrapper.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => ErrorValidationWrapperComponent),
-    },
-  ],
+    selector: 'gueo-error-validation-wrapper',
+    templateUrl: './error-validation-wrapper.component.html',
+    styleUrls: ['./error-validation-wrapper.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => ErrorValidationWrapperComponent),
+        },
+    ],
+    standalone: false
 })
 export class ErrorValidationWrapperComponent
   implements ControlValueAccessor, OnInit

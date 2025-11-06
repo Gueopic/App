@@ -9,8 +9,9 @@ const defaultImage = photoMock.base64String;
 const defaultAudio = recordMock;
 
 @Component({
-  selector: 'gueo-playground-components',
-  templateUrl: 'playground-components.page.html',
+    selector: 'gueo-playground-components',
+    templateUrl: 'playground-components.page.html',
+    standalone: false
 })
 export class PlaygroundComponentsPage implements OnInit {
   form: FormGroup;

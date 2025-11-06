@@ -8,9 +8,9 @@ import { VerbsStateService } from 'src/core/state/verbs.state';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'gueo-home',
-  templateUrl: 'home.page.html',
-  //styleUrls: ['home.page.scss'],
+    selector: 'gueo-home',
+    templateUrl: 'home.page.html',
+    standalone: false
 })
 export class HomePage implements OnInit {
   isProduction = environment.production;

@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { AppTranslateService } from 'src/core/modules/translate/translate.service';
 
 @Component({
-  selector: 'gueo-language-selector',
-  templateUrl: './language-selector.page.html',
-  styleUrls: ['./language-selector.page.scss'],
+    selector: 'gueo-language-selector',
+    templateUrl: './language-selector.page.html',
+    styleUrls: ['./language-selector.page.scss'],
+    standalone: false
 })
 export class LanguageSelectorPage implements OnInit {
   constructor(
