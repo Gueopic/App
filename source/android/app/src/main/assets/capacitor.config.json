@@ -2,7 +2,6 @@
 	"appId": "com.gueopic.gueopic",
 	"appName": "Gueopic",
 	"webDir": "www",
-	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
 			"launchAutoHide": false,

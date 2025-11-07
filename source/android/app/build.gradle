@@ -25,16 +25,11 @@ android {
     }
 }
 
-repositories {
-    flatDir{
-        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
-    }
-}
-
 dependencies {
     implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('../capacitor-cordova-android-plugins/src/main/libs/sqlite-native-ndk-connector.jar')
+    implementation files('../capacitor-cordova-android-plugins/src/main/libs/sqlite-ndk-native-driver.jar')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation project(':capacitor-android')
     testImplementation "junit:junit:$junitVersion"
