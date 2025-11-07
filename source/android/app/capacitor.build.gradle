@@ -16,6 +16,7 @@ dependencies {
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-status-bar')
+    implementation project(':capawesome-capacitor-android-edge-to-edge-support')
     implementation project(':capacitor-voice-recorder')
 
 }

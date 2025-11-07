@@ -21,6 +21,9 @@ const config: CapacitorConfig = {
       // layoutName: 'launch_screen',
       // useDialog: true
     },
+    EdgeToEdge: {
+      backgroundColor: "#0054e9",
+    },
     server: {
       androidScheme: 'http',
     },

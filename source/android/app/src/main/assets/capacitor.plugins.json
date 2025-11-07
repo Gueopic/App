@@ -28,6 +28,10 @@
 		"classpath": "com.capacitorjs.plugins.statusbar.StatusBarPlugin"
 	},
 	{
+		"pkg": "@capawesome/capacitor-android-edge-to-edge-support",
+		"classpath": "io.capawesome.capacitorjs.plugins.androidedgetoedgesupport.EdgeToEdgePlugin"
+	},
+	{
 		"pkg": "capacitor-voice-recorder",
 		"classpath": "com.tchvu3.capacitorvoicerecorder.VoiceRecorder"
 	}

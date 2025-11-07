@@ -2,13 +2,26 @@
 	"appId": "com.gueopic.gueopic",
 	"appName": "Gueopic",
 	"webDir": "www",
-	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
 			"launchAutoHide": false,
 			"showSpinner": true,
 			"androidSpinnerStyle": "small",
 			"iosSpinnerStyle": "small"
+		},
+		"server": {
+			"androidScheme": "http"
 		}
-	}
+	},
+	"packageClassList": [
+		"AppPlugin",
+		"CAPCameraPlugin",
+		"FilesystemPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"SplashScreenPlugin",
+		"StatusBarPlugin",
+		"VoiceRecorder",
+		"CDVPlugin"
+	]
 }

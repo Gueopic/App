@@ -9,6 +9,9 @@
 			"androidSpinnerStyle": "small",
 			"iosSpinnerStyle": "small"
 		},
+		"EdgeToEdge": {
+			"backgroundColor": "#0054e9"
+		},
 		"server": {
 			"androidScheme": "http"
 		}
