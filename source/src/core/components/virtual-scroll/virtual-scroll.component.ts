@@ -1,3 +1,5 @@
+
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +10,7 @@ import {
   OnChanges,
   OnInit,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -17,7 +20,12 @@ import {
     standalone: false
 })
 export class VirtualScrollComponent implements OnInit, OnChanges {
+
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+private cdkVirtualScrollViewport: CdkVirtualScrollViewport;
+
   @Input() maxWidth = 767;
+  @Input() minHeight = "70vh";
   @Input() list: any[];
   @Input() rowSizePx = 300;
   @Input() isLoading = false;
@@ -32,7 +40,9 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
   groupList: any[];
   skeletonFakePositions = new Array(10).fill(null);
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) {
+
+  }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: Event) {
@@ -81,13 +91,14 @@ export class VirtualScrollComponent implements OnInit, OnChanges {
         }
       }
 
-      this.ngZone.run(() => {
+      // this.ngZone.run(() => {
         this.groupList = newGroupList;
-        setTimeout(() => {
+        // setTimeout(() => {
           // Hack to avoid buggy virtual scroll when items are changed
-          window.dispatchEvent(new Event('resize'));
-        }, 100);
-      });
+          // window.dispatchEvent(new Event('resize'));
+          this.cdkVirtualScrollViewport?.checkViewportSize()
+        // }, 100);
+      // });
     });
   }
 }
